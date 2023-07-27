@@ -194,12 +194,20 @@ describe("Inline Inputs", () => {
   });
 
   describe("when a required prop is passed in", () => {
-    beforeEach(() => {
-      wrapper = render({ label: "foo", required: true });
-    });
+    it("sets required attribute for each input", () => {
+      const container = mount(
+        <InlineInputs required label="foo">
+          <input />
+          <input />
+          <input />
+        </InlineInputs>
+      );
+      const inputNodes = container.find("input") || [];
 
-    it("then the isRequired prop should be passed to the label", () => {
-      expect(wrapper.find(Label).props().isRequired).toBe(true);
+      inputNodes.forEach((inlineInputField) => {
+        const inputNode = inlineInputField.getDOMNode();
+        expect(inputNode.hasAttribute("required")).toBe(true);
+      });
     });
   });
 

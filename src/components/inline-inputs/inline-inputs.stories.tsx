@@ -93,3 +93,18 @@ export const Required: ComponentStory<typeof InlineInputs> = () => {
   );
 };
 Required.parameters = { controls: { disable: true } };
+
+export const IsOptional: ComponentStory<typeof InlineInputs> = () => {
+  return (
+    <Box p={4}>
+      <InlineInputs
+        label="Inline Inputs"
+        labelId="inline-inputs-required"
+        isOptional
+      >
+        <Textbox aria-labelledby="inline-inputs-required" />
+        <Textbox aria-labelledby="inline-inputs-required" />
+      </InlineInputs>
+    </Box>
+  );
+};

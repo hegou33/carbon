@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { act } from "react-dom/test-utils";
 import { mount, ReactWrapper } from "enzyme";
+import { StyledLabelContainer } from "__internal__/label/label.style";
 
 import {
   assertStyleMatch,
@@ -1096,6 +1097,38 @@ describe("MultiSelect", () => {
     it("the isRequired prop is passed to the label", () => {
       const label = wrapper.find(Label);
       expect(label.prop("isRequired")).toBe(true);
+    });
+  });
+
+  describe("isOptional", () => {
+    it("input box does not have required attribute", () => {
+      const propWrapper = mount(
+        <MultiSelect name="testSelect" id="testSelect" isOptional label="label">
+          <Option value="opt1" text="red" borderColor="red" fill />
+          <Option value="opt2" text="green" borderColor="green" />
+          <Option value="opt3" text="blue" />
+        </MultiSelect>
+      );
+      const input = propWrapper.find("input");
+      expect(input.prop("required")).toBeFalsy();
+    });
+
+    it("label has '(optional)' suffix when the isOptional prop is passed to the input", () => {
+      const propWrapper = mount(
+        <MultiSelect name="testSelect" id="testSelect" isOptional label="label">
+          <Option value="opt1" text="red" borderColor="red" fill />
+          <Option value="opt2" text="green" borderColor="green" />
+          <Option value="opt3" text="blue" />
+        </MultiSelect>
+      );
+
+      assertStyleMatch(
+        {
+          content: '"(optional)"',
+        },
+        propWrapper.find(StyledLabelContainer),
+        { modifier: "::after" }
+      );
     });
   });
 

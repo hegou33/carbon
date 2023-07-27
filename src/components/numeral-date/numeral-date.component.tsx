@@ -135,6 +135,8 @@ export interface NumeralDateProps<DateType extends NumeralDateObject = FullDate>
    * A React ref to pass to the input corresponding to the year
    */
   yearRef?: React.ForwardedRef<HTMLInputElement>;
+  /** Flag to configure component as optional. */
+  isOptional?: boolean;
 }
 
 export type ValidDateFormat = typeof ALLOWED_DATE_FORMATS[number];
@@ -240,6 +242,7 @@ export const NumeralDate = <DateType extends NumeralDateObject = FullDate>({
   fieldHelp,
   adaptiveLabelBreakpoint,
   required,
+  isOptional,
   readOnly,
   size,
   enableInternalError,
@@ -405,6 +408,7 @@ export const NumeralDate = <DateType extends NumeralDateObject = FullDate>({
           fieldHelp={fieldHelp}
           adaptiveLabelBreakpoint={adaptiveLabelBreakpoint}
           isRequired={required}
+          isOptional={isOptional}
           validationRedesignOptIn={validationRedesignOptIn}
           {...filterStyledSystemMarginProps(rest)}
         >

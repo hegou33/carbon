@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { act } from "react-dom/test-utils";
 import { mount, ReactWrapper } from "enzyme";
+import { StyledLabelContainer } from "__internal__/label/label.style";
 
 import {
   assertStyleMatch,
@@ -1339,6 +1340,22 @@ describe("FilterableSelect", () => {
 describe("coverage filler for else path", () => {
   const wrapper = renderSelect();
   simulateSelectTextboxEvent(wrapper, "blur");
+});
+
+it("label has '(optional)' suffix when the isOptional prop is passed to the input", () => {
+  const propWrapper = mount(
+    <FilterableSelect name="testSelect" label="Select a colour" isOptional>
+      <Option value="opt1" text="blue" key="blue" />
+    </FilterableSelect>
+  );
+
+  assertStyleMatch(
+    {
+      content: '"(optional)"',
+    },
+    propWrapper.find(StyledLabelContainer),
+    { modifier: "::after" }
+  );
 });
 
 describe("when maxWidth is passed", () => {

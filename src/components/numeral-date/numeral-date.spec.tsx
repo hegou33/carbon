@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, ReactWrapper, shallow } from "enzyme";
 import { act } from "react-dom/test-utils";
+import { StyledLabelContainer } from "__internal__/label/label.style";
 
 import NumeralDate, {
   NumeralDateProps,
@@ -649,6 +650,26 @@ describe("NumeralDate", () => {
         rootTagTest(wrapperWithTags.find(StyledNumeralDate), "numeral-date");
       });
     });
+  });
+
+  it("label has '(optional)' suffix when the isOptional prop is passed to the input", () => {
+    const propWrapper = mount(
+      <NumeralDate
+        value={{ dd: "12", mm: "", yyyy: "" }}
+        isOptional
+        label="text"
+      />
+    );
+
+    assertStyleMatch(
+      {
+        content: '"(optional)"',
+        fontWeight: "350",
+        marginLeft: "4px",
+      },
+      propWrapper.find(StyledLabelContainer),
+      { modifier: "::after" }
+    );
   });
 
   describe("required", () => {

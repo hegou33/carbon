@@ -506,7 +506,6 @@ export const FormAlignmentExample = () => {
         labelWidth={10}
         inputWidth={30}
         fieldHelp="This is some help text"
-        isOptional={false}
       />
       <Textbox
         key="input-two"

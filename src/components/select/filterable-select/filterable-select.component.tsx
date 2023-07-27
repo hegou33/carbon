@@ -84,6 +84,10 @@ export interface FilterableSelectProps
    * Higher values make for smoother scrolling but may impact performance.
    * Only used if the `enableVirtualScroll` prop is set. */
   virtualScrollOverscan?: number;
+  /** Flag to configure component as optional. */
+  isOptional?: boolean;
+  /** Flag to configure component as mandatory */
+  required?: boolean;
 }
 
 export const FilterableSelect = React.forwardRef(
@@ -125,6 +129,8 @@ export const FilterableSelect = React.forwardRef(
       inputRef,
       enableVirtualScroll,
       virtualScrollOverscan,
+      isOptional,
+      required,
       ...textboxProps
     }: FilterableSelectProps,
     ref
@@ -680,6 +686,8 @@ export const FilterableSelect = React.forwardRef(
             isOpen={isOpen}
             hasTextCursor
             textboxRef={textboxRef}
+            required={required}
+            isOptional={isOptional}
             {...getTextboxProps()}
           />
         </div>

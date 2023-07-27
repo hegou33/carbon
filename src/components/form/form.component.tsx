@@ -1,6 +1,5 @@
 import React, { useRef, useContext } from "react";
 import { SpaceProps, PaddingProps } from "styled-system";
-
 import { SidebarContext } from "../sidebar/sidebar.component";
 import { ModalContext } from "../modal/modal.component";
 import FormSummary from "./__internal__/form-summary.component";

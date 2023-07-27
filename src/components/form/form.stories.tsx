@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import React, { useState } from "react";
 import Form from ".";
 import Button from "../button";
@@ -191,6 +190,55 @@ export const WithBothErrorsAndWarningsSummary = () => (
     warningCount={2}
   >
     <Textbox label="Textbox" />
+  </Form>
+);
+
+export const WithBothOptionalOrRequired = () => (
+  <Form
+    onSubmit={() => console.log("submit")}
+    leftSideButtons={
+      <Button onClick={() => console.log("cancel")}>Cancel</Button>
+    }
+    saveButton={
+      <Button buttonType="primary" type="submit">
+        Save
+      </Button>
+    }
+  >
+    <Textbox label="Textbox" isOptional />
+    <Textbox label="Textbox" required />
+  </Form>
+);
+
+export const WithOptionalLabel = () => (
+  <Form
+    onSubmit={() => console.log("submit")}
+    leftSideButtons={
+      <Button onClick={() => console.log("cancel")}>Cancel</Button>
+    }
+    saveButton={
+      <Button buttonType="primary" type="submit">
+        Save
+      </Button>
+    }
+  >
+    <Textbox label="Textbox" isOptional />
+  </Form>
+);
+
+export const WithRequiredLabel = () => (
+  <Form
+    onSubmit={() => console.log("submit")}
+    leftSideButtons={
+      <Button onClick={() => console.log("cancel")}>Cancel</Button>
+    }
+    saveButton={
+      <Button buttonType="primary" type="submit">
+        Save
+      </Button>
+    }
+  >
+    <Textbox label="Textbox" required />
   </Form>
 );
 

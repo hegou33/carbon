@@ -175,6 +175,13 @@ describe("SelectTextbox", () => {
     });
   });
 
+  describe("isOptional", () => {
+    it("isOptional prop is passed to input field", () => {
+      const wrapper = mount(<SelectTextbox onChange={() => {}} isOptional />);
+      expect(wrapper.find(Textbox).prop("isOptional")).toBe(true);
+    });
+  });
+
   describe("ARIA", () => {
     const mockTextId = "mockTextId";
 

@@ -6,6 +6,7 @@ import StyledLabel, {
   StyledLabelProps,
   StyledLabelContainerProps,
 } from "./label.style";
+
 import ValidationIcon from "../validations/validation-icon.component";
 import StyledIconWrapper from "./icon-wrapper.style";
 import { InputContext, InputGroupContext } from "../input-behaviour";

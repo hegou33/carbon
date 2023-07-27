@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { act } from "react-dom/test-utils";
 import { mount, ReactWrapper } from "enzyme";
+import { StyledLabelContainer } from "__internal__/label/label.style";
 
 import {
   assertStyleMatch,
@@ -768,6 +769,32 @@ describe("SimpleSelect", () => {
       it("the expected text should be displayed in the Textbox", () => {
         expect(wrapper.find(Textbox).prop("formattedValue")).toBe(
           navigationKeyOptionObject.text
+        );
+      });
+    });
+
+    describe("isOptional", () => {
+      it("label has '(optional)' suffix when the isOptional prop is passed to the input", () => {
+        const propWrapper = mount(
+          <SimpleSelect
+            name="testSelect"
+            id="testSelect"
+            label="label"
+            isOptional
+          >
+            <Option value="opt1" text="red" />
+            <Option value="opt2" text="green" />
+            <Option value="opt3" text="blue" />
+            <Option value="opt4" text="black" />
+          </SimpleSelect>
+        );
+
+        assertStyleMatch(
+          {
+            content: '"(optional)"',
+          },
+          propWrapper.find(StyledLabelContainer),
+          { modifier: "::after" }
         );
       });
     });

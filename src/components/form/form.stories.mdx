@@ -4,7 +4,10 @@ import StyledSystemProps from "../../../.storybook/utils/styled-system-props";
 import Form from ".";
 import * as stories from "./form.stories";
 
-<Meta title="Form" parameters={{ info: { disable: true }, controls: { disable: true } }} />
+<Meta
+  title="Form"
+  parameters={{ info: { disable: true }, controls: { disable: true } }}
+/>
 
 # Form
 
@@ -42,10 +45,7 @@ When `stickyFooter` prop is set as true, footer becomes stickied to the bottom o
 ### Full Width Buttons
 
 <Canvas>
-  <Story
-    name="with full width buttons"
-    story={stories.WithFullWidthButtons}
-  />
+  <Story name="with full width buttons" story={stories.WithFullWidthButtons} />
 </Canvas>
 
 ### With different spacing
@@ -77,7 +77,19 @@ When either `errorCount` or `warningCount` or both are provided, summary with th
 </Canvas>
 
 <Canvas>
-  <Story name="with both errors and warnings summary" story={stories.WithBothErrorsAndWarningsSummary} />
+  <Story
+    name="with both errors and warnings summary"
+    story={stories.WithBothErrorsAndWarningsSummary}
+  />
+</Canvas>
+
+### Example with optional and required fields
+
+<Canvas>
+  <Story
+    name="with optional or required label"
+    story={stories.WithBothOptionalOrRequired}
+  />
 </Canvas>
 
 ### Buttons variations
@@ -91,7 +103,10 @@ Additional buttons can be passed using `leftSideButtons` and `rightSideButtons` 
 When `buttonAlignment` prop is set as `left`, buttons are aligned to the left side.
 
 <Canvas>
-  <Story name="with buttons aligned to the left" story={stories.WithButtonsAlignedToTheLeft} />
+  <Story
+    name="with buttons aligned to the left"
+    story={stories.WithButtonsAlignedToTheLeft}
+  />
 </Canvas>
 
 ### In Dialog
@@ -105,7 +120,10 @@ It is possible to render `Form` as a content of `Dialog` component.
 #### With sticky footer
 
 <Canvas>
-  <Story name="in Dialog with sticky footer" story={stories.InDialogWithStickyFooter} />
+  <Story
+    name="in Dialog with sticky footer"
+    story={stories.InDialogWithStickyFooter}
+  />
 </Canvas>
 
 ### In DialogFullScreen
@@ -119,7 +137,10 @@ It is possible to render `Form` as a content of `DialogFullScreen` component.
 #### With sticky footer
 
 <Canvas>
-  <Story name="in DialogFullScreen with sticky footer" story={stories.InDialogFullScreenWithStickyFooter} />
+  <Story
+    name="in DialogFullScreen with sticky footer"
+    story={stories.InDialogFullScreenWithStickyFooter}
+  />
 </Canvas>
 
 ### Form alignment
@@ -145,10 +166,7 @@ Please click on "Show code" below to see how to set these components up for alig
 ### With custom footer padding
 
 <Canvas>
-  <Story
-    name="custom footer padding"
-    story={stories.WithCustomFooterPadding}
-  />
+  <Story name="custom footer padding" story={stories.WithCustomFooterPadding} />
 </Canvas>
 
 ## Props
