@@ -21,6 +21,6 @@
     "strict": true,
     "target": "es6"
   },
-  "include": ["./src/global.d.ts", "./src/**/*.ts*"],
+  "include": ["./src/global.d.ts", "./src/**/*.ts*", "src/components/show-edit-pod/show-edit-pod.stories.js"],
   "exclude": ["./node_modules", "./cypress", "./cypress.config.ts", "./playwright", "./playwright-ct.config.ts"]
 }

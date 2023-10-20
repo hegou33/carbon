@@ -1,23 +1,56 @@
 import React from "react";
-import { ComponentStory } from "@storybook/react";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
 
-import Content from ".";
+import Content, { ContentProps } from ".";
 import Typography from "../typography";
 
-export const DefaultStory: ComponentStory<typeof Content> = (args) => (
+const styledSystemProps = generateStyledSystemProps({
+  margin: true,
+}) as Partial<ArgTypes<ContentProps>>;
+
+const meta: Meta<typeof Content> = {
+  title: "Content",
+  component: Content,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Content>;
+
+export const DefaultStory: Story = (args: ContentProps) => (
   <Content title="Title" {...args}>
     This is an example of some content
   </Content>
 );
+DefaultStory.storyName = "Default";
 
-export const InlineContent = DefaultStory.bind({});
-InlineContent.args = { inline: true };
-
-export const CustomTitle = DefaultStory.bind({});
-CustomTitle.args = {
-  title: <Typography color="primary">Title</Typography>,
-  variant: "primary",
+export const InlineContent = {
+  ...DefaultStory,
+  args: {
+    inline: true,
+    children: "This is an example of some content",
+  },
 };
+InlineContent.storyName = "Inline Content";
 
-export const SecondaryStyling = DefaultStory.bind({});
-SecondaryStyling.args = { variant: "secondary" };
+export const CustomTitle = {
+  ...DefaultStory,
+  args: {
+    title: <Typography color="primary">Title</Typography>,
+    variant: "primary",
+    children: "This is an example of some content",
+  },
+};
+CustomTitle.storyName = "Custom Title";
+
+export const SecondaryStyling = {
+  ...DefaultStory,
+  args: {
+    variant: "secondary",
+    children: "This is an example of some content",
+  },
+};
+SecondaryStyling.storyName = "Secondary Styling";

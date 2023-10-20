@@ -1,0 +1,35 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as IconButtonStories from "./icon-button.stories";
+
+<Meta title="Icon Button" parameters={{ info: { disable: true } }} of={IconButtonStories} />
+
+# Icon Button
+
+A component that can be used when a button with no text is needed
+
+## Quick Start
+
+```javascript
+import IconButton from "carbon-react/lib/components/icon-button";
+```
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={IconButtonStories.Default} />
+
+### With tooltip
+
+<Canvas name="with tooltip" of={IconButtonStories.WithTooltip} />
+
+### Disabled
+
+<Canvas name="disabled" of={IconButtonStories.Disabled} />
+
+## Props
+
+### Icon Button
+
+<ArgTypes of={IconButtonStories} />

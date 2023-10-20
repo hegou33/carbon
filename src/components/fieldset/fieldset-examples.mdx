@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas } from "@storybook/addon-docs";
+
+import Fieldset from "./";
+
+import * as stories from "./fieldset-examples.stories";
+
+<Meta
+  title="Fieldset/Address Fieldset Examples"
+  parameters={{ info: { disable: true } }}
+/>
+
+### Canada
+
+Address Fieldset for Canada.
+
+<Canvas name="Canada" story={stories.Canada} />
+
+### EU
+
+Address Fieldset for EU.
+
+<Canvas name="EU" story={stories.EU} />
+
+### UK and Ireland
+
+Address Fieldset for UK and Ireland.
+
+<Canvas name="UK and Ireland" story={stories.UkAndIreland} />
+
+### United States
+
+Address Fieldset for United States.
+
+<Canvas name="United States" story={stories.UnitedStates} />
+
+### Other
+
+Address Fieldset for other countries.
+
+<Canvas name="Other" story={stories.Other} />

@@ -1,0 +1,82 @@
+import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { ArgTypes } from "@storybook/blocks";
+// 
+
+import BatchSelection from ".";
+import IconButton from "../icon-button";
+
+import * as BatchSelectionStories from "./batch-selection.stories";
+
+<Meta
+  title="Batch Selection"
+  parameters={{ info: { disable: true } }}
+  of={BatchSelectionStories}
+/>
+
+# Batch Selection
+
+Batch Selection Component could be used to select multiple items, and apply a common action to all the items selected.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+- [Translation keys](#translation-keys)
+
+## Quick Start
+
+To use Batch Selection, import the `BatchSelection`, pass Icon Buttons with actions as children and number of selected in selectedCount prop.
+
+```javascript
+import BatchSelection from "carbon-react/lib/components/batch-selection";
+import IconButton from "carbon-react/lib/components/icon-button";
+```
+
+## Examples
+
+### Default usage
+
+<Canvas name="Default" of={BatchSelectionStories.Default} />
+
+### On dark background
+
+<Canvas name="Dark" of={BatchSelectionStories.Dark} />
+
+### On light background
+
+<Canvas name="Light" of={BatchSelectionStories.Light} />
+
+### On white background
+
+<Canvas name="White" of={BatchSelectionStories.White} />
+
+### Disabled
+
+<Canvas name="Disabled" of={BatchSelectionStories.Disabled} />
+
+## Props
+
+### Batch Selection
+
+<ArgTypes of={BatchSelection} />
+
+### Icon Button
+
+<ArgTypes of={IconButton} />
+
+## Translation keys
+
+The following keys are available to override the translations for this component by passing in a custom locale object to the
+[i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
+
+{/* <TranslationKeysTable
+translationData={[
+{
+name: "batchSelection.selected",
+description: "The text displayed to indicate how many items are selected",
+type: "func",
+returnType: "string",
+},
+]}
+/> */}

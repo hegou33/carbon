@@ -1,0 +1,133 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as DrawerStories from "./drawer.stories";
+
+<Meta
+  title="Drawer"
+  parameters={{ info: { disable: true }, chromatic: { disableSnapshot: true } }}
+  of={DrawerStories}
+/>
+
+# Drawer
+
+<a
+  target="_blank"
+  href="https://zeroheight.com/2ccf2b601/p/77fb82-drawer/b/665a20"
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
+>
+  Product Design System component
+</a>
+
+Drawer is a two column layout container.
+It is designed to have left hand side container expand and collapse to respectively reveal and hide the content of that container.
+Drawer component is designed to fill the space of the element that it is put inside.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+```javascript
+import Drawer from "carbon-react/lib/components/drawer";
+```
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={DrawerStories.Default} />
+
+### Custom height
+
+<Canvas name="custom height" of={DrawerStories.CustomHeight} />
+
+### Custom Background Color (Red)
+
+<Canvas name="background color red" of={DrawerStories.BackgroundColorRed} />
+
+### Custom Background Color (White)
+
+Note: parent container background-color is set to red for demonstration purpose.
+
+<Canvas name="background color white" of={DrawerStories.BackgroundColorWhite} />
+
+### Custom Background Color (Transparent)
+
+Note: parent container background-color is set to red for demonstration purpose.
+
+<Canvas
+  name="background color transparent"
+  of={DrawerStories.BackgroundColorTransparent}
+/>
+
+### Custom Title
+
+<Canvas name="title" of={DrawerStories.Title} />
+
+### With Controls usage
+
+<Canvas name="with controls" of={DrawerStories.WithControls} />
+
+### With sticky header
+
+<Canvas name="with sticky header" of={DrawerStories.WithStickyHeader} />
+
+### With footer
+
+<Canvas name="with footer" of={DrawerStories.WithFooter} />
+
+### With sticky footer
+
+<Canvas name="with sticky footer" of={DrawerStories.WithStickyFooter} />
+
+### Custom Sidebar - FlatTable component as sidebar content
+
+<Canvas name="custom sidebar" of={DrawerStories.CustomSidebar} />
+
+### Custom Content - FlatTable component as drawer content
+
+<Canvas name="custom content" of={DrawerStories.CustomContent} />
+
+### Different expanded width
+
+Use the `expandedWidth` prop to alter the width of the open `Drawer`.
+
+<Canvas
+  name="different expanded width"
+  of={DrawerStories.DifferentExpandedWidth}
+/>
+
+### Different Animation Speed
+
+Use the `animationDuration` prop to alter the speed of the `Drawer` opening/closing.
+
+<Canvas
+  name="different animation speed"
+  of={DrawerStories.DifferentAnimationSpeed}
+/>
+
+### Controlled Usage
+
+<Canvas name="controlled" of={DrawerStories.Controlled} />
+
+### Side View Navigation
+
+<Canvas name="side view navigation" of={DrawerStories.SideViewNavigation} />
+
+### With Tab controls
+
+You will need to override the targeting when using Tabs inside of the Drawer's sidebar. This can be done using the
+`onTabChange` callback. If you also need to override the validation statuses, this can be done using the
+`validationStatusOverride` prop.
+
+<Canvas name="with tab controls" of={DrawerStories.WithTabControls} />
+
+## Props
+
+### Drawer
+
+<ArgTypes of={DrawerStories} />

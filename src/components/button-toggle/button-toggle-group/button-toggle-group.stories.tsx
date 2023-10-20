@@ -1,27 +1,39 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import ButtonToggleGroup from ".";
 import { ButtonToggle } from "..";
 import Box from "../../box";
 
-export const Default: ComponentStory<typeof ButtonToggleGroup> = () => (
-  <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
-    <ButtonToggleGroup
-      id="button-toggle-group-default-id"
-      label="Default example"
-      labelHelp="help message"
-      helpAriaLabel="Help"
-      fieldHelp="field help message"
-    >
-      <ButtonToggle value="foo">Foo</ButtonToggle>
-      <ButtonToggle value="bar">Bar</ButtonToggle>
-      <ButtonToggle value="baz">Baz</ButtonToggle>
-    </ButtonToggleGroup>
-  </Box>
-);
+const meta: Meta<typeof ButtonToggleGroup> = {
+  title: "ButtonToggleGroup",
+  component: ButtonToggleGroup,
+  tags: ["isHidden"],
+};
 
-export const Controlled: ComponentStory<typeof ButtonToggleGroup> = () => {
+export default meta;
+type Story = StoryObj<typeof ButtonToggleGroup>;
+
+export const Default: Story = () => {
+  return (
+    <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
+      <ButtonToggleGroup
+        id="button-toggle-group-default-id"
+        label="Default example"
+        labelHelp="help message"
+        helpAriaLabel="Help"
+        fieldHelp="field help message"
+      >
+        <ButtonToggle value="foo">Foo</ButtonToggle>
+        <ButtonToggle value="bar">Bar</ButtonToggle>
+        <ButtonToggle value="baz">Baz</ButtonToggle>
+      </ButtonToggleGroup>
+    </Box>
+  );
+};
+Default.storyName = "Default";
+
+export const Controlled: Story = () => {
   const [value, setValue] = useState("bar");
   function onChangeHandler(
     event: React.MouseEvent<HTMLButtonElement>,
@@ -47,93 +59,104 @@ export const Controlled: ComponentStory<typeof ButtonToggleGroup> = () => {
     </Box>
   );
 };
+Controlled.storyName = "Controlled";
 
-export const Grouped: ComponentStory<typeof ButtonToggleGroup> = () => (
-  <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
-    <ButtonToggleGroup
-      id="button-toggle-group-grouped-id"
-      label="Grouped example"
-      labelHelp="help message"
-      helpAriaLabel="Help"
-      fieldHelp="field help mesage"
-      onChange={() => {}}
-    >
-      <ButtonToggle value="foo" grouped>
-        Foo
-      </ButtonToggle>
-      <ButtonToggle value="bar" grouped>
-        Bar
-      </ButtonToggle>
-      <ButtonToggle value="baz" grouped>
-        Baz
-      </ButtonToggle>
-    </ButtonToggleGroup>
-  </Box>
-);
+export const Grouped: Story = () => {
+  return (
+    <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
+      <ButtonToggleGroup
+        id="button-toggle-group-grouped-id"
+        label="Grouped example"
+        labelHelp="help message"
+        helpAriaLabel="Help"
+        fieldHelp="field help mesage"
+        onChange={() => {}}
+      >
+        <ButtonToggle value="foo" grouped>
+          Foo
+        </ButtonToggle>
+        <ButtonToggle value="bar" grouped>
+          Bar
+        </ButtonToggle>
+        <ButtonToggle value="baz" grouped>
+          Baz
+        </ButtonToggle>
+      </ButtonToggleGroup>
+    </Box>
+  );
+};
+Grouped.storyName = "Grouped";
 
-export const FullWidth: ComponentStory<typeof ButtonToggleGroup> = () => (
-  <Box margin={4}>
-    <ButtonToggleGroup
-      id="button-toggle-group-fullWidth-id"
-      fullWidth
-      label="fullWidth example"
-      labelHelp="help message"
-      helpAriaLabel="Help"
-      fieldHelp="field help mesage"
-      onChange={() => {}}
-    >
-      <ButtonToggle value="foo" grouped>
-        Foo
-      </ButtonToggle>
-      <ButtonToggle value="bar" grouped>
-        Bar
-      </ButtonToggle>
-      <ButtonToggle value="baz" grouped>
-        Baz
-      </ButtonToggle>
-    </ButtonToggleGroup>
-  </Box>
-);
+export const FullWidth: Story = () => {
+  return (
+    <Box margin={4}>
+      <ButtonToggleGroup
+        id="button-toggle-group-fullWidth-id"
+        fullWidth
+        label="fullWidth example"
+        labelHelp="help message"
+        helpAriaLabel="Help"
+        fieldHelp="field help mesage"
+        onChange={() => {}}
+      >
+        <ButtonToggle value="foo" grouped>
+          Foo
+        </ButtonToggle>
+        <ButtonToggle value="bar" grouped>
+          Bar
+        </ButtonToggle>
+        <ButtonToggle value="baz" grouped>
+          Baz
+        </ButtonToggle>
+      </ButtonToggleGroup>
+    </Box>
+  );
+};
+FullWidth.storyName = "Full Width";
 
-export const FieldHelp: ComponentStory<typeof ButtonToggleGroup> = () => (
-  <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
-    <ButtonToggleGroup
-      id="button-toggle-group-help-inline-id"
-      label="FieldHelp inline example"
-      labelHelp="help message"
-      helpAriaLabel="Help"
-      fieldHelp="field help mesage"
-      fieldHelpInline
-      onChange={() => {}}
-    >
-      <ButtonToggle value="foo">Foo</ButtonToggle>
-      <ButtonToggle value="bar">Bar</ButtonToggle>
-      <ButtonToggle value="baz">Baz</ButtonToggle>
-    </ButtonToggleGroup>
-  </Box>
-);
+export const FieldHelp: Story = () => {
+  return (
+    <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
+      <ButtonToggleGroup
+        id="button-toggle-group-help-inline-id"
+        label="FieldHelp inline example"
+        labelHelp="help message"
+        helpAriaLabel="Help"
+        fieldHelp="field help mesage"
+        fieldHelpInline
+        onChange={() => {}}
+      >
+        <ButtonToggle value="foo">Foo</ButtonToggle>
+        <ButtonToggle value="bar">Bar</ButtonToggle>
+        <ButtonToggle value="baz">Baz</ButtonToggle>
+      </ButtonToggleGroup>
+    </Box>
+  );
+};
+FieldHelp.storyName = "Field Help";
 
-export const LabelInline: ComponentStory<typeof ButtonToggleGroup> = () => (
-  <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
-    <ButtonToggleGroup
-      id="button-toggle-group-label-inline-id"
-      label="Label inline example"
-      labelHelp="help message"
-      helpAriaLabel="Help"
-      fieldHelp="field help mesage"
-      labelInline
-      onChange={() => {}}
-    >
-      <ButtonToggle value="foo">Foo</ButtonToggle>
-      <ButtonToggle value="bar">Bar</ButtonToggle>
-      <ButtonToggle value="baz">Baz</ButtonToggle>
-    </ButtonToggleGroup>
-  </Box>
-);
+export const LabelInline: Story = () => {
+  return (
+    <Box margin={4} width="250px" display="flex" flexWrap="nowrap">
+      <ButtonToggleGroup
+        id="button-toggle-group-label-inline-id"
+        label="Label inline example"
+        labelHelp="help message"
+        helpAriaLabel="Help"
+        fieldHelp="field help mesage"
+        labelInline
+        onChange={() => {}}
+      >
+        <ButtonToggle value="foo">Foo</ButtonToggle>
+        <ButtonToggle value="bar">Bar</ButtonToggle>
+        <ButtonToggle value="baz">Baz</ButtonToggle>
+      </ButtonToggleGroup>
+    </Box>
+  );
+};
+LabelInline.storyName = "Label Inline";
 
-export const AllowDeselection: ComponentStory<
-  typeof ButtonToggleGroup
-> = () => {
+export const AllowDeselection: Story = () => {
   const [value, setValue] = useState("bar");
   function onChangeHandler(
     event: React.MouseEvent<HTMLButtonElement>,
@@ -159,8 +182,9 @@ export const AllowDeselection: ComponentStory<
     </Box>
   );
 };
+AllowDeselection.storyName = "Allow Deselection";
 
-export const AriaLabel: ComponentStory<typeof ButtonToggleGroup> = () => {
+export const AriaLabel: Story = () => {
   const [value, setValue] = useState("bar");
   function onChangeHandler(
     event: React.MouseEvent<HTMLButtonElement>,
@@ -184,3 +208,4 @@ export const AriaLabel: ComponentStory<typeof ButtonToggleGroup> = () => {
     </Box>
   );
 };
+AriaLabel.storyName = "Aria Label";

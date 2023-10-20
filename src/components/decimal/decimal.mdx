@@ -1,0 +1,172 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as DecimalStories from "./decimal.stories";
+
+<Meta
+  title="Decimal Input"
+  parameters={{ info: { disable: true } }}
+  of={DecimalStories}
+/>
+
+# Decimal
+
+Captures a number with a decimal point, or a currency value.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+```javascript
+import Decimal from "carbon-react/lib/components/decimal";
+```
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={DecimalStories.DefaultStory} />
+
+### Sizes
+
+<Canvas name="sizes" of={DecimalStories.Sizes} />
+
+### Disabled
+
+<Canvas name="disabled" of={DecimalStories.Disabled} />
+
+### Prefix
+
+<Canvas name="prefix" of={DecimalStories.Prefix} />
+
+### LabelAlign
+
+<Canvas name="labelAlign" of={DecimalStories.LabelAlign} />
+
+### ReadOnly
+
+<Canvas name="readOnly" of={DecimalStories.ReadOnly} />
+
+### Empty
+
+<Canvas name="empty" of={DecimalStories.Empty} />
+
+### With custom precision
+
+<Canvas name="with custom precision" of={DecimalStories.WithCustomPrecision} />
+
+### With labelInline
+
+<Canvas name="with labelInline" of={DecimalStories.LabelInline} />
+
+### With custom labelWidth and inputWidth
+
+<Canvas
+  name="with custom labelWidth and inputWidth"
+  of={DecimalStories.WithCustomLabelWidthAndInputWidth}
+/>
+
+### With custom maxWidth
+
+<Canvas name="with custom maxWidth" of={DecimalStories.WithCustomMaxWidth} />
+
+### With fieldHelp
+
+<Canvas name="with fieldHelp" of={DecimalStories.WithFieldHelp} />
+
+### With inputHint
+
+<Canvas name="with inputHint" story={DecimalStories.WithInputHint} />
+
+### With labelHelp
+
+<Canvas name="with labelHelp" of={DecimalStories.WithLabelHelp} />
+
+### Required
+
+You can use the `required` prop to indicate if the field is mandatory.
+
+<Canvas name="required" of={DecimalStories.Required} />
+
+### Left aligned
+
+You can use the `align` prop to choose how the the characters inside the component align.
+In this example, `align` has been assigned the value `left`.
+
+<Canvas name="left aligned" of={DecimalStories.LeftAligned} />
+
+### Validations
+
+Validation status can be set by passing `error`, `warning` or `info` prop to the component
+
+Passing a string to these props will display a properly colored border along with a validation icon and tooltip - string value will be displayed as the tooltip message.
+
+Passing a boolean to these props will display only a properly colored border.
+
+For more information check our [Validations](?path=/docs/documentation-validations--page "Validations") documentation page
+
+#### As a string
+
+<Canvas
+  name="validations - string - component"
+  of={DecimalStories.ValidationsStringComponent}
+/>
+
+It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
+
+<Canvas
+  name="validations - string - with tooltipPosition overriden - component"
+  of={DecimalStories.ValidationsTooltip}
+/>
+
+#### As a string, displayed on label
+
+<Canvas
+  name="validations - string - label"
+  of={DecimalStories.ValidationsStringLabel}
+/>
+
+It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
+
+<Canvas
+  name="validations - string - with tooltipPosition overriden - label"
+  of={DecimalStories.ValidationsTooltipLabel}
+/>
+
+#### New designs validation
+
+<Canvas
+  name="validations - string - new design"
+  of={DecimalStories.ValidationsRedesign}
+/>
+
+#### As a boolean
+
+<Canvas name="validations - boolean" of={DecimalStories.ValidationsBoolean} />
+
+## Props
+
+### Decimal
+
+<ArgTypes of={DecimalStories} />
+
+**Any other supplied props will be provided to the underlying HTML input element**
+
+## Translation keys
+
+The following keys are available to override the translations for this component by passing in a custom locale object to the
+[i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
+
+{/* <TranslationKeysTable
+  translationData={[
+    {
+      name: "locale",
+      description: "The locale code to display the correct format",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/> */}

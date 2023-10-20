@@ -1,14 +1,24 @@
 import React, { useState } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
+import useMediaQuery from "../../hooks/useMediaQuery";
+
+import Box from "../box";
+import Pill from "../pill";
 import {
   VerticalMenu,
   VerticalMenuItem,
   VerticalMenuFullScreen,
   VerticalMenuTrigger,
 } from ".";
-import Box from "../box";
-import Pill from "../pill";
-import useMediaQuery from "../../hooks/useMediaQuery";
+
+const meta: Meta<typeof VerticalMenu> = {
+  title: "Vertical Menu",
+  component: VerticalMenu,
+};
+
+export default meta;
+type Story = StoryObj<typeof VerticalMenu>;
 
 interface LinkProps {
   to: string;
@@ -28,7 +38,7 @@ const Link = ({ to, children, className }: LinkProps) => {
   );
 };
 
-export const Default = () => {
+export const Default: Story = () => {
   return (
     <Box height="100vh">
       <VerticalMenu>
@@ -111,8 +121,9 @@ export const Default = () => {
     </Box>
   );
 };
+Default.storyName = "Default";
 
-export const CustomWidthAndHeight = () => {
+export const CustomWidthAndHeight: Story = () => {
   return (
     <VerticalMenu width="500px" height="100vh">
       <VerticalMenuItem
@@ -130,8 +141,9 @@ export const CustomWidthAndHeight = () => {
     </VerticalMenu>
   );
 };
+CustomWidthAndHeight.storyName = "Custom Width and Height";
 
-export const Adornment = () => {
+export const Adornment: Story = () => {
   return (
     <VerticalMenu>
       <VerticalMenuItem
@@ -159,8 +171,9 @@ export const Adornment = () => {
     </VerticalMenu>
   );
 };
+Adornment.storyName = "Adornment";
 
-export const Active = () => {
+export const Active: Story = () => {
   return (
     <VerticalMenu>
       <VerticalMenuItem
@@ -174,8 +187,9 @@ export const Active = () => {
     </VerticalMenu>
   );
 };
+Active.storyName = "Active";
 
-export const CustomItemPadding = () => {
+export const CustomItemPadding: Story = () => {
   return (
     <VerticalMenu>
       <VerticalMenuItem
@@ -186,16 +200,18 @@ export const CustomItemPadding = () => {
     </VerticalMenu>
   );
 };
+CustomItemPadding.storyName = "Custom Item Padding";
 
-export const CustomItemHeight = () => {
+export const CustomItemHeight: Story = () => {
   return (
     <VerticalMenu>
       <VerticalMenuItem height="100px" iconType="analysis" title="Item 1" />
     </VerticalMenu>
   );
 };
+CustomItemHeight.storyName = "Custom Item Height";
 
-export const CustomComponent = () => {
+export const CustomComponent: Story = () => {
   return (
     <VerticalMenu>
       <VerticalMenuItem
@@ -207,8 +223,9 @@ export const CustomComponent = () => {
     </VerticalMenu>
   );
 };
+CustomComponent.storyName = "Custom Component";
 
-export const FullScreen = () => {
+export const FullScreen: Story = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const fullscreenViewBreakPoint = useMediaQuery("(max-width: 1200px)");
@@ -289,3 +306,4 @@ export const FullScreen = () => {
 
   return <VerticalMenu>{menuItems}</VerticalMenu>;
 };
+FullScreen.storyName = "Full Screen";

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import Alert from ".";
 import Button from "../button";
 
 import isChromatic from "../../../.storybook/isChromatic";
 
+const meta: Meta<typeof Alert> = {
+  title: "Alert",
+  component: Alert,
+};
+
+export default meta;
+type Story = StoryObj<typeof Alert>;
+
 const defaultOpenState = isChromatic();
 
-// Added to avoid default export warning which causes storybook to not display `show code` examples - https://github.com/storybookjs/storybook/issues/8104
-// eslint-disable-next-line import/prefer-default-export
-export const DefaultAlert: ComponentStory<typeof Alert> = () => {
+export const Default: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -29,3 +35,4 @@ export const DefaultAlert: ComponentStory<typeof Alert> = () => {
     </>
   );
 };
+Default.storyName = "Default";

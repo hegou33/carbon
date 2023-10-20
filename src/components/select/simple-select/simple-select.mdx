@@ -1,0 +1,189 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as OptionStories from "../option/option.stories";
+import * as SelectTextboxStories from "../select-textbox/select-textbox.stories";
+import * as SimpleSelectStories from "./simple-select.stories";
+
+<Meta title="Select" parameters={{ info: { disable: true } }} of={SimpleSelectStories} />
+
+# Simple Select
+
+<a
+  target="_blank"
+  href="https://zeroheight.com/2ccf2b601/p/464d11-dropdown-select/b/51c4c7"
+  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  rel="noreferrer"
+>
+  Product Design System component 
+</a>
+
+Select one of available options from the drop-down menu. Simple Select is a Carbon styled equivalent of HTML Select Element.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+- [Translation keys](#translation-keys)
+
+## Quick Start
+
+To use the `Select` component you have to import two components: `<Select />` and `<Option />`
+from `carbon-react/lib/components/select`.
+
+```javascript
+import { Select, Option } from "carbon-react/lib/components/select";
+```
+
+Always insert `Option` Components inside the `Select`, analogous to the original `<select>` and `<option>` HTML Elements.
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={SimpleSelectStories.Default} />
+
+### Required
+
+You can use the `required` prop to indicate if the field is mandatory.
+
+<Canvas name="required" of={SimpleSelectStories.Required} />
+
+### List placement
+
+You can use `listPlacement` prop to set the position of the select list relative to the input element.
+
+<Canvas name="list placement" of={SimpleSelectStories.ListPlacement} />
+
+### List height
+
+You can use `listMaxHeight` prop to override default max height value of select list.
+
+<Canvas name="list height" of={SimpleSelectStories.ListHeight} />
+
+### Controlled usage
+
+<Canvas name="controlled" of={SimpleSelectStories.Controlled} />
+
+### With object as value
+
+Option values could be passed as objects, useful when custom data is associated with an option.
+When the `id` property is set, objects will be compared based on that property (could be used when the list is recreated after an API call).
+If there is no `id` prop specified on an object, then the exact objects will be compared.
+
+<Canvas name="with object as value" of={SimpleSelectStories.WithObjectAsValue} />
+
+### With custom maxWidth
+
+In this example the `maxWidth` prop is 100%.
+
+<Canvas name="With custom maxWidth" of={SimpleSelectStories.WithCustomMaxWidth} />
+
+### With isLoading prop
+
+When `isLoading` prop is passed, a loader will be appended at the end of the Select List. That functionality could be used to load the options asynchronously.
+
+<Canvas name="with isLoading prop" of={SimpleSelectStories.WithIsLoadingProp} />
+
+### Infinite scroll example
+
+The `isLoading` prop in combination with the `onListScrollBottom` prop can be used to implement infinite scroll.
+This prop will be called every time a user scrolls to the bottom of the list.
+
+<Canvas name="with infinite scroll" of={SimpleSelectStories.WithInfiniteScroll} />
+
+### Open on focus
+
+<Canvas name="openOnFocus" of={SimpleSelectStories.OpenOnFocus} />
+
+### Disabled
+
+<Canvas name="disabled" of={SimpleSelectStories.Disabled} />
+
+### Read Only
+
+<Canvas name="readonly" of={SimpleSelectStories.Readonly} />
+
+### Transparent
+
+<Canvas name="transparent" of={SimpleSelectStories.Transparent} />
+
+### With disabled portal
+
+<Canvas name="withDisabledPortal" of={SimpleSelectStories.WithDisabledPortal} />
+
+### Custom Option content
+
+<Canvas name="custom option children" of={SimpleSelectStories.CustomOptionChildren} />
+
+### With multiple columns
+
+<Canvas name="with multiple columns" of={SimpleSelectStories.WithMultipleColumns} />
+
+### Option groups
+
+<Canvas name="option groups" of={SimpleSelectStories.OptionGroups} />
+
+### Enabling the adaptive behaviour
+
+The inline label can change to be top aligned at a breakpoint. Enable this by passing in a number to the `adaptiveLabelBreakpoint` prop. This corresponds to a px screen width
+
+<Canvas name="enabling adaptive behaviour" of={SimpleSelectStories.EnablingAdaptiveBehaviour} />
+
+#### New designs validation
+
+<Canvas name="validations - string - new design" of={SimpleSelectStories.ValidationsStringNewDesign} />
+
+### Virtual scrolling
+
+The `enableVirtualScroll` prop can be used to enable "virtual scrolling" to only render a few options into the DOM at any one time.
+This allows an unlimited amount of children to be passed with little impact on rendering performance.
+
+By default this will render 5 not-currently-visible options into the DOM on either side of the currently-visible ones - this value can
+be customised if desired using the `virtualScrollOverscan` prop. Higher values will make scrolling smoother but may negatively impact performance.
+
+<Canvas name="virtualised" of={SimpleSelectStories.Virtualised} />
+
+### With multiple columns and virtualisation
+
+<Canvas name="with multiple columns and virtualisation" of={SimpleSelectStories.WithMultipleColumnsAndVirtualisation} />
+
+### Selection confirmed
+
+A change event is emitted each time an option is navigated via keyboard as it sets the value of the 
+Select input. For those that need to trigger further actions when the user makes a selection, there is 
+a `selectionConfirmed` property on the emitted event when the enter key is pressed or an option is clicked.
+
+<Canvas name="selection confirmed" of={SimpleSelectStories.SelectionConfirmedStory} />
+
+## Props
+
+### Select
+
+<ArgTypes of={SimpleSelectStories}  />
+
+Due to the `Textbox` component being used internally by the `SimpleSelect` component, most of the `Textbox` props are applicable to `SimpleSelect`
+
+<ArgTypes of={SelectTextboxStories} />
+
+**Any other supplied props will be provided to the underlying HTML input element**
+
+### Props of the Option Component
+
+<ArgTypes of={OptionStories} />
+
+## Translation keys
+
+The following keys are available to override the translations for this component by passing in a custom locale object to the
+[i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
+
+{/* <TranslationKeysTable
+  translationData={[
+    {
+      name: "select.placeholder",
+      description: "The text for the input component placeholder",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/> */}

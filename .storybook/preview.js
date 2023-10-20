@@ -2,22 +2,9 @@ import withGlobalStyles from "./with-global-styles";
 import { withLocaleSelector } from "./locale-selector";
 import { withThemeProvider, globalThemeProvider } from "./withThemeProvider";
 import { withPortalProvider } from "./with-portal-provider";
-import { configureActions } from "@storybook/addon-actions";
 
 import "../src/style/fonts.css";
 import "./style/story-root.css";
-
-// Temporary fix for issue mentioned in FE-2565 ticket
-// Should be solved by the storybook team in foreseeable future
-// https://github.com/storybookjs/storybook/issues/9948
-// This usage is legacy (https://github.com/storybookjs/storybook/blob/master/addons/actions/ADVANCED.md)
-// and will be removed in Storybook v7
-configureActions({
-  // Maximum depth of serialization for large objects
-  depth: 6,
-  // Limit the number of items logged into the actions panel
-  limit: 20,
-});
 
 const customViewports = {
   extraSmall: {
@@ -58,7 +45,8 @@ const customViewports = {
 };
 
 export const parameters = {
-  layout: "fullscreen",
+  /* layout: "fullscreen", not sure what this was for but it's overriding the docs layout */
+  docs: { canvas: { layout: "padded" } },
   a11y: {
     // axe-core optionsParameter (https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#options-parameter)
     options: {

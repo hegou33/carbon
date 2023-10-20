@@ -1,12 +1,30 @@
 import React from "react";
-import { ComponentStory } from "@storybook/react";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
 
-import DismissibleBox from ".";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
+
 import Box from "../box";
 import Typography from "../typography";
 import VerticalDivider from "../vertical-divider";
 import Image from "../image";
 import point from "../../../.assets/point.svg";
+
+import DismissibleBox, { DismissibleBoxProps } from ".";
+
+const styledSystemProps = generateStyledSystemProps({
+  spacing: true,
+}) as Partial<ArgTypes<DismissibleBoxProps>>;
+
+const meta: Meta<typeof DismissibleBox> = {
+  title: "Dismissible Box",
+  component: DismissibleBox,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof DismissibleBox>;
 
 const children = `Well, that's certainly good to know. Your head is not an artifact!
 Maybe if we felt any human loss as keenly as we feel one of those
@@ -19,9 +37,7 @@ melacortz ramistat, fourteen kiloquad interface modules. Well,
 that's certainly good to know. Your head is not an artifact! Rrrrred
 alert! Rrrrred alert! Rrrrred alert!`;
 
-export const DefaultLightVariant: ComponentStory<
-  typeof DismissibleBox
-> = () => {
+export const DefaultLightVariant: Story = () => {
   return (
     <Box p={2}>
       <DismissibleBox onClose={() => {}}>
@@ -34,8 +50,9 @@ export const DefaultLightVariant: ComponentStory<
     </Box>
   );
 };
+DefaultLightVariant.storyName = "Default";
 
-export const DefaultDarkVariant: ComponentStory<typeof DismissibleBox> = () => {
+export const DefaultDarkVariant: Story = () => {
   return (
     <Box p={2}>
       <DismissibleBox variant="dark" onClose={() => {}}>
@@ -48,10 +65,9 @@ export const DefaultDarkVariant: ComponentStory<typeof DismissibleBox> = () => {
     </Box>
   );
 };
+DefaultDarkVariant.storyName = "Default (Dark)";
 
-export const WithNoLeftBorderHighlight: ComponentStory<
-  typeof DismissibleBox
-> = () => {
+export const WithNoLeftBorderHighlight: Story = () => {
   return (
     <Box p={2}>
       <DismissibleBox mb={2} hasBorderLeftHighlight={false} onClose={() => {}}>
@@ -64,8 +80,9 @@ export const WithNoLeftBorderHighlight: ComponentStory<
     </Box>
   );
 };
+WithNoLeftBorderHighlight.storyName = "With No Left Border Highlight";
 
-export const WidthOverridden: ComponentStory<typeof DismissibleBox> = () => {
+export const WidthOverridden: Story = () => {
   return (
     <Box p={2}>
       <DismissibleBox width="650px" onClose={() => {}}>
@@ -78,3 +95,4 @@ export const WidthOverridden: ComponentStory<typeof DismissibleBox> = () => {
     </Box>
   );
 };
+WidthOverridden.storyName = "Width Overridden";

@@ -6,7 +6,7 @@ import {
   TextEditorCustomValidation,
 } from "../../../src/components/text-editor/text-editor-test.stories";
 
-import { WithNewValidation as TextEditorNewValidation } from "../../../src/components/text-editor/text-editor.stories";
+import { WithNewValidation as TextEditorNewValidation } from "../../../src/components/text-editor/components.test-pw";
 
 import {
   textEditorInput,

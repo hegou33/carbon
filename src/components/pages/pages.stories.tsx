@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 import isChromatic from "../../../.storybook/isChromatic";
 
 import Pages, { Page } from ".";
@@ -7,9 +7,17 @@ import DialogFullScreen from "../dialog-full-screen";
 import Heading from "../heading";
 import Button from "../button";
 
+const meta: Meta<typeof Pages> = {
+  title: "Pages",
+  component: Pages,
+};
+
+export default meta;
+type Story = StoryObj<typeof Pages>;
+
 const defaultOpenState = isChromatic();
 
-export const Default: ComponentStory<typeof Pages> = () => {
+export const Default: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   const [pageIndex, setPageIndex] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -39,7 +47,7 @@ export const Default: ComponentStory<typeof Pages> = () => {
     }
   };
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open Preview</Button>
       <DialogFullScreen pagesStyling open={isOpen} onCancel={handleCancel}>
         <Pages pageIndex={pageIndex}>
@@ -64,11 +72,12 @@ export const Default: ComponentStory<typeof Pages> = () => {
           </Page>
         </Pages>
       </DialogFullScreen>
-    </div>
+    </>
   );
 };
+Default.storyName = "Default";
 
-export const WithInitialPageIndex: ComponentStory<typeof Pages> = () => {
+export const WithInitialPageIndex: Story = () => {
   const initialpageIndex = 1;
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   const [pageIndex, setPageIndex] = useState(
@@ -103,7 +112,7 @@ export const WithInitialPageIndex: ComponentStory<typeof Pages> = () => {
     }
   };
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open Preview</Button>
       <DialogFullScreen pagesStyling open={isOpen} onCancel={handleCancel}>
         <Pages initialpageIndex={initialpageIndex} pageIndex={pageIndex}>
@@ -128,11 +137,12 @@ export const WithInitialPageIndex: ComponentStory<typeof Pages> = () => {
           </Page>
         </Pages>
       </DialogFullScreen>
-    </div>
+    </>
   );
 };
+WithInitialPageIndex.storyName = "With Initial Page Index";
 
-export const InsideDialogFullScreen: ComponentStory<typeof Pages> = () => {
+export const InsideDialogFullScreen: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   const [pageIndex, setPageIndex] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -162,7 +172,7 @@ export const InsideDialogFullScreen: ComponentStory<typeof Pages> = () => {
     }
   };
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open Preview</Button>
       <DialogFullScreen pagesStyling open={isOpen} onCancel={handleCancel}>
         <Pages pageIndex={pageIndex}>
@@ -187,11 +197,12 @@ export const InsideDialogFullScreen: ComponentStory<typeof Pages> = () => {
           </Page>
         </Pages>
       </DialogFullScreen>
-    </div>
+    </>
   );
 };
+InsideDialogFullScreen.storyName = "Inside Dialog Full Screen";
 
-export const OverridingContentPadding: ComponentStory<typeof Pages> = () => {
+export const OverridingContentPadding: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   const [pageIndex, setPageIndex] = useState(0);
   const [isDisabled, setIsDisabled] = useState(false);
@@ -221,7 +232,7 @@ export const OverridingContentPadding: ComponentStory<typeof Pages> = () => {
     }
   };
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open Preview</Button>
       <DialogFullScreen pagesStyling open={isOpen} onCancel={handleCancel}>
         <Pages pageIndex={pageIndex}>
@@ -240,6 +251,7 @@ export const OverridingContentPadding: ComponentStory<typeof Pages> = () => {
           </Page>
         </Pages>
       </DialogFullScreen>
-    </div>
+    </>
   );
 };
+OverridingContentPadding.storyName = "Overriding Content Padding";

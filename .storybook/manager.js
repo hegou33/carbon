@@ -1,4 +1,5 @@
-import { addons, types } from "@storybook/addons";
+import { addons } from '@storybook/manager-api';
+import { types } from "@storybook/addons";
 import sageTheme from "./sageTheme";
 import { ADDON_ID, TOOL_ID } from "./version-picker/constants";
 import { VersionPicker } from "./version-picker";
@@ -8,6 +9,13 @@ addons.setConfig({
   panelPosition: "bottom",
   showNav: true,
   showPanel: true,
+  sidebar: {
+    filters: {
+      patterns: (item) => {
+        return !item.tags.includes("isHidden");
+      }
+    }
+  }
 });
 
 if (process.env.NODE_ENV === "production") {

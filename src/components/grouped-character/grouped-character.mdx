@@ -1,0 +1,159 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as GroupedCharacterStories from "./grouped-character.stories";
+
+<Meta
+  title="GroupedCharacter"
+  parameters={{ info: { disable: true } }}
+  of={GroupedCharacterStories}
+/>
+
+# GroupedCharacter
+
+Capture data with punctuation inside the field.
+
+Fields can have punctuation within them (most commonly characters like - or /). This gives the user a clue about the format accepted.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+```javascript
+import GroupedCharacter from "carbon-react/lib/components/grouped-character";
+```
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={GroupedCharacterStories.DefaultStory} />
+
+### Sizes
+
+<Canvas name="sizes" of={GroupedCharacterStories.Sizes} />
+
+### AutoFocus
+
+<Canvas name="autoFocus" of={GroupedCharacterStories.AutoFocus} />
+
+### LabelAlign
+
+<Canvas name="labelAlign" of={GroupedCharacterStories.LabelAlign} />
+
+### Disabled
+
+<Canvas name="disabled" of={GroupedCharacterStories.Disabled} />
+
+### Various separators
+
+<Canvas
+  name="various separators"
+  of={GroupedCharacterStories.VariousSeparators}
+/>
+
+### Various groups
+
+<Canvas name="various groups" of={GroupedCharacterStories.VariousGroups} />
+
+### With labelInline
+
+<Canvas name="with labelInline" of={GroupedCharacterStories.LabelInline} />
+
+### With custom labelWidth and inputWidth
+
+<Canvas
+  name="with custom labelWidth and inputWidth"
+  of={GroupedCharacterStories.LabelInputWidth}
+/>
+
+### With custom maxWidth
+
+<Canvas
+  name="with custom maxWidth"
+  of={GroupedCharacterStories.WithCustomMaxWidth}
+/>
+
+### With fieldHelp
+
+<Canvas name="with fieldHelp" of={GroupedCharacterStories.FieldHelp} />
+
+### with inputHint
+
+When the `inputHint` prop is passed, please use a full stop `.` at the end. This forces a pause
+before any other announcements, this well help screen reader users understand the hint fully.
+
+<Canvas name="with inputHint" story={GroupedCharacterStories.InputHint} />
+
+### With labelHelp
+
+<Canvas name="with labelHelp" of={GroupedCharacterStories.LabelHelp} />
+
+### Required
+
+You can use the `required` prop to indicate if the field is mandatory.
+
+<Canvas name="required" of={GroupedCharacterStories.Required} />
+
+### Validations
+
+Validation status can be set by passing `error`, `warning` or `info` prop to the component
+
+Passing a string to these props will display a properly colored border along with a validation icon and tooltip - string value will be displayed as the tooltip message.
+
+Passing a boolean to these props will display only a properly colored border.
+
+For more information check our [Validations](?path=/docs/documentation-validations--page "Validations") documentation page
+
+#### As a string
+
+<Canvas
+  name="validations - string - component"
+  of={GroupedCharacterStories.ValidationsStringComponent}
+/>
+
+It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
+
+<Canvas
+  name="validations - string - with tooltipPosition overriden - component"
+  of={GroupedCharacterStories.ValidationsTooltip}
+/>
+
+#### As a string, displayed on label
+
+<Canvas
+  name="validations - string - label"
+  of={GroupedCharacterStories.ValidationsStringLabel}
+/>
+
+It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
+
+<Canvas
+  name="validations - string - with tooltipPosition overriden - label"
+  of={GroupedCharacterStories.ValidationsTooltipLabel}
+/>
+
+#### New designs validation
+
+<Canvas
+  name="validations - string - new design"
+  of={GroupedCharacterStories.ValidationsRedesign}
+/>
+
+#### As a boolean
+
+<Canvas
+  name="validations - boolean"
+  of={GroupedCharacterStories.ValidationsBoolean}
+/>
+
+## Props
+
+### GroupedCharacter
+
+<ArgTypes of={GroupedCharacterStories} />
+
+**Any other supplied props will be provided to the underlying HTML input element**

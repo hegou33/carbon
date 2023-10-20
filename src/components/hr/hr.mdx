@@ -1,0 +1,63 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as HrStories from "./hr.stories";
+
+<Meta title="Hr" parameters={{ info: { disable: true } }} of={HrStories} />
+
+# Hr
+
+Provides a horizontal dividing line to make the above and below components feel distinctly separate from one another.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+To use Hr, import the `Hr` and set the margins to align it with other components.
+
+```javascript
+import Hr from "carbon-react/lib/components/hr";
+```
+
+## Examples
+
+### Default
+
+By default the hr is 100% width and has top and bottom margins of 24px.
+
+<Canvas name="default" of={HrStories.Default} />
+
+### With different vertical spacing
+
+The `mb` and `mt` props set the vertical spacing. These props are mulitipliers and are therefore multiplied by the base theme spacing which is `8px`. The default for both is `3` and therefore `24px`.
+
+<Canvas name="different spacing" of={HrStories.DifferentSpacing} />
+
+### Inside a form
+
+<Canvas name="Inside a form" of={HrStories.InsideForm} />
+
+### Inside a form with inline labels
+
+<Canvas
+  name="Inside a form with inline labels"
+  of={HrStories.InsideFormInlineLabels}
+/>
+
+### Enabling the adaptive behaviour
+
+The left and right margins can be set to 0 below a screen width breakpoint. This can be switched on with the `adaptiveMxBreakpoint` prop by passing in a number corresponding to a px value screen width.
+
+<Canvas
+  name="Enabling adaptive behaviour"
+  of={HrStories.EnablingAdaptiveBehaviour}
+/>
+
+## Props
+
+### Hr
+
+<ArgTypes of={HrStories} />

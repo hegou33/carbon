@@ -8,7 +8,7 @@ import {
   PopoverContainerComponent,
   PopoverContainerWithSelect,
 } from "../../../src/components/popover-container/popover-container-test.stories";
-import * as stories from "../../../src/components/popover-container/popover-container.stories";
+import * as stories from "../../../src/components/popover-container/components.test-pw";
 
 import { getDataElementByValue, getComponent } from "../../locators";
 import {

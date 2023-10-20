@@ -16,22 +16,22 @@ import {
 } from ".";
 import FlatTableCheckbox, {
   FlatTableCheckboxProps,
-} from "../../../src/components/flat-table/flat-table-checkbox/flat-table-checkbox.component";
+} from "./flat-table-checkbox/flat-table-checkbox.component";
 import FlatTableBodyDraggable, {
   FlatTableBodyDraggableProps,
-} from "../../../src/components/flat-table/flat-table-body-draggable/flat-table-body-draggable.component";
-import Sort from "../../../src/components/flat-table/sort/sort.component";
-import Box from "../../../src/components/box";
-import Pager from "../../../src/components/pager";
-import Textbox from "../../../src/components/textbox";
-import BatchSelection from "../../../src/components/batch-selection/batch-selection.component";
-import IconButton from "../../../src/components/icon-button";
-import Icon from "../../../src/components/icon";
-import Button from "../../../src/components/button";
-import ActionPopover from "../../../src/components/action-popover/action-popover.component";
-import ActionPopoverItem from "../../../src/components/action-popover/action-popover-item/action-popover-item.component";
-import ActionPopoverMenu from "../../../src/components/action-popover/action-popover-menu/action-popover-menu.component";
-import Link from "../../../src/components/link";
+} from "./flat-table-body-draggable/flat-table-body-draggable.component";
+import Sort from "./sort/sort.component";
+import Box from "../box";
+import Pager from "../pager";
+import Textbox from "../textbox";
+import BatchSelection from "../batch-selection/batch-selection.component";
+import IconButton from "../icon-button";
+import Icon from "../icon";
+import Button from "../button";
+import ActionPopover from "../action-popover/action-popover.component";
+import ActionPopoverItem from "../action-popover/action-popover-item/action-popover-item.component";
+import ActionPopoverMenu from "../action-popover/action-popover-menu/action-popover-menu.component";
+import Link from "../link";
 import guid from "../../__internal__/utils/helpers/guid";
 import { FLAT_TABLE_THEMES } from "./flat-table.config";
 import { WithSortingHeaders } from "./flat-table.stories";
@@ -293,7 +293,7 @@ export const FlatTableStory = ({
 }: FlatTableStoryProps) => {
   const processed = getTableData();
   let onClickFn: OnClick;
-  let rowWithInputs = <></>;
+  let rowWithInputs: React.ReactElement | null = null;
   if (hasClickableRows) {
     onClickFn = action("click") as OnClick;
     rowWithInputs = getRowWithInputs(onClickFn, hasHeaderRow);
@@ -398,10 +398,10 @@ FlatTableStory.args = {
   verticalBorderColor: "",
 };
 
-export const SortableStory = WithSortingHeaders.bind({});
-
-SortableStory.args = {
-  colorTheme: "dark",
+export const SortableStory = {
+  ...WithSortingHeaders,
+  args: { ...WithSortingHeaders.args, colorTheme: "dark" },
+  name: "Sortable",
 };
 
 export const ExpandableWithLink = () => {
@@ -3427,11 +3427,9 @@ export const KeyboardNavigationWithPagination = (
   }, [currentPage]);
 
   const loading = (
-    <>
-      <FlatTableRow>
-        <FlatTableCell colspan={4}>Loading State</FlatTableCell>
-      </FlatTableRow>
-    </>
+    <FlatTableRow>
+      <FlatTableCell colspan={4}>Loading State</FlatTableCell>
+    </FlatTableRow>
   );
 
   return (
@@ -3537,11 +3535,9 @@ export const HighlightedRowWithLoadingState = (
   }, [update]);
 
   const loading = (
-    <>
-      <FlatTableRow>
-        <FlatTableCell colspan={4}>Loading State</FlatTableCell>
-      </FlatTableRow>
-    </>
+    <FlatTableRow>
+      <FlatTableCell colspan={4}>Loading State</FlatTableCell>
+    </FlatTableRow>
   );
 
   return (

@@ -1,0 +1,212 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as ButtonStories from "./button.stories";
+
+<Meta
+  title="Button"
+  parameters={{ info: { disable: true }, chromatic: { disableSnapshot: true } }}
+  of={ButtonStories}
+/>
+
+# Button
+
+<a
+  target="_blank"
+  href="https://zeroheight.com/2ccf2b601/p/10358e-button-major/b/66a1c8"
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
+>
+  Product Design System component - Button Major Component
+</a>
+
+A Button triggers a single action or event.
+Use it to submit a form (Save), to advance to the next step in a process (Next), or to create a new item (New).
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quickstart
+
+```javascript
+import Button from "carbon-react/lib/components/button";
+```
+
+## Examples
+
+### Primary Buttons
+
+For the single most prominent call to action on the page (e.g. Save, Submit, Continue).
+
+<Canvas name="primary" of={ButtonStories.PrimaryButton} />
+
+Primary buttons can be destructive.
+
+<Canvas
+  name="primary/destructive"
+  of={ButtonStories.PrimaryButtonDestructive}
+/>
+
+Primary buttons can be disabled.
+
+<Canvas name="primary/disabled" of={ButtonStories.PrimaryButtonDisabled} />
+
+Primary buttons can have an icon positioned before or after the text.
+
+<Canvas name="primary/icon" of={ButtonStories.PrimaryButtonIcon} />
+
+Primary buttons can be `fullWidth`.
+
+<Canvas name="primary/full-width" of={ButtonStories.PrimaryButtonFullWitdth} />
+
+Primary buttons can be set into `noWrap` mode to prevent text wrapping.
+
+<Canvas name="primary/noWrap" of={ButtonStories.PrimaryButtonNoWrap} />
+
+### Secondary Buttons
+
+Less prominent, there can be multiple secondary buttons on a page.
+Secondary buttons are transparent, rather than white.
+
+<Canvas name="secondary" of={ButtonStories.SecondaryButton} />
+
+Secondary buttons can be destructive.
+
+<Canvas
+  name="secondary/destructive"
+  of={ButtonStories.SecondaryButtonDestructive}
+/>
+
+Secondary buttons can be disabled.
+
+<Canvas name="secondary/disabled" of={ButtonStories.SecondaryButtonDisabled} />
+
+Secondary buttons can have an icon positioned before or after the text.
+
+<Canvas name="icon only button" of={ButtonStories.ButtonIconOnly} />
+
+Secondary buttons can be `fullWidth`.
+
+<Canvas
+  name="secondary/full-width"
+  of={ButtonStories.SecondaryButtonFullWidth}
+/>
+
+Secondary buttons can be set into `noWrap` mode to prevent text wrapping.
+
+<Canvas name="secondary/noWrap" of={ButtonStories.SecondaryButtonNoWrap} />
+
+### Tertiary Buttons
+
+Tertiary or ‘ghost’ buttons are used for reversing actions, like ‘Cancel’ or ‘Back’.
+
+<Canvas name="tertiary" of={ButtonStories.TertiaryButton} />
+
+Tertiary buttons can be destructive.
+
+<Canvas
+  name="tertiary/destructive"
+  of={ButtonStories.TertiaryButtonDestructive}
+/>
+
+Tertiary buttons can be disabled.
+
+<Canvas name="tertiary/disabled" of={ButtonStories.TertiaryButtonDisabled} />
+
+Tertiary buttons can have an icon positioned before or after the text.
+
+<Canvas name="tertiary/icon" of={ButtonStories.TertiaryButtonIcon} />
+
+Tertiary buttons can be `fullWidth`.
+
+<Canvas name="tertiary/full-width" of={ButtonStories.TertiaryButtonFullWidth} />
+
+Tertiary buttons can be set to `noWrap` mode to prevent text wrapping.
+
+<Canvas name="tertiary/noWrap" of={ButtonStories.TertiaryButtonNoWrap} />
+
+### Dashed Buttons
+
+Dashed buttons are used for adding new content that replaces empty states.
+
+<Canvas name="dashed" of={ButtonStories.DashedButton} />
+
+Dashed buttons can be disabled.
+
+<Canvas name="dashed/disabled" of={ButtonStories.DashedButtonDisabled} />
+
+Dashed buttons can have an icon positioned before or after the text.
+
+<Canvas name="dashed/icon" of={ButtonStories.DashedButtonIcon} />
+
+Dashed buttons can be `fullWidth`.
+
+<Canvas name="dashed/full-width" of={ButtonStories.DashedButtonFullWidth} />
+
+Dashed buttons can be set to `noWrap` mode to prevent text wrapping.
+
+<Canvas name="dashed/noWrap" of={ButtonStories.DashedButtonNoWrap} />
+
+### Dark Background Buttons
+
+Dark Background buttons are used for adding new content that replaces empty states.
+
+<Canvas name="darkBackground" of={ButtonStories.DarkBackgroundButton} />
+
+Dark Background buttons can be disabled.
+
+<Canvas
+  name="darkBackground/disabled"
+  of={ButtonStories.DarkBackgroundButtonDisabled}
+/>
+
+Dark Background buttons can have an icon positioned before or after the text.
+
+<Canvas
+  name="darkBackground/icon"
+  of={ButtonStories.DarkBackgroundButtonIcon}
+/>
+
+Dark Background buttons can be `fullWidth`.
+
+<Canvas
+  name="darkBackground/full-width"
+  of={ButtonStories.DarkBackgroundButtonFullWidth}
+/>
+
+Dark Background buttons can be set to `noWrap` mode to prevent text wrapping.
+
+<Canvas
+  name="darkBackground/noWrap"
+  of={ButtonStories.DarkBackgroundButtonNoWrap}
+/>
+
+### Button as a link
+
+Passing in the `href` prop will render an anchor with `role="button"` and the Button styles. The `target` and `rel` props are also available.
+
+<Canvas name="as a link" of={ButtonStories.ButtonAsALink} />
+
+### Icon Only Button
+
+Buttons can be rendered with just an icon.
+
+<Canvas name="icon only button" of={ButtonStories.ButtonIconOnly} />
+
+Icon only buttons can also display a tooltip message when the icon is hovered over. This can be acheived by passing a string to the `iconTooltipMessage` prop.
+
+<Canvas
+  name="icon only button with tooltip"
+  of={ButtonStories.ButtonIconTooltipMessage}
+/>
+
+## Props
+
+Options shared between all of the above types of buttons. When setting padding we recommend using either the `p`, `py`
+or `px` props to ensure the spacing within the button is applied evenly.
+
+### Button
+
+<ArgTypes of={ButtonStories} />

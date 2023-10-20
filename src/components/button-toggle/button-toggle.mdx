@@ -1,0 +1,146 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import LinkTo from "@storybook/addon-links/react";
+
+import * as ButtonToggleStories from "./button-toggle.stories";
+import * as ButtonToggleGroupStories from "./button-toggle-group/button-toggle-group.stories";
+
+<Meta
+  title="Button Toggle"
+  parameters={{
+    info: { disable: true },
+    themeProvider: { chromatic: { theme: "sage" } },
+  }}
+  of={ButtonToggleStories}
+/>
+
+# Button Toggle
+
+<a
+  target="_blank"
+  href="https://zeroheight.com/2ccf2b601/p/996a28-button-toggle/b/7384f9"
+  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  rel="noreferrer"
+>
+  Product Design System component
+</a>
+
+Press one of the buttons to make selection. This component should be used when user has to make a choice between a small number of options.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+```javascript
+import {
+  ButtonToggle,
+  ButtonToggleGroup,
+} from "carbon-react/lib/components/button-toggle";
+```
+
+- You should use the <LinkTo kind="Button Toggle Group" story="default">ButtonToggleGroup component</LinkTo> if you need to wrap multiple `ButtonToggle` components together.
+- An icon could be added to make the meaning of an option clearer.
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={ButtonToggleStories.Default} />
+
+### Default with wrapped text
+
+<Canvas name="default with wrapped text" of={ButtonToggleStories.DefaultWrappedText} />
+
+### Controlled
+
+<Canvas name="controlled" of={ButtonToggleGroupStories.Controlled} />
+
+### With aria-label
+
+If you do not want a visible label to appear above the group, you should use the aria-label prop to give it a non-visible
+accessible name to be used by screenreaders. Failure to do this will result in accessibility violations.
+
+<Canvas name="aria-label" of={ButtonToggleGroupStories.AriaLabel} />
+
+### With fullWidth
+
+When the `fullWidth` prop is `true`, the buttons will expand in size to take up the full width of the container.
+
+<Canvas name="fullWidth" of={ButtonToggleGroupStories.FullWidth} />
+
+### With field help inline
+
+<Canvas name="fieldhelp inline" of={ButtonToggleGroupStories.FieldHelp} />
+
+### With label inline
+
+<Canvas name="label inline" of={ButtonToggleGroupStories.LabelInline} />
+
+### Allowing deselection
+
+By default, in a `ButtonToggleGroup` there is no way to deselect the currently-selected toggle button except by selecting another one.
+The `allowDeselect` prop changes this behaviour, making it possible for there to be no selection.
+
+If you use this, you should include text in the `fieldHelp` prop which makes clear that deselection is allowed, as in the example below.
+
+<Canvas name="allowDeselect" of={ButtonToggleGroupStories.AllowDeselection} />
+
+### with small icon
+
+<Canvas name="with small icon" of={ButtonToggleStories.DefaultSmallIcon} />
+
+### with large icon
+
+<Canvas name="default with large icon" of={ButtonToggleStories.DefaultLargeIcon} />
+
+### Icon only
+
+While we do not advocate the use of icon-only buttons for accessibility reasons, the `aria-label` or `aria-labelledby` props can be used with `buttonIcon` so assistive techniques are aware of the action that will be taken when the component pressed.
+
+<Canvas name="icon only" of={ButtonToggleStories.IconOnly} />
+
+### Small
+
+<Canvas name="small" of={ButtonToggleStories.Small} />
+
+### Small with small icon
+
+<Canvas name="small with small icon" of={ButtonToggleStories.SmallSmallIcon} />
+
+### Small with large icon
+
+<Canvas name="small with large icon" of={ButtonToggleStories.SmallLargeIcon} />
+
+### Large
+
+<Canvas name="large" of={ButtonToggleStories.Large} />
+
+### Large with small icon
+
+<Canvas name="large with small icon" of={ButtonToggleStories.LargeSmallIcon} />
+
+### Large with large icon
+
+<Canvas name="large with large icon" of={ButtonToggleStories.LargeLargeIcon} />
+
+### Disabled
+
+<Canvas name="disabled" of={ButtonToggleStories.Disabled} />
+
+### Grouped
+
+<Canvas name="grouped" of={ButtonToggleStories.Grouped} />
+
+## Props
+
+### Button Toggle
+
+<ArgTypes of={ButtonToggleStories} />
+
+### Button Toggle Group
+
+<ArgTypes of={ButtonToggleGroupStories} />

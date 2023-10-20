@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
 
 import NavigationBar from "../navigation-bar";
 import {
@@ -9,21 +10,47 @@ import {
   MenuSegmentTitle,
   MenuDivider,
 } from "../menu";
-import GlobalHeader from "./global-header.component";
+import GlobalHeader, { GlobalHeaderProps } from "./global-header.component";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import carbonLogo from "../../../logo/carbon-logo.png";
 
-export const Default: ComponentStory<typeof GlobalHeader> = () => (
-  <GlobalHeader>Example content</GlobalHeader>
-);
+const styledSystemProps = generateStyledSystemProps({
+  padding: true,
+  flexBox: true,
+}) as Partial<ArgTypes<GlobalHeaderProps>>;
 
-export const WithLogo: ComponentStory<typeof GlobalHeader> = () => {
-  const Logo = () => <img height={28} src={carbonLogo} alt="Carbon logo" />;
-  return <GlobalHeader logo={<Logo />}>Example content</GlobalHeader>;
+const meta: Meta<typeof GlobalHeader> = {
+  title: "Global Header",
+  component: GlobalHeader,
+  argTypes: {
+    ...styledSystemProps,
+  },
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        iframeHeight: 200,
+      },
+    },
+  },
 };
 
-export const BasicMenu: ComponentStory<typeof GlobalHeader> = () => {
-  const Logo = () => <img height={28} src={carbonLogo} alt="Carbon logo" />;
+export default meta;
+type Story = StoryObj<typeof GlobalHeader>;
+
+const Logo = () => <img height={28} src={carbonLogo} alt="Carbon logo" />;
+
+export const Default: Story = () => {
+  return <GlobalHeader>Example content</GlobalHeader>;
+};
+Default.storyName = "Default";
+
+export const WithLogo: Story = () => {
+  return <GlobalHeader logo={<Logo />}>Example content</GlobalHeader>;
+};
+WithLogo.storyName = "With Logo";
+
+export const BasicMenu: Story = () => {
   return (
     <GlobalHeader logo={<Logo />}>
       <Menu menuType="black" display="flex" flex="1">
@@ -44,9 +71,9 @@ export const BasicMenu: ComponentStory<typeof GlobalHeader> = () => {
     </GlobalHeader>
   );
 };
+BasicMenu.storyName = "Basic Menu";
 
-export const ResponsiveMenu: ComponentStory<typeof GlobalHeader> = () => {
-  const Logo = () => <img height={28} src={carbonLogo} alt="Carbon logo" />;
+export const ResponsiveMenu: Story = () => {
   const fullscreenViewBreakPoint = useMediaQuery("(max-width: 599px)");
   const [isListViewOpen, setIsListViewOpen] = useState(false);
   const menuItems = [
@@ -106,11 +133,9 @@ export const ResponsiveMenu: ComponentStory<typeof GlobalHeader> = () => {
     </GlobalHeader>
   );
 };
+ResponsiveMenu.storyName = "Responsive Menu";
 
-export const GlobalLocalNavBarLayout: ComponentStory<
-  typeof GlobalHeader
-> = () => {
-  const Logo = () => <img height={28} src={carbonLogo} alt="Carbon logo" />;
+export const GlobalLocalNavBarLayout: Story = () => {
   return (
     <>
       <GlobalHeader logo={<Logo />}>
@@ -152,6 +177,7 @@ export const GlobalLocalNavBarLayout: ComponentStory<
     </>
   );
 };
+GlobalLocalNavBarLayout.storyName = "Global + Local Nav Bar Layout";
 GlobalLocalNavBarLayout.parameters = {
   docs: { inlineStories: false, iframeHeight: 250 },
 };

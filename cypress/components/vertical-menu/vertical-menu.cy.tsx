@@ -11,8 +11,8 @@ import {
 } from "../../../src/components/vertical-menu/vertical-menu-test.stories";
 import VerticalMenuTrigger, {
   VerticalMenuTriggerProps,
-} from "../../../src/components/vertical-menu/vertical-menu-trigger.component";
-import * as stories from "../../../src/components/vertical-menu/vertical-menu.stories";
+} from "../../../src/components/vertical-menu/vertical-menu-trigger/vertical-menu-trigger.component";
+import * as stories from "../../../src/components/vertical-menu/components.test-pw";
 import CypressMountWithProviders from "../../support/component-helper/cypress-mount";
 import {
   checkGoldenOutline,

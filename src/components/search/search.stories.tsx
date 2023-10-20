@@ -1,20 +1,38 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
 
-import Search, { SearchEvent } from ".";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
+
 import Box from "../box";
 import Button from "../button";
+import Search, { SearchEvent, SearchProps } from ".";
 
-export const VALIDATIONS = ["error", "warning", "info"] as const;
+const styledSystemProps = generateStyledSystemProps({
+  margin: true,
+}) as Partial<ArgTypes<SearchProps>>;
 
-export const Default: ComponentStory<typeof Search> = () => {
-  return <Search placeholder="Search..." defaultValue="" />;
+const meta: Meta<typeof Search> = {
+  title: "Search",
+  component: Search,
+  argTypes: {
+    ...styledSystemProps,
+  },
 };
 
-export const Controlled: ComponentStory<typeof Search> = () => {
+export default meta;
+type Story = StoryObj<typeof Search>;
+
+const VALIDATIONS = ["error", "warning", "info"] as const;
+
+export const Default: Story = () => {
+  return <Search placeholder="Search..." defaultValue="" />;
+};
+Default.storyName = "Default";
+
+export const Controlled: Story = () => {
   const [value, setValue] = useState("");
   return (
-    <div>
+    <>
       <Button onClick={() => setValue("")}>Clear value</Button>
       <Button onClick={() => setValue("test value")} ml={2}>
         Set value
@@ -27,11 +45,12 @@ export const Controlled: ComponentStory<typeof Search> = () => {
         value={value}
         searchButton
       />
-    </div>
+    </>
   );
 };
+Controlled.storyName = "Controlled";
 
-export const WithSearchButton: ComponentStory<typeof Search> = () => {
+export const WithSearchButton: Story = () => {
   return (
     <Search
       defaultValue="Here is some text"
@@ -40,15 +59,14 @@ export const WithSearchButton: ComponentStory<typeof Search> = () => {
     />
   );
 };
+WithSearchButton.storyName = "With Search Button";
 
-export const DefaultWithColourBackground: ComponentStory<
-  typeof Search
-> = () => {
+export const DefaultWithColourBackground: Story = () => {
   return <Search placeholder="Search..." defaultValue="" />;
 };
-export const WithSearchButtonAndColourBackground: ComponentStory<
-  typeof Search
-> = () => {
+DefaultWithColourBackground.storyName = "Default with Colour Background";
+
+export const WithSearchButtonAndColourBackground: Story = () => {
   return (
     <Search
       placeholder="Search..."
@@ -57,38 +75,43 @@ export const WithSearchButtonAndColourBackground: ComponentStory<
     />
   );
 };
+WithSearchButtonAndColourBackground.storyName =
+  "With Search Button and Colour Background";
 
-export const CustomWidthUsingPx: ComponentStory<typeof Search> = () => {
+export const CustomWidthUsingPx: Story = () => {
   return <Search placeholder="Search..." defaultValue="" searchWidth="375px" />;
 };
+CustomWidthUsingPx.storyName = "Custom Width Using Px";
 
-export const WithSearchButtonAndCustomWidthUsingPx: ComponentStory<
-  typeof Search
-> = () => {
+export const WithSearchButtonAndCustomWidthUsingPx: Story = () => {
   return (
     <Search defaultValue="Here is some text" searchButton searchWidth="375px" />
   );
 };
+WithSearchButtonAndCustomWidthUsingPx.storyName =
+  "With Search Button and Custom Width Using Px";
 
-export const CustomWidthUsingPercentage: ComponentStory<typeof Search> = () => {
+export const CustomWidthUsingPercentage: Story = () => {
   return <Search placeholder="Search..." defaultValue="" searchWidth="70%" />;
 };
+CustomWidthUsingPercentage.storyName = "Custom Width Using Percentage";
 
-export const WithSearchButtonAndCustomWidthUsingPercentage: ComponentStory<
-  typeof Search
-> = () => {
+export const WithSearchButtonAndCustomWidthUsingPercentage: Story = () => {
   return (
     <Search defaultValue="Here is some text" searchButton searchWidth="70%" />
   );
 };
+WithSearchButtonAndCustomWidthUsingPercentage.storyName =
+  "With Search Button and Custom Width Using Percentage";
 
-export const WithCustomMaxWidth: ComponentStory<typeof Search> = () => {
+export const WithCustomMaxWidth: Story = () => {
   return (
     <Search defaultValue="Here is some text" searchButton maxWidth="50%" />
   );
 };
+WithCustomMaxWidth.storyName = "With Custom Max Width";
 
-export const WithAltStyling: ComponentStory<typeof Search> = () => {
+export const WithAltStyling: Story = () => {
   return (
     <Box width="700px" height="108px">
       <div
@@ -107,25 +130,22 @@ export const WithAltStyling: ComponentStory<typeof Search> = () => {
     </Box>
   );
 };
+WithAltStyling.storyName = "With Alt Styling";
 
-export const WithAltStylingAndNoButton: ComponentStory<typeof Search> = () => {
+export const WithAltStylingAndNoButton: Story = () => {
   return (
     <Box width="700px" height="108px">
-      <div
-        style={{
-          padding: "32px",
-          backgroundColor: "#003349",
-        }}
-      >
+      <Box p={32} backgroundColor="#003349">
         <Search placeholder="Search..." defaultValue="" variant="dark" />
-      </div>
+      </Box>
     </Box>
   );
 };
+WithAltStylingAndNoButton.storyName = "With Alt Styling and No Button";
 
 type Validation = "error" | "warning" | "info";
 
-export const ValidationsStringComponent: ComponentStory<typeof Search> = () => {
+export const ValidationsStringComponent: Story = () => {
   const [state, setState] = useState({
     error: "<foo>",
     warning: "<foo>",
@@ -139,22 +159,21 @@ export const ValidationsStringComponent: ComponentStory<typeof Search> = () => {
   return (
     <>
       {VALIDATIONS.map((validationType) => (
-        <div key={`${validationType}-string-component`}>
+        <Box key={`${validationType}-string-component`}>
           <Search
             value={state[validationType]}
             onChange={handleChange(validationType)}
             searchButton
             {...{ [validationType]: "Invalid characters" }}
           />
-        </div>
+        </Box>
       ))}
     </>
   );
 };
+ValidationsStringComponent.storyName = "Validations - String";
 
-export const ValidationsStringWithTooltipPositionOverridenComponent: ComponentStory<
-  typeof Search
-> = () => {
+export const ValidationsStringWithTooltipPositionOverridenComponent: Story = () => {
   const [state, setState] = useState({
     error: "<foo>",
     warning: "<foo>",
@@ -168,7 +187,7 @@ export const ValidationsStringWithTooltipPositionOverridenComponent: ComponentSt
   return (
     <>
       {VALIDATIONS.map((validationType) => (
-        <div key={`${validationType}-string-component`}>
+        <Box key={`${validationType}-string-component`}>
           <Search
             value={state[validationType]}
             onChange={handleChange(validationType)}
@@ -176,13 +195,15 @@ export const ValidationsStringWithTooltipPositionOverridenComponent: ComponentSt
             {...{ [validationType]: "Invalid characters" }}
             tooltipPosition="bottom"
           />
-        </div>
+        </Box>
       ))}
     </>
   );
 };
+ValidationsStringWithTooltipPositionOverridenComponent.storyName =
+  "Validations - String with Tooltip Position Overriden";
 
-export const ValidationsBoolean: ComponentStory<typeof Search> = () => {
+export const ValidationsBoolean: Story = () => {
   const [state, setState] = useState({
     error: "<foo>",
     warning: "<foo>",
@@ -196,15 +217,16 @@ export const ValidationsBoolean: ComponentStory<typeof Search> = () => {
   return (
     <>
       {VALIDATIONS.map((validationType) => (
-        <div key={`${validationType}-boolean-component`}>
+        <Box key={`${validationType}-boolean-component`}>
           <Search
             value={state[validationType]}
             searchButton
             onChange={handleChange(validationType)}
             {...{ [validationType]: true }}
           />
-        </div>
+        </Box>
       ))}
     </>
   );
 };
+ValidationsBoolean.storyName = "Validations - Boolean";

@@ -1,15 +1,25 @@
 import React, { useState, useRef } from "react";
+import { Meta, StoryObj } from "@storybook/react";
 
+import CarbonProvider from "../carbon-provider";
+
+import Button from "../button";
+import EditorLinkPreview from "../link-preview";
+import Box from "../box";
 import TextEditor, {
   TextEditorState as EditorState,
   TextEditorContentState as ContentState,
 } from "./text-editor.component";
-import Button from "../button";
-import EditorLinkPreview from "../link-preview";
-import Box from "../box";
-import CarbonProvider from "../carbon-provider";
 
-export const Default = () => {
+const meta: Meta<typeof TextEditor> = {
+  title: "Text Editor",
+  component: TextEditor,
+};
+
+export default meta;
+type Story = StoryObj<typeof TextEditor>;
+
+export const Default: Story = () => {
   const [value, setValue] = useState(EditorState.createEmpty());
   return (
     <Box padding={1}>
@@ -23,10 +33,9 @@ export const Default = () => {
     </Box>
   );
 };
+Default.storyName = "Default";
 
-Default.storyName = "default";
-
-export const WithContent = () => {
+export const WithContent: Story = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(
       ContentState.createFromText("Some initial content")
@@ -45,10 +54,9 @@ export const WithContent = () => {
     </Box>
   );
 };
+WithContent.storyName = "With Content";
 
-WithContent.storyName = "with content";
-
-export const WithOptionalButtons = () => {
+export const WithOptionalButtons: Story = () => {
   const [value, setValue] = useState(EditorState.createEmpty());
   return (
     <Box padding={1}>
@@ -76,10 +84,9 @@ export const WithOptionalButtons = () => {
     </Box>
   );
 };
+WithOptionalButtons.storyName = "With Optional Buttons";
 
-WithOptionalButtons.storyName = "with optional buttons";
-
-export const WithOptionalCharacterLimit = () => {
+export const WithOptionalCharacterLimit: Story = () => {
   const [value, setValue] = useState(EditorState.createEmpty());
   const limit = 100;
   return (
@@ -95,10 +102,9 @@ export const WithOptionalCharacterLimit = () => {
     </Box>
   );
 };
+WithOptionalCharacterLimit.storyName = "With Optional Character Limit";
 
-WithOptionalCharacterLimit.storyName = "with optional character limit";
-
-export const WithValidation = () => {
+export const WithValidation: Story = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(ContentState.createFromText("Add content"))
   );
@@ -121,10 +127,9 @@ export const WithValidation = () => {
     </Box>
   );
 };
+WithValidation.storyName = "With Validation";
 
-WithValidation.storyName = "with validation";
-
-export const WithMultilineValidation = () => {
+export const WithMultilineValidation: Story = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(ContentState.createFromText("Add content"))
   );
@@ -150,10 +155,9 @@ Maybe try writing a little bit less?`
     </Box>
   );
 };
+WithMultilineValidation.storyName = "With Multiline Validation";
 
-WithMultilineValidation.storyName = "with multiline validation";
-
-export const WithNewValidation = () => {
+export const WithNewValidation: Story = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(ContentState.createFromText("Add content"))
   );
@@ -179,10 +183,9 @@ export const WithNewValidation = () => {
     </CarbonProvider>
   );
 };
+WithNewValidation.storyName = "With New Validation";
 
-WithNewValidation.storyName = "with new validation";
-
-export const WithCustomRowHeight = () => {
+export const WithCustomRowHeight: Story = () => {
   const [value, setValue] = useState(EditorState.createEmpty());
 
   return (
@@ -198,10 +201,9 @@ export const WithCustomRowHeight = () => {
     </Box>
   );
 };
+WithCustomRowHeight.storyName = "With Custom Row Height";
 
-WithCustomRowHeight.storyName = "with custom row height";
-
-export const WithLinkPreviews = () => {
+export const WithLinkPreviews: Story = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(ContentState.createFromText("www.sage.com"))
   );
@@ -267,3 +269,4 @@ export const WithLinkPreviews = () => {
     </Box>
   );
 };
+WithLinkPreviews.storyName = "With Link Previews";

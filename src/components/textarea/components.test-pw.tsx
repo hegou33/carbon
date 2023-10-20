@@ -5,6 +5,7 @@ import Textarea, { TextareaProps } from ".";
 import Dialog from "../dialog";
 import Form from "../form";
 import Button from "../button";
+import Box from "../box";
 
 interface TextareaTestProps extends TextareaProps {
   labelHelp?: string;
@@ -206,7 +207,7 @@ export const ValidationStringExample = () => {
   return (
     <>
       {["error", "warning", "info"].map((validationType) => (
-        <div key={`${validationType}-string-component`}>
+        <Box key={`${validationType}-string-component`}>
           <Textarea
             label="Textarea"
             {...{ [validationType]: "Message" }}
@@ -218,7 +219,7 @@ export const ValidationStringExample = () => {
             {...{ [validationType]: "Message" }}
             mb={2}
           />
-        </div>
+        </Box>
       ))}
     </>
   );
@@ -228,14 +229,14 @@ export const ValidationStringPositionExample = () => {
   return (
     <>
       {["error", "warning", "info"].map((validationType) => (
-        <div key={`${validationType}-string-component`}>
+        <Box key={`${validationType}-string-component`}>
           <Textarea
             label="Textarea"
             {...{ [validationType]: "Message" }}
             mb={2}
             tooltipPosition="bottom"
           />
-        </div>
+        </Box>
       ))}
     </>
   );
@@ -245,7 +246,7 @@ export const ValidationLabelExample = () => {
   return (
     <>
       {["error", "warning", "info"].map((validationType) => (
-        <div key={`${validationType}-string-label`}>
+        <Box key={`${validationType}-string-label`}>
           <Textarea
             label="Textarea"
             validationOnLabel
@@ -259,7 +260,7 @@ export const ValidationLabelExample = () => {
             {...{ [validationType]: "Message" }}
             mb={2}
           />
-        </div>
+        </Box>
       ))}
     </>
   );
@@ -269,7 +270,7 @@ export const ValidationLabelPositionExample = () => {
   return (
     <>
       {["error", "warning", "info"].map((validationType) => (
-        <div key={`${validationType}-string-label`}>
+        <Box key={`${validationType}-string-label`}>
           <Textarea
             label="Textarea"
             validationOnLabel
@@ -277,7 +278,7 @@ export const ValidationLabelPositionExample = () => {
             mb={2}
             tooltipPosition="top"
           />
-        </div>
+        </Box>
       ))}
     </>
   );
@@ -287,10 +288,7 @@ export const NewDesignValidationExample = () => {
   return (
     <CarbonProvider validationRedesignOptIn>
       {["error", "warning"].map((validationType) => (
-        <div
-          style={{ width: "296px" }}
-          key={`${validationType}-string-component`}
-        >
+        <Box width={296} key={`${validationType}-string-component`}>
           <Textarea
             label={`${validationType}`}
             inputHint="Hint text (optional)."
@@ -304,7 +302,7 @@ export const NewDesignValidationExample = () => {
             {...{ [validationType]: "Message" }}
             m={4}
           />
-        </div>
+        </Box>
       ))}
     </CarbonProvider>
   );
@@ -314,7 +312,7 @@ export const ValidationBooleanExample = () => {
   return (
     <>
       {["error", "warning", "info"].map((validationType) => (
-        <div key={`${validationType}-boolean-component`}>
+        <Box key={`${validationType}-boolean-component`}>
           <Textarea label="Textarea" {...{ [validationType]: true }} mb={2} />
           <Textarea
             label="Textarea - readOnly"
@@ -322,7 +320,7 @@ export const ValidationBooleanExample = () => {
             {...{ [validationType]: true }}
             mb={2}
           />
-        </div>
+        </Box>
       ))}
     </>
   );

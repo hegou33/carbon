@@ -1,9 +1,27 @@
 import React from "react";
-import { ComponentStory } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import LinkPreview from ".";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
 
-export const DefaultStory: ComponentStory<typeof LinkPreview> = () => {
+import { action } from "@storybook/addon-actions";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
+
+import LinkPreview, { LinkPreviewProps } from ".";
+
+const styledSystemProps = generateStyledSystemProps({
+  margin: true,
+}) as Partial<ArgTypes<LinkPreviewProps>>;
+
+const meta: Meta<typeof LinkPreview> = {
+  title: "Link Preview",
+  component: LinkPreview,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof LinkPreview>;
+
+export const DefaultStory: Story = () => {
   return (
     <LinkPreview
       title="This is an example of a title"
@@ -12,12 +30,14 @@ export const DefaultStory: ComponentStory<typeof LinkPreview> = () => {
     />
   );
 };
+DefaultStory.storyName = "Default";
 
-export const LinkPreviewLoadingState: ComponentStory<
-  typeof LinkPreview
-> = () => <LinkPreview isLoading />;
+export const LinkPreviewLoadingState: Story = () => {
+  return <LinkPreview isLoading />;
+};
+LinkPreviewLoadingState.storyName = "Link Preview Loading State";
 
-export const LinkPreviewCloseIcon: ComponentStory<typeof LinkPreview> = () => {
+export const LinkPreviewCloseIcon: Story = () => {
   return (
     <LinkPreview
       title="This is an example of a title"
@@ -28,3 +48,4 @@ export const LinkPreviewCloseIcon: ComponentStory<typeof LinkPreview> = () => {
     />
   );
 };
+LinkPreviewCloseIcon.storyName = "Link Preview Close Icon";

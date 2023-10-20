@@ -1,7 +1,8 @@
 import React, { useState, useRef } from "react";
-import { ComponentStory } from "@storybook/react";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
 
-import Sidebar from ".";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
+
 import Button from "../button";
 import Typography from "../typography";
 import Form from "../form";
@@ -10,11 +11,29 @@ import Textbox from "../textbox";
 import Box from "../box";
 import Dialog from "../dialog";
 import DialogFullScreen from "../confirm";
+import Sidebar, { SidebarProps } from ".";
+
 import isChromatic from "../../../.storybook/isChromatic";
+
+const styledSystemProps = generateStyledSystemProps({
+  padding: true,
+  width: true,
+}) as Partial<ArgTypes<SidebarProps>>;
+
+const meta: Meta<typeof Sidebar> = {
+  title: "Sidebar",
+  component: Sidebar,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Sidebar>;
 
 const defaultOpenState = isChromatic();
 
-export const DefaultStory: ComponentStory<typeof Sidebar> = () => {
+export const DefaultStory: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -35,10 +54,9 @@ export const DefaultStory: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+DefaultStory.storyName = "Default";
 
-export const CustomPaddingAroundContent: ComponentStory<
-  typeof Sidebar
-> = () => {
+export const CustomPaddingAroundContent: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -55,8 +73,9 @@ export const CustomPaddingAroundContent: ComponentStory<
     </>
   );
 };
+CustomPaddingAroundContent.storyName = "Custom Padding Around Content";
 
-export const WithHeader: ComponentStory<typeof Sidebar> = () => {
+export const WithHeader: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -77,8 +96,9 @@ export const WithHeader: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+WithHeader.storyName = "With Header";
 
-export const WithScroll: ComponentStory<typeof Sidebar> = () => {
+export const WithScroll: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -99,8 +119,9 @@ export const WithScroll: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+WithScroll.storyName = "With Scroll";
 
-export const WithTypography: ComponentStory<typeof Sidebar> = () => {
+export const WithTypography: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -184,8 +205,9 @@ export const WithTypography: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+WithTypography.storyName = "With Typography";
 
-export const OtherFocusableContainers: ComponentStory<typeof Sidebar> = () => {
+export const OtherFocusableContainers: Story = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isToast1Open, setIsToast1Open] = useState(false);
   const [isToast2Open, setIsToast2Open] = useState(false);
@@ -249,9 +271,10 @@ export const OtherFocusableContainers: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+OtherFocusableContainers.storyName = "Other Focusable Containers";
 OtherFocusableContainers.parameters = { chromatic: { disableSnapshot: true } };
 
-export const CustomWidth: ComponentStory<typeof Sidebar> = () => {
+export const CustomWidth: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -273,10 +296,9 @@ export const CustomWidth: ComponentStory<typeof Sidebar> = () => {
     </>
   );
 };
+CustomWidth.storyName = "Custom Width";
 
-export const WithHeaderAndFooterPadding: ComponentStory<
-  typeof Sidebar
-> = () => {
+export const WithHeaderAndFooterPadding: Story = () => {
   const [isOpen, setIsOpen] = useState(defaultOpenState);
   return (
     <>
@@ -316,8 +338,9 @@ export const WithHeaderAndFooterPadding: ComponentStory<
     </>
   );
 };
+WithHeaderAndFooterPadding.storyName = "With Header and Footer Padding";
 
-export const TopModalOverride = () => {
+export const TopModalOverride: Story = () => {
   const [isOpenAll, setIsOpenAll] = useState(defaultOpenState);
   const [isOpenDialogFullScreen, setIsOpenDialogFullScreen] = useState(true);
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
@@ -361,3 +384,4 @@ export const TopModalOverride = () => {
     </>
   );
 };
+TopModalOverride.storyName = "Top Modal Override";

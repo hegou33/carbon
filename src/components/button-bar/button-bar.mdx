@@ -1,0 +1,76 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as ButtonBarStories from "./button-bar.stories";
+
+<Meta
+  title="Button Bar"
+  parameters={{ info: { disable: true }, chromatic: { disableSnapshot: true } }}
+  of={ButtonBarStories}
+/>
+
+# Button Bar
+
+A Button bar groups together multiple buttons.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quickstart
+
+```javascript
+import ButtonBar from "carbon-react/lib/components/button-bar";
+```
+
+## Examples
+
+### Button Bar - Sizes
+
+Button bars of different sizes.
+
+<Canvas name="button major sizes" of={ButtonBarStories.buttonBarSizes} />
+
+<Canvas name="button minor sizes" of={ButtonBarStories.buttonBarMinorSizes} />
+
+Button bars with different icon positions.
+
+### Button Bar - Icon Position
+
+<Canvas name="button major with icons" of={ButtonBarStories.buttonBarIcons} />
+
+### Button Bar Minor - Icon Position
+
+<Canvas name="button minor with icons" of={ButtonBarStories.buttonBarMinorIcons} />
+
+### Button Bar - Icon Only
+
+<Canvas name="button major icons only" of={ButtonBarStories.buttonBarIconsOnly} />
+
+### Button Bar Minor - Icon Only
+
+<Canvas name="button minor icons only" of={ButtonBarStories.buttonBarMinorIconsOnly} />
+
+`IconButton` components on a button bar.
+
+<Canvas name="button major icon buttons" of={ButtonBarStories.buttonBarIconButtons} />
+
+Button bars can be `fullWidth`.
+
+### Button Bar - Full Width
+
+<Canvas name="button major fullWidth" story={ButtonBarStories.buttonBarFullWidth} />
+
+### Button Bar Minor - Full Width
+
+<Canvas name="button minor fullWidth" story={ButtonBarStories.buttonBarMinorFullWidth} />
+
+## Props
+
+Options shared between all of the above types of button bars. When setting padding we recommend using either the `p`, `py`
+or `px` props to ensure the spacing within the button bar is applied evenly.
+
+### Button Bar
+
+<ArgTypes of={ButtonBarStories} />

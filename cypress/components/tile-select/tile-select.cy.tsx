@@ -6,7 +6,7 @@ import {
   TileSelectProps,
 } from "../../../src/components/tile-select";
 import * as testStories from "../../../src/components/tile-select/tile-select-test.stories";
-import * as stories from "../../../src/components/tile-select/tile-select.stories";
+import * as stories from "../../../src/components/tile-select/components.test-pw";
 import Pill from "../../../src/components/pill/pill.component";
 import Button from "../../../src/components/button/button.component";
 import Icon, { IconProps } from "../../../src/components/icon/icon.component";

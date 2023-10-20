@@ -10,9 +10,6 @@ import {
   TopModalOverride,
   DialogWithAutoFocusSelect,
   DialogWithStepSequence,
-} from "./components.test-pw";
-
-import {
   DefaultStory,
   Editable,
   WithHelp,
@@ -22,8 +19,7 @@ import {
   OtherFocusableContainers,
   Responsive,
   UsingHandle,
-} from "./dialog.stories";
-
+} from "./components.test-pw";
 import toastComponent from "../../../playwright/components/toast";
 import {
   checkAccessibility,

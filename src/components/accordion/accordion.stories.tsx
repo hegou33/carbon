@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { ComponentStory } from "@storybook/react";
-import { Accordion, AccordionGroup } from ".";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
+import { Accordion, AccordionGroup, AccordionProps } from ".";
 import Box from "../box/box.component";
 import Button from "../button/button.component";
 import { Checkbox } from "../checkbox";
 import { Dl, Dt, Dd } from "../definition-list";
 import Link from "../link/link.component";
 import Textbox from "../textbox/textbox.component";
+
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
 
 const errorVal = "error";
 const warningVal = "warning";
@@ -17,10 +19,24 @@ interface ValidationObject {
   two: string;
   three: string;
 }
-
 type Validations = keyof ValidationObject;
 
-export const AccordionDefault: ComponentStory<typeof Accordion> = () => {
+const styledSystemProps = generateStyledSystemProps({
+  spacing: true,
+}) as Partial<ArgTypes<AccordionProps>>;
+
+const meta: Meta<typeof Accordion> = {
+  title: "Accordion",
+  component: Accordion,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof Accordion>;
+
+export const AccordionDefault: Story = () => {
   return (
     <Accordion title="Heading">
       <Box mt={2}>Content</Box>
@@ -29,10 +45,9 @@ export const AccordionDefault: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+AccordionDefault.storyName = "Default";
 
-export const WithDisableContentPadding: ComponentStory<
-  typeof Accordion
-> = () => {
+export const WithDisableContentPadding: Story = () => {
   return (
     <Accordion disableContentPadding title="Heading">
       <Box mt={2}>Content</Box>
@@ -41,8 +56,9 @@ export const WithDisableContentPadding: ComponentStory<
     </Accordion>
   );
 };
+WithDisableContentPadding.storyName = "With disableContentPadding";
 
-export const Transparent: ComponentStory<typeof Accordion> = () => {
+export const Transparent: Story = () => {
   return (
     <Accordion scheme="transparent" title="Heading">
       <Box mt={2}>Content</Box>
@@ -51,8 +67,9 @@ export const Transparent: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+Transparent.storyName = "Transparent";
 
-export const Small: ComponentStory<typeof Accordion> = () => {
+export const Small: Story = () => {
   return (
     <Accordion size="small" title="Heading">
       <Box mt={2}>Content</Box>
@@ -61,8 +78,9 @@ export const Small: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+Small.storyName = "Small";
 
-export const Subtitle: ComponentStory<typeof Accordion> = () => {
+export const Subtitle: Story = () => {
   return (
     <Accordion subTitle="Sub title" title="Heading">
       <Box mt={2}>Content</Box>
@@ -71,8 +89,9 @@ export const Subtitle: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+Subtitle.storyName = "Subtitle";
 
-export const Fullborder: ComponentStory<typeof Accordion> = () => {
+export const Fullborder: Story = () => {
   return (
     <Accordion borders="full" title="Heading">
       <Box mt={2}>Content</Box>
@@ -81,8 +100,9 @@ export const Fullborder: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+Fullborder.storyName = "Full border";
 
-export const LeftAlignedIcon: ComponentStory<typeof Accordion> = () => {
+export const LeftAlignedIcon: Story = () => {
   return (
     <Accordion iconAlign="left" title="Heading">
       <Box mt={2}>Content</Box>
@@ -91,8 +111,9 @@ export const LeftAlignedIcon: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+LeftAlignedIcon.storyName = "Left aligned icon";
 
-export const DifferentWidth: ComponentStory<typeof Accordion> = () => {
+export const DifferentWidth: Story = () => {
   return (
     <Accordion width="500px" title="Heading">
       <Box mt={2}>Content</Box>
@@ -101,10 +122,9 @@ export const DifferentWidth: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+DifferentWidth.storyName = "Different width";
 
-export const WithDifferentPaddingAndMargin: ComponentStory<
-  typeof Accordion
-> = () => {
+export const WithDifferentPaddingAndMargin: Story = () => {
   return (
     <>
       <Accordion m={0} p={0} title="Accordion">
@@ -131,10 +151,9 @@ export const WithDifferentPaddingAndMargin: ComponentStory<
     </>
   );
 };
+WithDifferentPaddingAndMargin.storyName = "With different padding and margin";
 
-export const WithDifferentPaddingAndMarginInAccordionTitle: ComponentStory<
-  typeof Accordion
-> = () => {
+export const WithDifferentPaddingAndMarginInAccordionTitle: Story = () => {
   return (
     <>
       <Accordion headerSpacing={{ p: 0 }} title="Accordion">
@@ -161,10 +180,10 @@ export const WithDifferentPaddingAndMarginInAccordionTitle: ComponentStory<
     </>
   );
 };
+WithDifferentPaddingAndMarginInAccordionTitle.storyName =
+  "With different padding and margin in accordion title";
 
-export const WithBoxComponentAndDifferentPaddings: ComponentStory<
-  typeof Accordion
-> = () => {
+export const WithBoxComponentAndDifferentPaddings: Story = () => {
   const [isOpen, setOpen] = useState(true);
   return (
     <>
@@ -276,8 +295,10 @@ export const WithBoxComponentAndDifferentPaddings: ComponentStory<
     </>
   );
 };
+WithBoxComponentAndDifferentPaddings.storyName =
+  "With Box component and different paddings";
 
-export const OpeningButton: ComponentStory<typeof Accordion> = () => {
+export const OpeningButton: Story = () => {
   return (
     <Box m="8px">
       <Accordion
@@ -340,8 +361,9 @@ export const OpeningButton: ComponentStory<typeof Accordion> = () => {
     </Box>
   );
 };
+OpeningButton.storyName = "Opening button";
 
-export const Grouped: ComponentStory<typeof Accordion> = () => {
+export const Grouped: Story = () => {
   return (
     <AccordionGroup>
       <Accordion title="First Accordion">
@@ -364,8 +386,9 @@ export const Grouped: ComponentStory<typeof Accordion> = () => {
     </AccordionGroup>
   );
 };
+Grouped.storyName = "Grouped";
 
-export const WithValidationIcon: ComponentStory<typeof Accordion> = () => {
+export const WithValidationIcon: Story = () => {
   const [errors, setErrors] = useState({
     one: errorVal,
     two: errorVal,
@@ -507,8 +530,9 @@ export const WithValidationIcon: ComponentStory<typeof Accordion> = () => {
     </Box>
   );
 };
+WithValidationIcon.storyName = "With validation icon";
 
-export const WithDynamicContent: ComponentStory<typeof Accordion> = () => {
+export const WithDynamicContent: Story = () => {
   const [contentCount, setContentCount] = useState(3);
   const modifyContentCount = (modifier: number) => {
     if (modifier === 1) {
@@ -535,8 +559,9 @@ export const WithDynamicContent: ComponentStory<typeof Accordion> = () => {
     </>
   );
 };
+WithDynamicContent.storyName = "With dynamic content";
 
-export const WithDefinitionList: ComponentStory<typeof Accordion> = () => {
+export const WithDefinitionList: Story = () => {
   const [isOpen, setOpen] = useState(true);
   return (
     <Accordion
@@ -580,3 +605,4 @@ export const WithDefinitionList: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+WithDefinitionList.storyName = "With definition list";

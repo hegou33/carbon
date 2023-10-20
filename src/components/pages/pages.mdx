@@ -1,0 +1,54 @@
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+
+import * as PageStories from "./page/page.stories";
+import * as PagesStories from "./pages.stories";
+
+<Meta
+  title="Pages"
+  parameters={{ info: { disable: true }, chromatic: { disableSnapshot: true } }}
+  of={PagesStories}
+/>
+
+# Pages
+
+Allows to slide to different pages in a full screen dialog.
+
+## Contents
+
+- [Quick Start](#quick-start)
+- [Examples](#examples)
+- [Props](#props)
+
+## Quick Start
+
+```javascript
+import Pages, { Page } from "carbon-react/lib/components/pages";
+```
+
+## Examples
+
+### Default
+
+<Canvas name="default" of={PagesStories.Default} />
+
+### Pages with Initial Page Index
+
+<Canvas name="with Initial Page Index" of={PagesStories.WithInitialPageIndex} />
+
+## Inside DialogFullScreen
+
+<Canvas name="inside DialogFullScreen" of={PagesStories.InsideDialogFullScreen} />
+
+### Overriding content padding
+
+<Canvas name="overriding content padding" of={PagesStories.OverridingContentPadding} />
+
+## Props
+
+### Props for Pages
+
+<ArgTypes of={PagesStories} />
+
+### Props for Page
+
+<ArgTypes of={PageStories} />

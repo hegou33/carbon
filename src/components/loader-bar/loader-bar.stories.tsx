@@ -1,15 +1,34 @@
 import React from "react";
-import { ComponentStory } from "@storybook/react";
-import LoaderBar from ".";
+import { ArgTypes, Meta, StoryObj } from "@storybook/react";
+import LoaderBar, { LoaderBarProps } from ".";
+import generateStyledSystemProps from "../../../.storybook/utils/styled-system-props";
 
-export const DefaultStory: ComponentStory<typeof LoaderBar> = () => (
-  <LoaderBar mt={2} />
-);
+const styledSystemProps = generateStyledSystemProps({
+  margin: true,
+}) as Partial<ArgTypes<LoaderBarProps>>;
 
-export const SmallStoryLoaderbar: ComponentStory<typeof LoaderBar> = () => (
-  <LoaderBar size="small" mt={2} />
-);
+const meta: Meta<typeof LoaderBar> = {
+  title: "Loader Bar",
+  component: LoaderBar,
+  argTypes: {
+    ...styledSystemProps,
+  },
+};
 
-export const LargeStoryLoaderbar: ComponentStory<typeof LoaderBar> = () => (
-  <LoaderBar size="large" mt={2} />
-);
+export default meta;
+type Story = StoryObj<typeof LoaderBar>;
+
+export const DefaultStory: Story = () => {
+  return <LoaderBar mt={2} />;
+};
+DefaultStory.storyName = "Default";
+
+export const SmallStoryLoaderbar: Story = () => {
+  return <LoaderBar size="small" mt={2} />;
+};
+SmallStoryLoaderbar.storyName = "Small";
+
+export const LargeStoryLoaderbar: Story = () => {
+  return <LoaderBar size="large" mt={2} />;
+};
+LargeStoryLoaderbar.storyName = "Large";
