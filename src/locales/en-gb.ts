@@ -156,6 +156,11 @@ const enGB: Locale = {
   splitButton: {
     ariaLabel: () => "Show more",
   },
+  stepFlow: {
+    stepLabel: (currentStep, totalSteps) => `${currentStep} of ${totalSteps}`,
+    screenReaderOnlyTitle: (title, currentStep, totalSteps, category) =>
+      `${category}. ${title}. Step ${currentStep} of ${totalSteps}.`,
+  },
   switch: {
     on: () => "ON",
     off: () => "OFF",
