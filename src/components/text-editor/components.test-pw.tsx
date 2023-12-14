@@ -6,7 +6,7 @@ import TextEditor, {
 import CarbonProvider from "../carbon-provider";
 import Box from "../box";
 
-export const WithNewValidation = () => {
+const WithNewValidation = () => {
   const [value, setValue] = useState(
     EditorState.createWithContent(ContentState.createFromText("Add content"))
   );
@@ -32,3 +32,5 @@ export const WithNewValidation = () => {
     </CarbonProvider>
   );
 };
+
+export default WithNewValidation;

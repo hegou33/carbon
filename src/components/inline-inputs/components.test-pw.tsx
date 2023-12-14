@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import InlineInputs from ".";
 import Textbox from "../textbox";
 import Decimal from "../decimal";
 import { Option, Select } from "../select";
 import Box from "../box";
+import InlineInputs from ".";
 
 export const Default = () => {
   let validationProps = {};

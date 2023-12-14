@@ -25,6 +25,7 @@ type Story = StoryObj<typeof Decimal>;
  * I've put a message on the Storybook Discord but it's been ignored so will need to chase or ask on git */
 export const DefaultStory: Story = {
   render: (args: DecimalProps) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [state, setState] = useState("0.01");
     const setValue = ({ target }: CustomEvent) => {
       setState(target.value.rawValue);
@@ -183,6 +184,7 @@ type StoryWithMessage = Story & {
 
 export const Validations: StoryWithMessage = {
   render: (args: Partial<DecimalProps> & { message?: string | boolean }) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [state, setState] = useState({
       error: "0.01",
       warning: "0.01",
@@ -279,6 +281,7 @@ ValidationsRedesign.storyName = "Validations - Redesign";
 
 export const ValidationsTooltip: Story = {
   render: (args: DecimalProps = {}) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [state, setState] = useState({
       error: "0.01",
       warning: "0.01",

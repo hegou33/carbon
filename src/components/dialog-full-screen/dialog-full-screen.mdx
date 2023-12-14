@@ -109,9 +109,7 @@ create unexpected issues if the loading of the dialogs isn't synchronous. In ord
 modal is treated as top set the `topModalOverride` prop. Please note that in the scenario where this prop is 
 set on multiple modals, the last one mounted with it will be treated as top.
 
-<Canvas>
-  <Story name="top modal override" story={stories.TopModalOverride} />
-</Canvas>
+<Canvas name="top modal override" of={DialogFullScreenStories.TopModalOverride} />
 
 ## Props
 

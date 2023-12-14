@@ -93,7 +93,17 @@
           }
         ]
       }
-    ]
+    ],
+    /* These rules have been added to allow us to upgrade during Storybook upgrae
+     * but all rules (and potentially the old ones) will need to be looked at */
+    "no-restricted-exports": "off",
+    "default-param-last": "off",
+    "react/no-unstable-nested-components": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "react/jsx-no-useless-fragment": "off",
+    "no-unsafe-optional-chaining": "off",
+    "prefer-regex-literals": "off",
+    "arrow-body-style": "off"
   },
   "env": {
     "es6": true,
@@ -106,14 +116,22 @@
     "plugin:react-hooks/recommended",
     "plugin:no-unsanitized/DOM",
     "airbnb",
-    "prettier",
-    "prettier/react"
+    "prettier"
   ],
   "globals": {
     "global": false,
     "process": false
   },
   "overrides": [
+    {
+      "files": ["*.mdx"],
+      "extends": "plugin:mdx/recommended",
+      "rules": {
+        "jsx-a11y/anchor-has-content": "off",
+        "jsx-a11y/control-has-associated-label": "off",
+        "react/self-closing-comp": "off"
+      }
+    },
     {
       "files": ["*.ts", "*.tsx"],
       "parser": "@typescript-eslint/parser",
@@ -130,9 +148,10 @@
       "plugins": ["@typescript-eslint"],
       "extends": [
         "plugin:@typescript-eslint/recommended",
-        "prettier/@typescript-eslint"
+        "prettier"
       ],
       "settings": {
+        "mdx/code-blocks": true,
         "react": {
           "version": "detect"
         }
@@ -146,6 +165,13 @@
           "error",
           { "allow": ["arrowFunctions"] }
         ],
+        "react/function-component-definition": [
+          2,
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
         "no-restricted-imports": [
           "error",
           {
@@ -154,6 +180,21 @@
           }
         ],
         "react/prop-types": "off"
+      }
+    },
+    {
+      "files": ["*.stories.tsx"],
+      "rules": {
+        "react/function-component-definition": [
+          2,
+          {
+            "namedComponents": "arrow-function",
+            "unnamedComponents": "arrow-function"
+          }
+        ],
+        "react/jsx-no-useless-fragment": "off",
+        "react/no-unstable-nested-components": "off",
+        "react/jsx-no-constructed-context-values": "off"
       }
     },
     {
@@ -173,7 +214,8 @@
       ],
       "rules": {
         "jest/expect-expect": "off",
-        "jest-dom/prefer-to-have-attribute": "off"
+        "jest-dom/prefer-to-have-attribute": "off",
+        "jest/no-alias-methods": "off"
       }
     },
     {
@@ -197,7 +239,7 @@
         "no-return-await": "warn",
         "no-return-assign": "warn",
         "no-await-in-loop": "warn",
-        "@typescript-eslint/no-floating-promises": "error"
+        "@typescript-eslint/no-floating-promises": "error",
       }
     }
   ]

@@ -1,10 +1,7 @@
-import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Meta, Canvas } from "@storybook/addon-docs";
 import { ArgTypes } from "@storybook/blocks";
-// 
 
-import BatchSelection from ".";
-import IconButton from "../icon-button";
-
+import * as IconButtonStories from "../icon-button/icon-button.stories";
 import * as BatchSelectionStories from "./batch-selection.stories";
 
 <Meta
@@ -59,11 +56,11 @@ import IconButton from "carbon-react/lib/components/icon-button";
 
 ### Batch Selection
 
-<ArgTypes of={BatchSelection} />
+<ArgTypes of={BatchSelectionStories} />
 
 ### Icon Button
 
-<ArgTypes of={IconButton} />
+<ArgTypes of={IconButtonStories} />
 
 ## Translation keys
 

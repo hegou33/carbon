@@ -1,14 +1,6 @@
-import { useRef, useState } from "react";
-import { ArgTypes } from "@storybook/blocks";
-import { Meta, Canvas, Story } from "@storybook/addon-docs";
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 
-import {
-  AnchorNavigation,
-  AnchorNavigationItem,
-  AnchorSectionDivider,
-} from ".";
-import Textbox from "../textbox";
-
+import * as AnchorNavigationItemStories from "./anchor-navigation-item/anchor-navigation-item.stories";
 import * as AnchorNavigationStories from "./anchor-navigation.stories";
 
 <Meta
@@ -25,9 +17,10 @@ import * as AnchorNavigationStories from "./anchor-navigation.stories";
 <a
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/496ff6-anchor-navigation/b/285c84"
-  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
 >
-  Product Design System component 
+  Product Design System component
 </a>
 
 Easily navigate through long scrollable content.
@@ -109,7 +102,10 @@ const MyComponent = () => (
 
 `AnchorNavigation` can also be used as the content of `DialogFullScreen` component.
 
-<Canvas name="in full screen dialog" of={AnchorNavigationStories.InFullScreenDialogStory} />
+<Canvas
+  name="in full screen dialog"
+  of={AnchorNavigationStories.InFullScreenDialogStory}
+/>
 
 ## Props:
 
@@ -119,4 +115,4 @@ const MyComponent = () => (
 
 ### AnchorNavigationItem
 
-<ArgTypes of={AnchorNavigationItem} />
+<ArgTypes of={AnchorNavigationItemStories} />

@@ -1,7 +1,5 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { Meta, Canvas } from "@storybook/addon-docs";
 import * as stories from "./checkbox-validations.stories";
-
-import { Checkbox, CheckboxGroup } from ".";
 
 <Meta title="Checkbox/Test" parameters={{ info: { disable: true } }} />
 
@@ -10,9 +8,10 @@ import { Checkbox, CheckboxGroup } from ".";
 <a
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/5937c7-checkbox/b/317d8f"
-  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
 >
-  Product Design System component 
+  Product Design System component
 </a>
 
 ## Validations
@@ -29,39 +28,59 @@ For more information check our [Validations](?path=/docs/documentation-validatio
 
 <Canvas name="New Valdations - string" story={stories.NewStringValidation} />
 
-<Canvas name="New Validations - string inline default" story={stories.NewInline} />
+<Canvas
+  name="New Validations - string inline default"
+  story={stories.NewInline}
+/>
 
-<Canvas name="New Valdations - string inline" story={stories.NewStringValidationInline} />
+<Canvas
+  name="New Valdations - string inline"
+  story={stories.NewStringValidationInline}
+/>
 
 <Canvas name="New Valdations - boolean" story={stories.NewBooleanValidation} />
 
 ### As a string applied to single Checkbox
 
-<Canvas name="single checkbox - string validation" story={stories.StringValidation} />
+<Canvas
+  name="single checkbox - string validation"
+  story={stories.StringValidation}
+/>
 
 It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
 
-<Canvas name="single checkbox - with tooltipPosition overriden - string validation"
-    story={stories.StringValidationWithTooltipPosition}
-  />
+<Canvas
+  name="single checkbox - with tooltipPosition overriden - string validation"
+  story={stories.StringValidationWithTooltipPosition}
+/>
 
 ### As a boolean applied to single Checkbox
 
-<Canvas name="single checkbox - boolean validation" story={stories.BooleanValidation} />
+<Canvas
+  name="single checkbox - boolean validation"
+  story={stories.BooleanValidation}
+/>
 
 ### As a string applied to CheckboxGroup
 
-<Canvas name="group checkbox - string validation" story={stories.CheckboxGroupStringValidation} />
+<Canvas
+  name="group checkbox - string validation"
+  story={stories.CheckboxGroupStringValidation}
+/>
 
 It is possible to use the `tooltipPosition` to override the default placement of tooltips rendered as part of this component.
 
-<Canvas name="group checkbox - with tooltipPosition overriden - string validation"
-    story={stories.CheckboxGroupStringValidationTooltipPosition}
-  />
+<Canvas
+  name="group checkbox - with tooltipPosition overriden - string validation"
+  story={stories.CheckboxGroupStringValidationTooltipPosition}
+/>
 
 ### As a boolean applied to CheckboxGroup
 
-<Canvas name="group checkbox - boolean validation" story={stories.CheckboxGroupBooleanValidation} />
+<Canvas
+  name="group checkbox - boolean validation"
+  story={stories.CheckboxGroupBooleanValidation}
+/>
 
 ### Required
 

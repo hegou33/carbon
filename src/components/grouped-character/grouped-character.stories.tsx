@@ -443,6 +443,7 @@ ValidationsRedesign.storyName = "Validations Redesign";
 
 export const ValidationsTooltip: Story = {
   render: (args: GroupedCharacterProps) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     const [state, setState] = useState({
       error: "1231231",
       warning: "1231231",

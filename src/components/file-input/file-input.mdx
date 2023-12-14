@@ -1,16 +1,14 @@
-import { useState } from "react";
-import { Meta, Story, Canvas, ArgsTable } from "@storybook/addon-docs";
+import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 import LinkTo from "@storybook/addon-links/react";
 
-import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
-import StyledSystemProps from "../../../.storybook/utils/styled-system-props";
+import * as FileUploadStatusStories from "./__internal__/file-upload-status/file-upload-status.stories";
+import * as FileInputStories from "./file-input.stories";
 
-import FileInput from ".";
-import FileUploadStatus from "./__internal__/file-upload-status";
-
-import * as stories from "./file-input.stories";
-
-<Meta title="File Input" parameters={{ info: { disable: true } }} />
+<Meta
+  title="File Input"
+  parameters={{ info: { disable: true } }}
+  of={FileInputStories}
+/>
 
 # File Input
 
@@ -18,6 +16,7 @@ import * as stories from "./file-input.stories";
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/25dc1f-file-input/b/03db25"
   style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
 >
   Product Design System component
 </a>
@@ -40,23 +39,17 @@ import FileInput from "carbon-react/lib/components/file-input";
 
 ### Default
 
-<Canvas>
-  <Story name="default" story={stories.Default} />
-</Canvas>
+<Canvas name="default" of={FileInputStories.Default} />
 
 ### With inputHint
 
-<Canvas>
-  <Story name="with inputHint" story={stories.WithInputHint} />
-</Canvas>
+<Canvas name="with inputHint" of={FileInputStories.WithInputHint} />
 
 ### Required
 
 You can use the `required` prop to indicate if the field is mandatory.
 
-<Canvas>
-  <Story name="required" story={stories.Required} />
-</Canvas>
+<Canvas name="required" of={FileInputStories.Required} />
 
 ### Size variations
 
@@ -68,23 +61,17 @@ explanatory text, or to match the precise width/height of a particular design. E
 
 #### Increased height
 
-<Canvas>
-  <Story name="increased height" story={stories.IncreasedHeight} />
-</Canvas>
+<Canvas name="increased height" of={FileInputStories.IncreasedHeight} />
 
 #### Both height and width increased
 
-<Canvas>
-  <Story name="increased width and height" story={stories.IncreasedBoth} />
-</Canvas>
+<Canvas name="increased width and height" of={FileInputStories.IncreasedBoth} />
 
 #### Full width example
 
 Note that any valid CSS values can be used for these props, and that you can therefore set the `maxWidth` to `"100%"` to fill out the entire container width:
 
-<Canvas>
-  <Story name="100% width" story={stories.FullWidth} />
-</Canvas>
+<Canvas name="100% width" of={FileInputStories.FullWidth} />
 
 #### Responsive increased width example
 
@@ -93,9 +80,10 @@ container on smaller mobile devices. If you really need to put the text and butt
 ensure no horizontal overflow, and the <LinkTo kind="documentation-hooks-useMediaQuery">useMediaQuery</LinkTo> hook to set the `maxHeight` conditionally on
 smaller screen-sizes, as illustratred below:
 
-<Canvas>
-  <Story name="increased width - responsive" story={stories.IncreasedWidthResponsive} />
-</Canvas>
+<Canvas
+  name="increased width - responsive"
+  of={FileInputStories.IncreasedWidthResponsive}
+/>
 
 #### Vertical layout
 
@@ -104,9 +92,7 @@ One common variation is to have the text vertically stacked below the button, wi
 provided - so `maxHeight` should not be used in conjunction with `isVertical`. (A sufficiently large `maxHeight` will make the component lay out vertically
 anyway.)
 
-<Canvas>
-  <Story name="vertical" story={stories.Vertical} />
-</Canvas>
+<Canvas name="vertical" of={FileInputStories.Vertical} />
 
 ### Validations
 
@@ -120,9 +106,7 @@ For more information check our [Validations](?path=/docs/documentation-validatio
 
 NOTE: old-style tooltip validation is not supported for this component - no matter whether the nearest wrapping `CarbonProvider` sets the `validationRedesignOptIn` flag or not.
 
-<Canvas>
-  <Story name="validations" story={stories.Validation} />
-</Canvas>
+<Canvas name="validations" of={FileInputStories.Validation} />
 
 ### Accept
 
@@ -131,21 +115,18 @@ The `accept` prop is passed directly to the underlying HTML `<input type="file">
 Please see the [MDN docs](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) for more details on this attribute. Note that it does not prevent the user
 from uploading a file of the incorrect type, for example via drag and drop - so you might still want to use the `onChange` prop to add an error message as soon as an
 inappropriate file is added. And of course nothing takes away the need for validation on the server side. However the `accept` prop is still recommended to guide the user
-- when selecting a file via the "select file" button, the operating system's file picker will either highlight the appropriate files, or make it impossible to select
-incorrect ones.
 
-<Canvas>
-  <Story name="accept" story={stories.Accept} />
-</Canvas>
+- when selecting a file via the "select file" button, the operating system's file picker will either highlight the appropriate files, or make it impossible to select
+  incorrect ones.
+
+<Canvas name="accept" of={FileInputStories.Accept} />
 
 ### Validation of file type
 
 Here is a simple example showing how the `onChange` and `error` props can be used in conjunction with `accept` to warn the user if they have chosen an inappropriate
 file.
 
-<Canvas>
-  <Story name="validation example" story={stories.FileTypeValidation} />
-</Canvas>
+<Canvas name="validation example" of={FileInputStories.FileTypeValidation} />
 
 ### Tracking upload status
 
@@ -169,9 +150,10 @@ This example also contains validation to restrict the user from uploading large 
 browser freeze or even crash. If your application needs to process large files on the client side then consider
 [reading the file into an ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsArrayBuffer) and processing that piece-by-piece.
 
-<Canvas>
-  <Story name="tracking upload status on client side" story={stories.UploadStatusClient} />
-</Canvas>
+<Canvas
+  name="tracking upload status on client side"
+  of={FileInputStories.UploadStatusClient}
+/>
 
 #### Other approaches
 
@@ -179,9 +161,10 @@ This example mocks an alternative approach where files added to the file input a
 This simple example mocks the progress (and the possibility of errors, such as network errors) with random numbers - in a real scenario this would poll an
 alternative endpoint for the upload progress, or use WebSocket messages sent from the server to update progress.
 
-<Canvas>
-  <Story name="tracking upload status alternative" story={stories.UploadStatusAlternative} />
-</Canvas>
+<Canvas
+  name="tracking upload status alternative"
+  of={FileInputStories.UploadStatusAlternative}
+/>
 
 #### Uploading without progress percentage
 
@@ -189,15 +172,16 @@ Note that you can set the `uploading` without the `progress` property, to render
 animated <LinkTo kind="LoaderBar" story="default">LoaderBar</LinkTo> component, rather
 that a <LinkTo kind="ProgressBar" story="default">ProgressBar</LinkTo> as it does when `progress` is provided.
 
-<Canvas>
-  <Story name="with loader animation" story={stories.UploadStatusNoProgress} />
-</Canvas>
+<Canvas
+  name="with loader animation"
+  of={FileInputStories.UploadStatusNoProgress}
+/>
 
 ## Props
 
 ### File Input
 
-<StyledSystemProps of={FileInput} noHeader margin />
+<ArgTypes of={FileInputStories} />
 
 Props for the `uploadStatus` prop. Note that only `status`,`filename` and `onAction` are required, and the other props are specific
 to the appropriate status(es) as described below.
@@ -206,50 +190,50 @@ Note in particular that, other than the 3 props noted above, and the `message` a
 the <LinkTo kind="Link" story="default">Link</LinkTo> component, to override the props of the link to the uploaded file. There is one exception here however,
 in that the `href` prop is mandatory. Note that none of these `Link` props can be given except for the statuses `completed` and `previously`.
 
-<ArgsTable of={FileUploadStatus} />
+<ArgTypes of={FileUploadStatusStories} />
 
 ## Translation keys
 
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-<TranslationKeysTable
-  translationData={[
-    {
-      name: "fileInput.selectFile",
-      description: "The text for the button that opens the file picker",
-      type: "func",
-      returnType: "string",
-    },
-    {
-      name: "fileInput.dragAndDrop",
-      description: "The default text inside the input area",
-      type: "func",
-      returnType: "string",
-    },
-    {
-      name: "fileInput.fileUploadStatus",
-      description: "The default status to display while or after uploading a file",
-      type: "func",
-      returnType: "string",
-    },
-    {
-      name: "fileInput.actions.cancel",
-      description: "The text for the button that cancels an in-progress upload",
-      type: "func",
-      returnType: "string",
-    },
-        {
-      name: "fileInput.actions.delete",
-      description: "The text for the button that deletes an uploaded file",
-      type: "func",
-      returnType: "string",
-    },
-    {
-      name: "fileInput.actions.clear",
-      description: "The text for the button that clears a file that has led to an error in upload",
-      type: "func",
-      returnType: "string",
-    },
-  ]}
-/>
+{/* <TranslationKeysTable
+translationData={[
+{
+name: "fileInput.selectFile",
+description: "The text for the button that opens the file picker",
+type: "func",
+returnType: "string",
+},
+{
+name: "fileInput.dragAndDrop",
+description: "The default text inside the input area",
+type: "func",
+returnType: "string",
+},
+{
+name: "fileInput.fileUploadStatus",
+description: "The default status to display while or after uploading a file",
+type: "func",
+returnType: "string",
+},
+{
+name: "fileInput.actions.cancel",
+description: "The text for the button that cancels an in-progress upload",
+type: "func",
+returnType: "string",
+},
+{
+name: "fileInput.actions.delete",
+description: "The text for the button that deletes an uploaded file",
+type: "func",
+returnType: "string",
+},
+{
+name: "fileInput.actions.clear",
+description: "The text for the button that clears a file that has led to an error in upload",
+type: "func",
+returnType: "string",
+},
+]}
+/> */}

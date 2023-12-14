@@ -1,8 +1,5 @@
-import { Meta, Story, Canvas } from "@storybook/addon-docs";
+import { Meta, Canvas } from "@storybook/addon-docs";
 import { ArgTypes } from "@storybook/blocks";
-import Badge from ".";
-import Box from "../box";
-import Button from "../button";
 
 import * as BadgeStories from "./badge.stories";
 
@@ -18,6 +15,7 @@ import * as BadgeStories from "./badge.stories";
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/112938-badge/b/97debf"
   style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
+  rel="noreferrer"
 >
   Product Design System component
 </a>
@@ -65,11 +63,9 @@ the component will render as a `span`.
 
 ### Custom Color
 
-You can use the `color` prop to override the default color of the component. 
+You can use the `color` prop to override the default color of the component.
 
-<Canvas>
-  <Story name="custom color" story={stories.CustomColor} />
-</Canvas>
+<Canvas name="custom color" of={BadgeStories.CustomColor} />
 
 ## Props
 
