@@ -1,20 +1,25 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../../.storybook/utils/translation-keys-table";
 
 import * as OptionStories from "../option/option.stories";
 import * as SelectTextboxStories from "../select-textbox/select-textbox.stories";
 import * as SimpleSelectStories from "./simple-select.stories";
 
-<Meta title="Select" parameters={{ info: { disable: true } }} of={SimpleSelectStories} />
+<Meta
+  title="Select"
+  parameters={{ info: { disable: true } }}
+  of={SimpleSelectStories}
+/>
 
 # Simple Select
 
 <a
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/464d11-dropdown-select/b/51c4c7"
-  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
   rel="noreferrer"
 >
-  Product Design System component 
+  Product Design System component
 </a>
 
 Select one of available options from the drop-down menu. Simple Select is a Carbon styled equivalent of HTML Select Element.
@@ -71,13 +76,19 @@ Option values could be passed as objects, useful when custom data is associated 
 When the `id` property is set, objects will be compared based on that property (could be used when the list is recreated after an API call).
 If there is no `id` prop specified on an object, then the exact objects will be compared.
 
-<Canvas name="with object as value" of={SimpleSelectStories.WithObjectAsValue} />
+<Canvas
+  name="with object as value"
+  of={SimpleSelectStories.WithObjectAsValue}
+/>
 
 ### With custom maxWidth
 
 In this example the `maxWidth` prop is 100%.
 
-<Canvas name="With custom maxWidth" of={SimpleSelectStories.WithCustomMaxWidth} />
+<Canvas
+  name="With custom maxWidth"
+  of={SimpleSelectStories.WithCustomMaxWidth}
+/>
 
 ### With isLoading prop
 
@@ -90,7 +101,10 @@ When `isLoading` prop is passed, a loader will be appended at the end of the Sel
 The `isLoading` prop in combination with the `onListScrollBottom` prop can be used to implement infinite scroll.
 This prop will be called every time a user scrolls to the bottom of the list.
 
-<Canvas name="with infinite scroll" of={SimpleSelectStories.WithInfiniteScroll} />
+<Canvas
+  name="with infinite scroll"
+  of={SimpleSelectStories.WithInfiniteScroll}
+/>
 
 ### Open on focus
 
@@ -114,11 +128,17 @@ This prop will be called every time a user scrolls to the bottom of the list.
 
 ### Custom Option content
 
-<Canvas name="custom option children" of={SimpleSelectStories.CustomOptionChildren} />
+<Canvas
+  name="custom option children"
+  of={SimpleSelectStories.CustomOptionChildren}
+/>
 
 ### With multiple columns
 
-<Canvas name="with multiple columns" of={SimpleSelectStories.WithMultipleColumns} />
+<Canvas
+  name="with multiple columns"
+  of={SimpleSelectStories.WithMultipleColumns}
+/>
 
 ### Option groups
 
@@ -128,11 +148,17 @@ This prop will be called every time a user scrolls to the bottom of the list.
 
 The inline label can change to be top aligned at a breakpoint. Enable this by passing in a number to the `adaptiveLabelBreakpoint` prop. This corresponds to a px screen width
 
-<Canvas name="enabling adaptive behaviour" of={SimpleSelectStories.EnablingAdaptiveBehaviour} />
+<Canvas
+  name="enabling adaptive behaviour"
+  of={SimpleSelectStories.EnablingAdaptiveBehaviour}
+/>
 
 #### New designs validation
 
-<Canvas name="validations - string - new design" of={SimpleSelectStories.ValidationsStringNewDesign} />
+<Canvas
+  name="validations - string - new design"
+  of={SimpleSelectStories.ValidationsStringNewDesign}
+/>
 
 ### Virtual scrolling
 
@@ -146,21 +172,27 @@ be customised if desired using the `virtualScrollOverscan` prop. Higher values w
 
 ### With multiple columns and virtualisation
 
-<Canvas name="with multiple columns and virtualisation" of={SimpleSelectStories.WithMultipleColumnsAndVirtualisation} />
+<Canvas
+  name="with multiple columns and virtualisation"
+  of={SimpleSelectStories.WithMultipleColumnsAndVirtualisation}
+/>
 
 ### Selection confirmed
 
-A change event is emitted each time an option is navigated via keyboard as it sets the value of the 
-Select input. For those that need to trigger further actions when the user makes a selection, there is 
+A change event is emitted each time an option is navigated via keyboard as it sets the value of the
+Select input. For those that need to trigger further actions when the user makes a selection, there is
 a `selectionConfirmed` property on the emitted event when the enter key is pressed or an option is clicked.
 
-<Canvas name="selection confirmed" of={SimpleSelectStories.SelectionConfirmedStory} />
+<Canvas
+  name="selection confirmed"
+  of={SimpleSelectStories.SelectionConfirmedStory}
+/>
 
 ## Props
 
 ### Select
 
-<ArgTypes of={SimpleSelectStories}  />
+<ArgTypes of={SimpleSelectStories} />
 
 Due to the `Textbox` component being used internally by the `SimpleSelect` component, most of the `Textbox` props are applicable to `SimpleSelect`
 
@@ -177,7 +209,7 @@ Due to the `Textbox` component being used internally by the `SimpleSelect` compo
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "select.placeholder",
@@ -186,4 +218,4 @@ The following keys are available to override the translations for this component
       returnType: "string",
     },
   ]}
-/> */}
+/>

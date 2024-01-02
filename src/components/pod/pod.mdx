@@ -1,5 +1,6 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 import LinkTo from "@storybook/addon-links/react";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as PodStories from "./pod.stories.tsx";
 
@@ -24,7 +25,7 @@ import Pod from "carbon-react/lib/components/pod";
 
 ## Designer's Notes
 
-- Configure Pod and Fieldset components manually to customise the following: 
+- Configure Pod and Fieldset components manually to customise the following:
 
 - The onEdit property shows a standard edit icon, which can be used to show a fieldset. You can choose whether this icon appears inside or outside the pod, and whether it appears only on hover. You can also choose whether clicking only the icon triggers the onEdit property, or clicking anywhere on the pod.
 
@@ -137,7 +138,7 @@ and then set `height` prop to `100%` on each `Pod` so that it fills the entire h
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "actions.edit",
@@ -158,4 +159,4 @@ The following keys are available to override the translations for this component
       returnType: "string",
     },
   ]}
-/> */}
+/>

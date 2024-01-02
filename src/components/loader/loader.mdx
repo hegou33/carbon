@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as LoaderStories from "./loader.stories";
 
@@ -13,10 +14,10 @@ import * as LoaderStories from "./loader.stories";
 <a
   target="_blank"
   href="https://zeroheight.com/2ccf2b601/p/74be25-loader"
-  style={{ color: '#007E45', fontWeight: 'bold', textDecoration: 'underline' }}
+  style={{ color: "#007E45", fontWeight: "bold", textDecoration: "underline" }}
   rel="noreferrer"
 >
-  Product Design System component 
+  Product Design System component
 </a>
 
 Use the Loader component to let users know a task or loading data is still in progress.
@@ -76,7 +77,7 @@ please remember to pass the `isInsideButton` prop to the `Loader` component.
 The following keys are available to override the translations for this component by passing in a custom locale object
 to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "loader.loading",
@@ -86,4 +87,4 @@ to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--p
       returnType: "string",
     },
   ]}
-/> */}
+/>

@@ -1,5 +1,6 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 import LinkTo from "@storybook/addon-links/react";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as DialogStories from "./dialog.stories.tsx";
 
@@ -131,19 +132,19 @@ This may occasionally be useful with things like Toasts where they persist on th
 
 ### Top modal override
 
-When multiple modals are open on a page Carbon manages the order internally so that the last one mounted in the DOM 
-is treated as the top one and the focus trap is set on it. However, this can potentially 
-create unexpected issues if the loading of the dialogs isn't synchronous. In order to guarantee that a given 
-modal is treated as top set the `topModalOverride` prop. Please note that in the scenario where this prop is 
+When multiple modals are open on a page Carbon manages the order internally so that the last one mounted in the DOM
+is treated as the top one and the focus trap is set on it. However, this can potentially
+create unexpected issues if the loading of the dialogs isn't synchronous. In order to guarantee that a given
+modal is treated as top set the `topModalOverride` prop. Please note that in the scenario where this prop is
 set on multiple modals, the last one mounted with it will be treated as top.
 
 <Canvas name="top modal override" of={DialogStories.TopModalOverride} />
 
 ### With grey background
 
-Please note that setting the background color to grey may cause color contrast accessibility issues. 
+Please note that setting the background color to grey may cause color contrast accessibility issues.
 
-<Canvas  name="with grey background" story={DialogStories.GreyBackground} />
+<Canvas name="with grey background" story={DialogStories.GreyBackground} />
 
 ## Props
 
@@ -156,13 +157,13 @@ Please note that setting the background color to grey may cause color contrast a
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "dialog.ariaLabels.close",
-description: "The text for close button aria-label attribute",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "dialog.ariaLabels.close",
+      description: "The text for close button aria-label attribute",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as VerticalMenuTriggerStories from "./vertical-menu-trigger/vertical-menu-trigger.stories";
 import * as VerticalMenuFullScreenStories from "./vertical-menu-full-screen/vertical-menu-full-screen.stories";
@@ -108,7 +109,7 @@ The `VerticalMenuTrigger` component is intended to be used to trigger opening th
 The following keys are available to override the translations for this component by passing in a custom locale object
 to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "verticalMenuFullScreen.ariaLabels.close",
@@ -117,4 +118,4 @@ to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--p
       returnType: "string",
     },
   ]}
-/> */}
+/>

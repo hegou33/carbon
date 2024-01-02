@@ -1,5 +1,6 @@
 import { Meta, Canvas } from "@storybook/addon-docs";
 import { ArgTypes } from "@storybook/blocks";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as IconButtonStories from "../icon-button/icon-button.stories";
 import * as BatchSelectionStories from "./batch-selection.stories";
@@ -67,13 +68,13 @@ import IconButton from "carbon-react/lib/components/icon-button";
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "batchSelection.selected",
-description: "The text displayed to indicate how many items are selected",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "batchSelection.selected",
+      description: "The text displayed to indicate how many items are selected",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

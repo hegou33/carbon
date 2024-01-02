@@ -1,8 +1,13 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
-import * as MessageStories from "./message.stories"
+import * as MessageStories from "./message.stories";
 
-<Meta title="Message" parameters={{ info: { disable: true } }} of={MessageStories} />
+<Meta
+  title="Message"
+  parameters={{ info: { disable: true } }}
+  of={MessageStories}
+/>
 
 # Message
 
@@ -88,7 +93,7 @@ To see a full list of available margin props, please visit the props table at th
 
 ### With focus
 
-Since it is possible to pass a ref to this component, it is also possible to programmatically focus the component. 
+Since it is possible to pass a ref to this component, it is also possible to programmatically focus the component.
 
 <Canvas name="with focus" of={MessageStories.WithFocus} />
 
@@ -103,7 +108,7 @@ Since it is possible to pass a ref to this component, it is also possible to pro
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "mssage.closeButtonAriaLabel",
@@ -113,4 +118,3 @@ The following keys are available to override the translations for this component
     },
   ]}
 />
- */}

@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as PagerStories from "./pager.stories.tsx";
 
@@ -115,62 +116,62 @@ using full-screen mode with device or viewport emulation.
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "pager.show",
-description:
-"The text to display before the totalRecords select component",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.records",
-description:
-"The text to display after the totalRecords select component",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.first",
-description:
-"The text to display for the button that navigates to the first page of records",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.last",
-description:
-"The text to display for the button that navigates to the last page of records",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.next",
-description:
-"The text to display for the button that navigates to the next page of records",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.previous",
-description:
-"The text to display for the button that navigates to the previous page of records",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.pageX",
-description:
-"The text to display before the current page input component",
-type: "func",
-returnType: "string",
-},
-{
-name: "pager.ofY",
-description: "The text to display after the current page input component",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "pager.show",
+      description:
+        "The text to display before the totalRecords select component",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.records",
+      description:
+        "The text to display after the totalRecords select component",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.first",
+      description:
+        "The text to display for the button that navigates to the first page of records",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.last",
+      description:
+        "The text to display for the button that navigates to the last page of records",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.next",
+      description:
+        "The text to display for the button that navigates to the next page of records",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.previous",
+      description:
+        "The text to display for the button that navigates to the previous page of records",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.pageX",
+      description:
+        "The text to display before the current page input component",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "pager.ofY",
+      description: "The text to display after the current page input component",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

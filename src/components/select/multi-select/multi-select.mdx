@@ -1,5 +1,6 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 import LinkTo from "@storybook/addon-links/react";
+import TranslationKeysTable from "../../../../.storybook/utils/translation-keys-table";
 
 import * as OptionStories from "../option/option.stories";
 import * as SelectTextboxStories from "../select-textbox/select-textbox.stories";
@@ -162,13 +163,13 @@ Due to the `Textbox` component being used internally by the `MultiSelect` compon
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "select.placeholder",
-description: "The text for the input component placeholder",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "select.placeholder",
+      description: "The text for the input component placeholder",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

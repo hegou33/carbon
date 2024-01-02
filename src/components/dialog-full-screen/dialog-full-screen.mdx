@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as DialogFullScreenStories from "./dialog-full-screen.stories";
 
@@ -103,13 +104,16 @@ This may occasionally be useful with things like Toasts where they persist on th
 
 ### Top modal override
 
-When multiple modals are open on a page Carbon manages the order internally so that the last one mounted in the DOM 
-is treated as the top one and the focus trap is set on it. However, this can potentially 
-create unexpected issues if the loading of the dialogs isn't synchronous. In order to guarantee that a given 
-modal is treated as top set the `topModalOverride` prop. Please note that in the scenario where this prop is 
+When multiple modals are open on a page Carbon manages the order internally so that the last one mounted in the DOM
+is treated as the top one and the focus trap is set on it. However, this can potentially
+create unexpected issues if the loading of the dialogs isn't synchronous. In order to guarantee that a given
+modal is treated as top set the `topModalOverride` prop. Please note that in the scenario where this prop is
 set on multiple modals, the last one mounted with it will be treated as top.
 
-<Canvas name="top modal override" of={DialogFullScreenStories.TopModalOverride} />
+<Canvas
+  name="top modal override"
+  of={DialogFullScreenStories.TopModalOverride}
+/>
 
 ## Props
 
@@ -122,7 +126,7 @@ set on multiple modals, the last one mounted with it will be treated as top.
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "dialogFullScreen.ariaLabels.close",
@@ -131,4 +135,4 @@ The following keys are available to override the translations for this component
       returnType: "string",
     },
   ]}
-/> */}
+/>

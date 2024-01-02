@@ -1,5 +1,6 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
 import LinkTo from "@storybook/addon-links/react";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as FileUploadStatusStories from "./__internal__/file-upload-status/file-upload-status.stories";
 import * as FileInputStories from "./file-input.stories";
@@ -197,43 +198,45 @@ in that the `href` prop is mandatory. Note that none of these `Link` props can b
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "fileInput.selectFile",
-description: "The text for the button that opens the file picker",
-type: "func",
-returnType: "string",
-},
-{
-name: "fileInput.dragAndDrop",
-description: "The default text inside the input area",
-type: "func",
-returnType: "string",
-},
-{
-name: "fileInput.fileUploadStatus",
-description: "The default status to display while or after uploading a file",
-type: "func",
-returnType: "string",
-},
-{
-name: "fileInput.actions.cancel",
-description: "The text for the button that cancels an in-progress upload",
-type: "func",
-returnType: "string",
-},
-{
-name: "fileInput.actions.delete",
-description: "The text for the button that deletes an uploaded file",
-type: "func",
-returnType: "string",
-},
-{
-name: "fileInput.actions.clear",
-description: "The text for the button that clears a file that has led to an error in upload",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "fileInput.selectFile",
+      description: "The text for the button that opens the file picker",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "fileInput.dragAndDrop",
+      description: "The default text inside the input area",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "fileInput.fileUploadStatus",
+      description:
+        "The default status to display while or after uploading a file",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "fileInput.actions.cancel",
+      description: "The text for the button that cancels an in-progress upload",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "fileInput.actions.delete",
+      description: "The text for the button that deletes an uploaded file",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "fileInput.actions.clear",
+      description:
+        "The text for the button that clears a file that has led to an error in upload",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

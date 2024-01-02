@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as ProgressTrackerStories from "./progress-tracker.stories";
 
@@ -147,13 +148,13 @@ This example shows the automatic calculation of `aria-valuenow` when not provide
 The following keys are available to override the translations for this component by passing in a custom locale object
 to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "progressTracker.of",
-description: "The text for the 'of' label. I.e '10% of 100%'",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "progressTracker.of",
+      description: "The text for the 'of' label. I.e '10% of 100%'",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

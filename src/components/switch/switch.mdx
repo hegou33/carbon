@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as SwitchStories from "./switch.stories.tsx";
 
@@ -164,21 +165,21 @@ It is possible to use the `tooltipPosition` to override the default placement of
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "switch.on",
-description:
-"The text to display to indicate action would move component to on state",
-type: "func",
-returnType: "string",
-},
-{
-name: "switch.off",
-description:
-"The text to display to indicate action would move component to off state",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "switch.on",
+      description:
+        "The text to display to indicate action would move component to on state",
+      type: "func",
+      returnType: "string",
+    },
+    {
+      name: "switch.off",
+      description:
+        "The text to display to indicate action would move component to off state",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

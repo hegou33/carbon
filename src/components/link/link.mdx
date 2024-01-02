@@ -1,6 +1,6 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
-
 import LinkTo from "@storybook/addon-links/react";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as LinkStories from "./link.stories";
 
@@ -132,13 +132,13 @@ Just as with a native HTML anchor element, `Link` components will wrap onto the 
 The following keys are available to override the translations for this component by passing in a custom locale object
 to the [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
-translationData={[
-{
-name: "link.skipLinkLabel",
-description: "The text to be displayed in skip link",
-type: "func",
-returnType: "string",
-},
-]}
-/> */}
+<TranslationKeysTable
+  translationData={[
+    {
+      name: "link.skipLinkLabel",
+      description: "The text to be displayed in skip link",
+      type: "func",
+      returnType: "string",
+    },
+  ]}
+/>

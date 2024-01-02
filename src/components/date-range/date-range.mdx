@@ -1,4 +1,5 @@
 import { Meta, Canvas, ArgTypes } from "@storybook/addon-docs";
+import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
 
 import * as DateRangeStories from "./date-range.stories";
 
@@ -124,7 +125,7 @@ the French locale. Required locales can be imported like so `import { fr } from 
 The following keys are available to override the translations for this component by passing in a custom locale object to the
 [i18nProvider](https://carbon.sage.com/?path=/story/documentation-i18n--page).
 
-{/* <TranslationKeysTable
+<TranslationKeysTable
   translationData={[
     {
       name: "date.dateFnsLocale",
@@ -146,6 +147,6 @@ The following keys are available to override the translations for this component
         "Aria label text for the next month navigation button in the date picker",
       type: "func",
       returnType: "string",
-    }
+    },
   ]}
-/> */}
+/>
