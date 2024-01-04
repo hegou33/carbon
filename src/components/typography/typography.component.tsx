@@ -77,6 +77,8 @@ export interface TypographyProps extends SpaceProps, TagProps {
   /** Set whether it will be visually hidden
    * NOTE: This is for screen readers only and will make a lot of the other props redundant */
   screenReaderOnly?: boolean;
+  /** @private @ignore Identifier used for testing purposes, applied to the root element of the component. */
+  "aria-hidden"?: "true" | "false";
 }
 
 export const Typography = ({
@@ -103,6 +105,7 @@ export const Typography = ({
   children,
   className,
   screenReaderOnly,
+  "aria-hidden": ariaHidden,
   ...rest
 }: TypographyProps) => {
   return (
@@ -128,6 +131,7 @@ export const Typography = ({
       opacity={opacity}
       className={className}
       screenReaderOnly={screenReaderOnly}
+      aria-hidden={ariaHidden}
       {...tagComponent(dataComponent, rest)}
       {...filterStyledSystemMarginProps(rest)}
       {...filterStyledSystemPaddingProps(rest)}

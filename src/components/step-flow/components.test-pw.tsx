@@ -2,30 +2,19 @@ import React, { useRef } from "react";
 import Button from "../button";
 import Box from "../box";
 import { StepFlow, StepFlowProps } from ".";
+import { StepFlowHandle } from "./step-flow.component";
 
-export const StepFlowComponent = (props: Partial<StepFlowProps>) => {
-  const titleFocusRef = useRef(null);
-
-  return (
-    <StepFlow
-      title="foo"
-      currentStep={1}
-      totalSteps={8}
-      titleRef={titleFocusRef}
-      {...props}
-    />
-  );
-};
+export const StepFlowComponent = (props: Partial<StepFlowProps>) => (
+  <StepFlow title="foo" currentStep={1} totalSteps={8} {...props} />
+);
 
 export const StepFlowComponentWithRefAndButtons = (
   props: Partial<StepFlowProps>
 ) => {
-  const titleFocusRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const stepFlowHandle = useRef<StepFlowHandle>(null);
 
   const focusOnTitle = () => {
-    if (titleFocusRef.current) {
-      titleFocusRef.current.focus();
-    }
+    stepFlowHandle.current?.focus();
   };
 
   return (
@@ -34,7 +23,7 @@ export const StepFlowComponentWithRefAndButtons = (
         title="foo"
         currentStep={1}
         totalSteps={8}
-        titleRef={titleFocusRef}
+        ref={stepFlowHandle}
         {...props}
       />
       <Button buttonType="tertiary" onClick={() => focusOnTitle()} mr={2}>

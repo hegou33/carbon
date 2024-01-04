@@ -1,5 +1,6 @@
 import { Meta, Story, Canvas } from "@storybook/addon-docs";
 import { StepFlow } from "."
+import { StepFlowHandle } from "./step-flow.component"
 import * as stories from "./step-flow.stories.tsx";
 import StyledSystemProps from "../../../.storybook/utils/styled-system-props";
 import TranslationKeysTable from "../../../.storybook/utils/translation-keys-table";
@@ -23,7 +24,7 @@ Provide a way to represent an end-to-end journey that a user can complete in one
 
 This component has a specific start and end point, as well as showing the current step in the journey.
 
-Use a step flow to help a suer complete tasks in a specifc order, based on their needs.
+Use a step flow to help a user complete tasks in a specifc order, based on their needs.
 
 ## Contents
 
@@ -39,9 +40,9 @@ import StepFlow from "carbon-react/lib/components/step-flow";
 
 ## Examples
 
-The `titleRef` prop is mandatory, and must be passed when the component is used to ensure focus is pulled to the components title whenever
+A `ref` is **strongly** recommended to be used, to ensure focus is programmatically moved to a a title div when
 a user advances through each step. This ensures screen reader users are made aware of all information throughout the user journey. 
-An example of how this can be achieved is provided in the **Exammple implementation** story.
+An example of how this can be achieved is provided in the **Example implementation** story.
 
 ### Default
 
@@ -93,22 +94,40 @@ which is called when a user clicks on the close icon.
 
 ### Example implemetation
 
-Please see below an example implemetation of how the component can be used with `Button`'s to advance through the user journey. This also fully details the use of the `titleRef`
-prop, which is used to pass a ref to ensure the `StepFlow` components content is accessible via a screen reader. 
+Please see below an example implemetation of how the component can be used with `Button`'s to advance through the user journey. This also fully details the use of a ref
+to programmatically move focus to a title div which contains all of the necessary information for screen reader users (`title`, `currentStep`, `totalSteps` and `category` if added),
+in the form of a properly formatted, visually hidden string.
 
-This is achieved by placing focus upon a div which contains the viible title and some screen reader only text, which will announce a full sentence to the user, 
-including their current category, title, their current step and the total amount of steps in their user journey.
+Please see below an example of what this look like in the DOM.
 
-Without it, users utilizing a screen reader will not know if their current title has changed. By ensuring the title is always focused whenever the user journey is 
-changed also means a screen reader user can then navigate back down the page too.
+```jsx
+<span data-element="visually-hidden-title-text">Add client. Transaction Type. Step 1 of 3.</span>
+```
 
 <Canvas>
   <Story name="Example implementation" story={stories.ExampleImplementation}/>
 </Canvas>
 
+To achieve this, a custom ref handle can be forwarded to the `StepFlow` component:
+
+```tsx
+const stepFlowHandle = useRef<StepFlowHandle>(null);
+return (
+  <StepFlow title="Refund details" totalSteps={3} currentStep={1} ref={stepFlowHandle}/>
+);
+```
+
+which exposes the `focus()` method of `StepFlow`'s root DOM node:
+
+```ts
+stepFlowHandle.current?.focus();
+```
+
+This will ensure that screen reader users are not only made aware of any changes to information, but can then also navigate down the page from the `StepFlow` component as they see fit.
+
 ### Example implemetation with translations
 
-Various translations can be applied to both the step label and the screen reader only title.
+Various translations can be applied to both the step label, screen reader only title and close icon aria-label.
 
 When providing the screen reader only title the `title`, `category`, `currentStep` and `totalSteps`, have all been passed to ensure screen reader users have all of the same information
 as users who can see the component. Please see below how this has been achieved with a French translation.
@@ -135,6 +154,12 @@ as users who can see the component. Please see below how this has been achieved 
         {
       name: "stepFlow.screenReaderOnlyTitle",
       description: "The full visually hidden sentence which will be announced to users detailing their category, title, current steps and total steps.",
+      type: "func",
+      returnType: "string",
+    },
+        {
+      name: "stepFlow.closeIconAriaLabel",
+      description: "The aria label of the close icon which is rendered when 'showCloseIcon' is true.",
       type: "func",
       returnType: "string",
     }

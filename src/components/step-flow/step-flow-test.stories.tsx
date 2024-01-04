@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { StepFlow, StepFlowProps } from ".";
 
 export default {
@@ -50,18 +50,8 @@ export default {
   },
 };
 
-export const Default = (props: Partial<StepFlowProps>) => {
-  const titleFocusRef = useRef(null);
-
-  return (
-    <StepFlow
-      title="default"
-      currentStep={1}
-      totalSteps={8}
-      titleRef={titleFocusRef}
-      {...props}
-    />
-  );
-};
+export const Default = (props: Partial<StepFlowProps>) => (
+  <StepFlow title="default" currentStep={1} totalSteps={8} {...props} />
+);
 
 Default.storyName = "default";

@@ -216,9 +216,11 @@ const plPL: Locale = {
     ariaLabel: () => "Pokaż więcej",
   },
   stepFlow: {
-    stepLabel: (currentStep, totalSteps) => `${currentStep} z ${totalSteps}`,
+    stepLabel: (currentStep, totalSteps) =>
+      `Krok ${currentStep} z ${totalSteps}`,
     screenReaderOnlyTitle: (title, currentStep, totalSteps, category) =>
       `${category}. ${title}. Krok ${currentStep} of ${totalSteps}.`,
+    closeIconAriaLabel: () => "Zamknij",
   },
   switch: {
     on: () => "WŁ",

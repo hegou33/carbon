@@ -134,6 +134,7 @@ interface Locale {
       totalSteps: number,
       category?: string
     ) => string;
+    closeIconAriaLabel?: () => string;
   };
   textEditor: {
     tooltipMessages: {

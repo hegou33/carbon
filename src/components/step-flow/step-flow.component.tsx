@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useImperativeHandle, useRef, forwardRef } from "react";
 import { MarginProps } from "styled-system";
 import Icon from "../icon";
 import IconButton from "../icon-button";
@@ -6,23 +6,23 @@ import {
   StyledStepFlow,
   StyledStepContent,
   StyledStepContentText,
-  StyledCategoryText,
-  StyledTitleText,
-  StyledTitleTextContainer,
-  StyledVisibleTitleText,
-  StyledHiddenTitleText,
   StyledStepLabelAndProgress,
-  StyledStepLabel,
   StyledProgressIndicatorBar,
   StyledProgressIndicator,
+  StyledTitleFocusWrapper,
 } from "./step-flow.style";
 import tagComponent, {
   TagProps,
 } from "../../__internal__/utils/helpers/tags/tags";
-import { VariantTypes } from "../typography";
+import Typography, { VariantTypes } from "../typography";
 import useLocale from "../../hooks/__internal__/useLocale";
 
 export type Steps = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
+
+export type StepFlowVariantTypes = Extract<
+  VariantTypes,
+  "h1" | "h2" | "h3" | "h4" | "h5" | "p"
+>;
 
 export interface StepFlowProps extends MarginProps, TagProps {
   /** A category for the user journey.  */
@@ -30,22 +30,13 @@ export interface StepFlowProps extends MarginProps, TagProps {
   /** Set the variant of the internal 'Typography' component which contains the category.
    * However, despite the chosen variant the styling will always be overridden.
    */
-  categoryTypographyVariant?: VariantTypes;
+  categoryVariant?: StepFlowVariantTypes;
   /** The title of the current step.  */
   title: string;
   /** Set the variant of the internal 'Typography' component which contains the title.
    * However, despite the chosen variant the styling will always be overridden.
    */
-  titleTypographyVariant?: VariantTypes;
-  /** A ref which will be applied to the DOM element which contains the component's title.
-   * Used to focus on the title, to ensure screen reader user's are aware of title changes,
-   * and allow navigation from the StepFlow component to the contents below.
-   */
-  titleRef: React.RefObject<HTMLDivElement>;
-  /** The tabindex which will be applied to the DOM element which contains the component's title.
-   * This ensures the element becomes tabbable.
-   */
-  titleTabIndex?: -1 | 0;
+  titleVariant?: StepFlowVariantTypes;
   /** The total steps in the user journey.  */
   totalSteps: Steps;
   /**
@@ -53,6 +44,10 @@ export interface StepFlowProps extends MarginProps, TagProps {
    * `totalSteps`the value of `currentStep` will be that of `totalSteps` instead.
    */
   currentStep: Steps;
+  /** Set the variant of the internal 'Typography' component which contains the label.
+   * However, despite the chosen variant the styling will always be overridden.
+   */
+  labelVariant?: StepFlowVariantTypes;
   /** Determines if the progress indicator is shown. */
   showProgressIndicator?: boolean;
   /** Determines if the close icon button is shown */
@@ -65,129 +60,188 @@ export interface StepFlowProps extends MarginProps, TagProps {
   ) => void;
 }
 
-let currentStepWarnTriggered = false;
+export type StepFlowHandle = {
+  /** Programmatically focus on root container of Dialog. */
+  focus: () => void;
+} | null;
 
-export const StepFlow = ({
-  category,
-  categoryTypographyVariant,
-  title,
-  titleTypographyVariant,
-  titleRef,
-  titleTabIndex = -1,
-  totalSteps,
-  currentStep,
-  showProgressIndicator = false,
-  showCloseIcon = false,
-  onDismiss,
-  ...rest
-}: StepFlowProps) => {
-  const totalStepsArray = Array.from(
-    { length: totalSteps },
-    (_, index) => index + 1
-  );
-
-  const validatedCurrentStep =
-    currentStep > totalSteps ? totalSteps : currentStep;
-
-  /* eslint-disable no-console */
-  if (!currentStepWarnTriggered && currentStep > totalSteps) {
-    currentStepWarnTriggered = true;
-    console.warn(
-      "[WARNING] The `currentStep` prop should not be higher than the `totalSteps`prop in `StepFlow`." +
-        " Please ensure `currentStep`s value does not exceed that of `totalSteps`, in the meantime" +
-        " we have set `currentStep` value to that of `totalSteps`, and all indicators have been marked as completed."
+export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
+  (
+    {
+      category,
+      categoryVariant,
+      title,
+      titleVariant,
+      totalSteps,
+      currentStep,
+      labelVariant,
+      showProgressIndicator = false,
+      showCloseIcon = false,
+      onDismiss,
+      ...rest
+    },
+    ref
+  ) => {
+    const totalStepsArray = Array.from(
+      { length: totalSteps },
+      (_, index) => index + 1
     );
-  }
 
-  const progressIndicators = totalStepsArray.map((step) => {
-    const generateDataState = () => {
-      if (step === validatedCurrentStep) {
-        return "in-progress";
-      }
-      if (step < validatedCurrentStep) {
-        return "is-completed";
-      }
-      return "not-completed";
-    };
+    const validatedCurrentStep =
+      currentStep > totalSteps ? totalSteps : currentStep;
+
+    let currentStepWarnTriggered = false;
+    let noRefWarnTriggered = false;
+
+    /* eslint-disable no-console */
+    if (!currentStepWarnTriggered && currentStep > totalSteps) {
+      currentStepWarnTriggered = true;
+      console.warn(
+        "[WARNING] The `currentStep` prop should not be higher than the `totalSteps`prop in `StepFlow`." +
+          " Please ensure `currentStep`s value does not exceed that of `totalSteps`, in the meantime" +
+          " we have set `currentStep` value to that of `totalSteps`, and all indicators have been marked as completed."
+      );
+    }
+    if (!noRefWarnTriggered && !ref) {
+      noRefWarnTriggered = true;
+      console.warn(
+        "[WARNING] A `ref` should be provided to ensure focus is programmatically focused back to a title div," +
+          " this ensures screen reader users are informed regarding any changes and can navigate back down the page."
+      );
+    }
+
+    const progressIndicators = totalStepsArray.map((step) => {
+      const generateDataState = () => {
+        if (step === validatedCurrentStep) {
+          return "in-progress";
+        }
+        if (step < validatedCurrentStep) {
+          return "is-completed";
+        }
+        return "not-completed";
+      };
+
+      return (
+        <StyledProgressIndicator
+          key={step}
+          data-element="progress-indicator"
+          isCompleted={step < validatedCurrentStep}
+          isInProgress={step === validatedCurrentStep}
+          data-state={generateDataState()}
+        >
+          &nbsp;
+        </StyledProgressIndicator>
+      );
+    });
+
+    const locale = useLocale();
+
+    const closeIcon = (
+      <IconButton
+        data-element="close"
+        aria-label={locale.stepFlow.closeIconAriaLabel?.()}
+        onClick={onDismiss}
+      >
+        <Icon type="close" />
+      </IconButton>
+    );
+
+    const titleRef = useRef<HTMLDivElement>(null);
+
+    useImperativeHandle<StepFlowHandle, StepFlowHandle>(
+      ref,
+      () => ({
+        focus() {
+          titleRef.current?.focus();
+        },
+      }),
+      []
+    );
+
+    const stepFlowTitle = (
+      <StyledTitleFocusWrapper
+        data-element="title-text-wrapper"
+        tabIndex={0}
+        ref={titleRef}
+      >
+        <Typography
+          variant={titleVariant || (category ? "h2" : "h1")}
+          data-element="title-text"
+        >
+          <Typography
+            fontWeight="900"
+            fontSize="var(--fontSizes600)"
+            lineHeight="var(--sizing375)"
+            variant="span"
+            aria-hidden="true"
+            data-element="visible-title-text"
+          >
+            {title}
+          </Typography>
+          <Typography
+            variant="span"
+            data-element="visually-hidden-title-text"
+            screenReaderOnly
+          >
+            {locale.stepFlow.screenReaderOnlyTitle(
+              title,
+              validatedCurrentStep,
+              totalSteps,
+              category
+            )}
+          </Typography>
+        </Typography>
+      </StyledTitleFocusWrapper>
+    );
+
+    const stepFlowLabel = (
+      <Typography
+        variant={labelVariant || (category ? "h3" : "h2")}
+        fontWeight="400"
+        fontSize="var(--fontSizes200)"
+        lineHeight="var(--sizing300)"
+        data-element="step-label"
+        aria-hidden="true"
+      >
+        {locale.stepFlow.stepLabel(validatedCurrentStep, totalSteps)}
+      </Typography>
+    );
 
     return (
-      <StyledProgressIndicator
-        key={step}
-        data-element="progress-indicator"
-        isCompleted={step < validatedCurrentStep}
-        isInProgress={step === validatedCurrentStep}
-        data-state={generateDataState()}
-      >
-        &nbsp;
-      </StyledProgressIndicator>
-    );
-  });
-
-  const closeIcon = (
-    <IconButton data-element="close" onClick={onDismiss}>
-      <Icon type="close" />
-    </IconButton>
-  );
-
-  const locale = useLocale();
-
-  return (
-    <StyledStepFlow {...rest} {...tagComponent("step-flow", rest)}>
-      <StyledStepContent>
-        <StyledStepContentText>
+      <StyledStepFlow {...rest} {...tagComponent("step-flow", rest)}>
+        <StyledStepContent>
           {category ? (
-            <StyledCategoryText
-              variant={categoryTypographyVariant || "h1"}
-              data-element="category-text"
-              aria-hidden="true"
-            >
-              {category}
-            </StyledCategoryText>
-          ) : null}
-          <StyledTitleText
-            variant={titleTypographyVariant || category ? "h2" : "h1"}
-            data-element="title-text"
-          >
-            <StyledTitleTextContainer
-              data-element="title-text-container"
-              ref={titleRef}
-              tabIndex={titleTabIndex}
-            >
-              <StyledVisibleTitleText
-                data-element="visible-title-text"
+            <StyledStepContentText>
+              <Typography
+                fontWeight="500"
+                fontSize="var(--fontSizes100)"
+                lineHeight="var(--sizing250)"
+                variant={categoryVariant || "h1"}
+                data-element="category-text"
                 aria-hidden="true"
               >
-                {title}
-              </StyledVisibleTitleText>
-              <StyledHiddenTitleText
-                data-element="visually-hidden-title-text"
-                variant="span"
-                screenReaderOnly
-              >
-                {locale.stepFlow.screenReaderOnlyTitle(
-                  title,
-                  validatedCurrentStep,
-                  totalSteps,
-                  category
-                )}
-              </StyledHiddenTitleText>
-            </StyledTitleTextContainer>
-          </StyledTitleText>
-        </StyledStepContentText>
-        {showCloseIcon ? closeIcon : null}
-      </StyledStepContent>
-      <StyledStepLabelAndProgress>
-        <StyledStepLabel data-element="step-label" aria-hidden="true">
-          {locale.stepFlow.stepLabel(validatedCurrentStep, totalSteps)}
-        </StyledStepLabel>
+                {category}
+              </Typography>
+              {stepFlowTitle}
+            </StyledStepContentText>
+          ) : (
+            stepFlowTitle
+          )}
+          {showCloseIcon ? closeIcon : null}
+        </StyledStepContent>
         {showProgressIndicator ? (
-          <StyledProgressIndicatorBar data-element="progress-indicator-bar">
-            {progressIndicators}
-          </StyledProgressIndicatorBar>
-        ) : null}
-      </StyledStepLabelAndProgress>
-    </StyledStepFlow>
-  );
-};
+          <StyledStepLabelAndProgress>
+            {stepFlowLabel}
+            <StyledProgressIndicatorBar data-element="progress-indicator-bar">
+              {progressIndicators}
+            </StyledProgressIndicatorBar>
+          </StyledStepLabelAndProgress>
+        ) : (
+          stepFlowLabel
+        )}
+      </StyledStepFlow>
+    );
+  }
+);
 
 export default StepFlow;

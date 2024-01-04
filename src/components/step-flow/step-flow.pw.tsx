@@ -14,7 +14,7 @@ import { Steps } from "./step-flow.component";
 import {
   stepFlowProgressIndicator,
   stepFlowCategoryText,
-  stepFlowTitleTextContainer,
+  stepFlowTitleTextWrapper,
   stepFlowTitleText,
   stepFlowVisuallyHiddenTitleText,
   stepFlowProgressIndicatorBar,
@@ -51,18 +51,6 @@ test.describe("Prop checks for Portrait component", () => {
     });
   });
 
-  test("tabIndex should be applied correctly when 'titleTabIndex' prop is passed", async ({
-    mount,
-    page,
-  }) => {
-    await mount(<StepFlowComponent titleTabIndex={0} />);
-
-    await expect(stepFlowTitleTextContainer(page)).toHaveAttribute(
-      "tabIndex",
-      "0"
-    );
-  });
-
   test("should render the correct element when 'showProgressIndicator' is true", async ({
     mount,
     page,
@@ -87,11 +75,11 @@ test.describe("Prop checks for Portrait component", () => {
 
       if (totalSteps >= currentStep) {
         await expect(stepFlowLabel(page)).toHaveText(
-          `${currentStep} of ${totalSteps}`
+          `Step ${currentStep} of ${totalSteps}`
         );
       } else {
         await expect(stepFlowLabel(page)).toHaveText(
-          `${totalSteps} of ${totalSteps}`
+          `Step ${totalSteps} of ${totalSteps}`
         );
       }
     });
@@ -230,9 +218,9 @@ test.describe("Ref checks for StepFlow component", () => {
   }) => {
     await mount(<StepFlowComponentWithRefAndButtons />);
 
-    await expect(stepFlowTitleTextContainer(page)).not.toBeFocused();
+    await expect(stepFlowTitleTextWrapper(page)).not.toBeFocused();
     await button(page).nth(1).click();
-    await expect(stepFlowTitleTextContainer(page)).toBeFocused();
+    await expect(stepFlowTitleTextWrapper(page)).toBeFocused();
   });
 });
 
@@ -251,15 +239,6 @@ test.describe("Accessibility tests for StepFlow component", () => {
     page,
   }) => {
     await mount(<StepFlowComponentWithRefAndButtons />);
-
-    await checkAccessibility(page);
-  });
-
-  test("should pass accessibility checks when component is 'titleTabIndex' prop", async ({
-    mount,
-    page,
-  }) => {
-    await mount(<StepFlowComponent titleTabIndex={0} />);
 
     await checkAccessibility(page);
   });
@@ -288,8 +267,9 @@ test.describe("Accessibility tests for StepFlow component", () => {
     mount,
     page,
   }) => {
-    await mount(<StepFlowComponent />);
+    await mount(<StepFlowComponent showCloseIcon />);
 
+    await stepFlowDismissIcon(page).focus();
     await checkAccessibility(page);
   });
 });

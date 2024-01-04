@@ -4,113 +4,75 @@ import { StepFlow } from ".";
 import Box from "../box";
 import Button from "../button";
 import I18nProvider from "../i18n-provider/i18n-provider.component";
-import { Steps } from "./step-flow.component";
+import { Steps, StepFlowHandle } from "./step-flow.component";
 
-export const DefaultStory: ComponentStory<typeof StepFlow> = () => {
-  const titleFocusRef = useRef(null);
+export const DefaultStory: ComponentStory<typeof StepFlow> = () => (
+  <StepFlow title="Step title" currentStep={1} totalSteps={6} />
+);
 
-  return (
-    <StepFlow
-      title="Step title"
-      currentStep={1}
-      totalSteps={6}
-      titleRef={titleFocusRef}
-    />
-  );
-};
-
-export const CategoryStory: ComponentStory<typeof StepFlow> = () => {
-  const titleFocusRef = useRef(null);
-
-  return (
-    <StepFlow
-      category="Main goal"
-      title="Step title"
-      currentStep={1}
-      totalSteps={6}
-      titleRef={titleFocusRef}
-    />
-  );
-};
+export const CategoryStory: ComponentStory<typeof StepFlow> = () => (
+  <StepFlow
+    category="Main goal"
+    title="Step title"
+    currentStep={1}
+    totalSteps={6}
+  />
+);
 
 export const ShowProgressIndicatorStory: ComponentStory<
   typeof StepFlow
-> = () => {
-  const titleFocusRef = useRef(null);
+> = () => (
+  <StepFlow
+    category="Main goal"
+    title="Step title"
+    currentStep={1}
+    totalSteps={6}
+    showProgressIndicator
+  />
+);
 
-  return (
-    <StepFlow
-      category="Main goal"
-      title="Step title"
-      currentStep={1}
-      totalSteps={6}
-      titleRef={titleFocusRef}
-      showProgressIndicator
-    />
-  );
-};
+export const CurrentStepStory: ComponentStory<typeof StepFlow> = () => (
+  <StepFlow
+    category="Main goal"
+    title="Step title"
+    currentStep={5}
+    totalSteps={6}
+    showProgressIndicator
+  />
+);
 
-export const CurrentStepStory: ComponentStory<typeof StepFlow> = () => {
-  const titleFocusRef = useRef(null);
+export const TotalStepsStory: ComponentStory<typeof StepFlow> = () => (
+  <StepFlow
+    category="Main goal"
+    title="Step title"
+    currentStep={5}
+    totalSteps={8}
+    showProgressIndicator
+  />
+);
 
-  return (
-    <StepFlow
-      category="Main goal"
-      title="Step title"
-      currentStep={5}
-      totalSteps={6}
-      titleRef={titleFocusRef}
-      showProgressIndicator
-    />
-  );
-};
-
-export const TotalStepsStory: ComponentStory<typeof StepFlow> = () => {
-  const titleFocusRef = useRef(null);
-
-  return (
-    <StepFlow
-      category="Main goal"
-      title="Step title"
-      currentStep={5}
-      totalSteps={8}
-      titleRef={titleFocusRef}
-      showProgressIndicator
-    />
-  );
-};
-
-export const ShowCloseIconStory: ComponentStory<typeof StepFlow> = () => {
-  const titleFocusRef = useRef(null);
-
-  return (
-    <StepFlow
-      category="Main goal"
-      title="Step title"
-      currentStep={1}
-      totalSteps={6}
-      titleRef={titleFocusRef}
-      showCloseIcon
-      onDismiss={() => ""}
-    />
-  );
-};
+export const ShowCloseIconStory: ComponentStory<typeof StepFlow> = () => (
+  <StepFlow
+    category="Main goal"
+    title="Step title"
+    currentStep={1}
+    totalSteps={6}
+    showCloseIcon
+    onDismiss={() => ""}
+  />
+);
 
 export const ExampleImplementation: ComponentStory<typeof StepFlow> = () => {
   const lowestStep = 1;
   const highestStep = 3;
+
   const [step, setStep] = useState(lowestStep);
-  const titleFocusRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const stepFlowHandle = useRef<StepFlowHandle>(null);
+
   const stepTitles = ["Transaction Type", "Add refund", "Refund details"];
 
-  const focusOnTitle = () => {
-    if (titleFocusRef.current) {
-      titleFocusRef.current.focus();
-    }
-  };
-
   function handleClick(clickType: string) {
-    focusOnTitle();
+    stepFlowHandle.current?.focus();
 
     if (clickType === "back") {
       setStep(step > lowestStep ? step - 1 : step);
@@ -126,7 +88,7 @@ export const ExampleImplementation: ComponentStory<typeof StepFlow> = () => {
         title={stepTitles[step - 1]}
         currentStep={step as Steps}
         totalSteps={highestStep}
-        titleRef={titleFocusRef}
+        ref={stepFlowHandle}
         showProgressIndicator
       />
       <Box display="flex" justifyContent="right" mt={2}>
@@ -150,22 +112,18 @@ export const ExampleImplementationWithTranslations: ComponentStory<
 > = () => {
   const lowestStep = 1;
   const highestStep = 3;
+
   const [step, setStep] = useState(lowestStep);
-  const titleFocusRef: React.RefObject<HTMLDivElement> = useRef(null);
+  const stepFlowHandle = useRef<StepFlowHandle>(null);
+
   const stepTitles = [
     "Type de transaction",
     "Ajouter un remboursement",
     "Détails du remboursement",
   ];
 
-  const focusOnTitle = () => {
-    if (titleFocusRef.current) {
-      titleFocusRef.current.focus();
-    }
-  };
-
   function handleClick(clickType: string) {
-    focusOnTitle();
+    stepFlowHandle.current?.focus();
 
     if (clickType === "back") {
       setStep(step > lowestStep ? step - 1 : step);
@@ -180,9 +138,10 @@ export const ExampleImplementationWithTranslations: ComponentStory<
         locale: () => "fr-FR",
         stepFlow: {
           stepLabel: (currentStep, totalSteps) =>
-            `${currentStep} de ${totalSteps}`,
+            `Étape ${currentStep} de ${totalSteps}`,
           screenReaderOnlyTitle: (title, currentStep, totalSteps, category) =>
             `${category}. ${title}. Étape ${currentStep} de ${totalSteps}.`,
+          closeIconAriaLabel: () => "Fermer",
         },
       }}
     >
@@ -192,8 +151,9 @@ export const ExampleImplementationWithTranslations: ComponentStory<
           title={stepTitles[step - 1]}
           currentStep={step as Steps}
           totalSteps={highestStep}
-          titleRef={titleFocusRef}
+          ref={stepFlowHandle}
           showProgressIndicator
+          showCloseIcon
         />
         <Box display="flex" justifyContent="right" mt={2}>
           <Button

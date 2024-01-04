@@ -157,9 +157,13 @@ const enGB: Locale = {
     ariaLabel: () => "Show more",
   },
   stepFlow: {
-    stepLabel: (currentStep, totalSteps) => `${currentStep} of ${totalSteps}`,
+    stepLabel: (currentStep, totalSteps) =>
+      `Step ${currentStep} of ${totalSteps}`,
     screenReaderOnlyTitle: (title, currentStep, totalSteps, category) =>
-      `${category}. ${title}. Step ${currentStep} of ${totalSteps}.`,
+      `${
+        category ? `${category}.` : ""
+      } ${title}. Step ${currentStep} of ${totalSteps}.`,
+    closeIconAriaLabel: () => "Close",
   },
   switch: {
     on: () => "ON",
