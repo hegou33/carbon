@@ -17,7 +17,9 @@ const StyledTab = styled.div<StyledTabProps>`
 
       ${position === "left" &&
       css`
-        width: 80%;
+        margin-left: -6px;
+        margin-top: 6px;
+        width: calc(80% + 6px);
       `}
 
       ${padding}
