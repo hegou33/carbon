@@ -30,6 +30,20 @@ test("When hidden prop is true, component should not be visible to sighted users
   await expect(imageElement).not.toBeInViewport();
 });
 
+(["absolute", "fixed", "relative", "static", "sticky"] as const).forEach(
+  (positionValue) => {
+    test(`When position prop is ${positionValue} it should apply the expected CSS`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(<CarbonLogoImage position={positionValue} />);
+
+      const imageElement = page.locator("img");
+      await expect(imageElement).toHaveCSS("position", positionValue);
+    });
+  }
+);
+
 test.describe("Accessibility tests for Image component", () => {
   test("should pass accessibility tests for default example", async ({
     mount,
