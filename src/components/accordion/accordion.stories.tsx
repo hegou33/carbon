@@ -580,3 +580,13 @@ export const WithDefinitionList: ComponentStory<typeof Accordion> = () => {
     </Accordion>
   );
 };
+
+export const AccordionSubtle: ComponentStory<typeof Accordion> = () => {
+  return (
+    <Accordion title="Heading" variant="subtle">
+      <Box>Content</Box>
+      <Box>Content</Box>
+      <Box>Content</Box>
+    </Accordion>
+  );
+};

@@ -20,6 +20,7 @@ import {
   WithValidationIcon,
   WithDefinitionList,
   WithDynamicContent,
+  AccordionSubtle,
 } from "./accordion.stories.tsx";
 
 <Meta title="Accordion" parameters={{ info: { disable: true } }} />
@@ -115,7 +116,7 @@ Transparent scheme has transparent background.
 
 ### Small
 
-Small version has a smaller heading and less padding.
+Small version has a smaller heading, less padding and a smaller icon.
 
 <Canvas>
   <Story 
@@ -263,6 +264,17 @@ Accordion with a definiton list
     parameters={{ chromatic: { disableSnapshot: true } }}
     story={WithDefinitionList}
   />
+</Canvas>
+
+### Subtle Variant
+
+Setting the `variant` prop to `subtle` will override the default styling of an Accordion. 
+`subTitle` will not be rendered using this variant. 
+
+This is not currently designed to be used within a form using validation.
+
+<Canvas>
+  <Story name="subtle variant" story={AccordionSubtle} />
 </Canvas>
 
 ## Props
