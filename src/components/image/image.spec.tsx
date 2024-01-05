@@ -4,8 +4,10 @@ import {
   testStyledSystemMargin,
   testStyledSystemLayout,
   testStyledSystemBackground,
+  assertStyleMatch,
 } from "../../__spec_helper__/test-utils";
 import Image from "./image.component";
+import { StyledImage } from "./image.style";
 
 describe("Image", () => {
   testStyledSystemMargin((props) => <Image {...props} />);
@@ -80,4 +82,27 @@ describe("Image", () => {
       }).toThrow(errorMessage);
     });
   });
+
+  describe.each(["absolute", "fixed", "relative", "static", "sticky"] as const)(
+    "when `position` prop passed",
+    (positionValue) => {
+      it(`should apply the correct styling for position of ${positionValue}`, () => {
+        const wrapper = mount(
+          <Image
+            src="foo.jpg"
+            alt="foo"
+            backgroundImage="url('foo.jpg')"
+            position={positionValue}
+          />
+        );
+
+        assertStyleMatch(
+          {
+            position: positionValue,
+          },
+          wrapper.find(StyledImage)
+        );
+      });
+    }
+  );
 });

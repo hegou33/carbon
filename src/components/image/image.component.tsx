@@ -7,6 +7,7 @@ export const Image = ({
   decorative = false,
   src,
   children,
+  position,
   ...rest
 }: StyledImageProps) => {
   invariant(
@@ -20,7 +21,13 @@ export const Image = ({
   );
 
   return (
-    <StyledImage alt={alt} decorative={decorative} src={src} {...rest}>
+    <StyledImage
+      alt={alt}
+      decorative={decorative}
+      src={src}
+      position={position}
+      {...rest}
+    >
       {children}
     </StyledImage>
   );
