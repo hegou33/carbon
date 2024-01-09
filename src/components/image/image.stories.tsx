@@ -129,4 +129,4 @@ export const ImageWithPosition: StoryFn = () => (
     </Box>
   </Image>
 );
-DefaultStory.parameters = { info: { disable: true } };
+ImageWithPosition.parameters = { info: { disable: true } };
