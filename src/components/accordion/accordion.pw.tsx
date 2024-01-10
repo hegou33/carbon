@@ -749,7 +749,7 @@ test.describe("Accessibility tests for Accordion", () => {
     await checkAccessibility(page);
   });
 
-  test("should pass accessibility tests for AccordionSubtle", async ({
+  test("should pass accessibility tests for Accordion when variant is subtle", async ({
     mount,
     page,
   }) => {

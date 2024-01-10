@@ -48,6 +48,12 @@ export default {
         type: "select",
       },
     },
+    variant: {
+      options: ["standard", "subtle"],
+      control: {
+        type: "select",
+      },
+    },
   },
 };
 
@@ -55,7 +61,6 @@ export const Default = ({ ...args }) => (
   <Accordion
     onChange={action("expansionToggled")}
     {...{
-      iconAlign: "right",
       customPadding: 0,
       title: "Title",
       subTitle: "Sub Title",

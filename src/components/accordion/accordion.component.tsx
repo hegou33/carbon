@@ -36,9 +36,9 @@ export interface AccordionProps
   /** Styled system spacing props provided to Accordion Title */
   headerSpacing?: SpaceProps;
   id?: string;
-  /** Sets icon type - accepted values: 'chevron_down' (default), 'chevron_down_thick' (small/subtle), 'dropdown' */
+  /** Sets icon type */
   iconType?: "chevron_down" | "chevron_down_thick" | "dropdown";
-  /** Sets icon alignment - accepted values: 'left' (subtle), 'right' (default) */
+  /** Sets icon alignment */
   iconAlign?: "left" | "right";
   /** Sets accordion title */
   title: React.ReactNode;

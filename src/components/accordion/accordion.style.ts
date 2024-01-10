@@ -11,15 +11,15 @@ const StyledAccordionGroup = styled.div`
 `;
 
 export interface StyledAccordionContainerProps {
-  /** Toggles left and right borders (default), set to none when variant is subtle */
+  /** Toggles left and right borders, set to none when variant is subtle */
   borders?: "default" | "full" | "none";
-  /** Renders the accordion heading in the style of a tertiary button */
+  /** (Deprecated) Renders the accordion heading in the style of a tertiary button */
   buttonHeading?: boolean;
-  /** Sets background as white (default) or transparent, set to transparent when variant is subtle */
+  /** (Deprecated) Sets background as white or transparent, set to transparent when variant is subtle */
   scheme?: "white" | "transparent";
   /** Sets accordion width */
   width?: string;
-  /** Sets accordion variant - accepted values: 'standard' (default), 'subtle' */
+  /** Sets accordion variant */
   variant?: "standard" | "subtle";
 }
 
@@ -187,6 +187,7 @@ const StyledAccordionTitleContainer = styled.div<StyledAccordionTitleContainerPr
       color: var(--colorsActionMajor500);
       padding: var(--spacing025);
       margin-bottom: ${isExpanded && "var(--spacing200)"};
+
       ${StyledAccordionIcon} {
         color: var(--colorsActionMajor500);
         ${iconAlign === "left" && "margin-right: var(--spacing050)"};

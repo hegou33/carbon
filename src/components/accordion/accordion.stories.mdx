@@ -203,21 +203,6 @@ The box component can be used inside the accordion with different paddings
   />
 </Canvas>
 
-### Opening button
-
-Setting the `buttonHeading` prop will override the default styling for the `Accordion` control to look like Carbon's tertiary
-`Button`. It is also possible to use the `buttonWidth` prop to set the width of the control and the `headerSpacing` prop
-can be used to override the spacing styles.
-
-This is not currently designed to be used within a form using validation.
-
-<Canvas>
-  <Story
-    name="opening button"
-    story={OpeningButton}
-  />
-</Canvas>
-
 ### Grouped
 
 To group accordions import `AccordionGroup`. Accordions borders collapse when positioned next to each other making it easy to group them.
@@ -269,7 +254,7 @@ Accordion with a definiton list
 ### Subtle Variant
 
 Setting the `variant` prop to `subtle` will override the default styling of an Accordion. 
-`subTitle` will not be rendered using this variant. 
+`subTitle` will not be rendered and the `scheme` prop will have no effect when used in combination with this variant. 
 
 This is not currently designed to be used within a form using validation.
 
