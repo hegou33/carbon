@@ -28,7 +28,7 @@ import { CHARACTERS } from "../../../playwright/support/constants";
 
 const testData = [CHARACTERS.DIACRITICS, CHARACTERS.SPECIALCHARACTERS];
 
-test.describe("Prop checks for Portrait component", () => {
+test.describe("Prop checks for StepFlow component", () => {
   testData.forEach((stringVals) => {
     test(`should render with the category prop, when the prop's value is ${stringVals}`, async ({
       mount,
@@ -207,6 +207,7 @@ test.describe("Event checks for StepFlow component", () => {
       />
     );
     await stepFlowDismissIcon(page).click();
+
     expect(callbackCount).toBe(1);
   });
 });
@@ -220,6 +221,7 @@ test.describe("Ref checks for StepFlow component", () => {
 
     await expect(stepFlowTitleTextWrapper(page)).not.toBeFocused();
     await button(page).nth(1).click();
+
     await expect(stepFlowTitleTextWrapper(page)).toBeFocused();
   });
 });
@@ -234,7 +236,7 @@ test.describe("Accessibility tests for StepFlow component", () => {
     await checkAccessibility(page);
   });
 
-  test("should pass accessibility checks when component is rendered with a ref", async ({
+  test("should pass accessibility checks when component is rendered with a ref and buttons", async ({
     mount,
     page,
   }) => {

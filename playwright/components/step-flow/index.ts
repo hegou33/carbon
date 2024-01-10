@@ -1,6 +1,5 @@
 import { Page } from "playwright-core";
 import {
-  STEP_FLOW_COMPONENT,
   STEP_FLOW_PROGRESS_INDICATOR,
   STEP_FLOW_CATEGORY_TEXT,
   STEP_FLOW_TITLE_TEXT_WRAPPER,
@@ -12,9 +11,6 @@ import {
 } from "./locators";
 
 // component preview locators
-export const stepFlowComponent = (page: Page) =>
-  page.locator(STEP_FLOW_COMPONENT);
-
 export const stepFlowProgressIndicator = (page: Page) =>
   page.locator(STEP_FLOW_PROGRESS_INDICATOR);
 

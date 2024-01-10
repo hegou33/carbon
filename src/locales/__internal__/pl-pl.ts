@@ -219,7 +219,9 @@ const plPL: Locale = {
     stepLabel: (currentStep, totalSteps) =>
       `Krok ${currentStep} z ${totalSteps}`,
     screenReaderOnlyTitle: (title, currentStep, totalSteps, category) =>
-      `${category}. ${title}. Krok ${currentStep} of ${totalSteps}.`,
+      `${
+        category ? `${category}.` : ""
+      }. ${title}. Krok ${currentStep} of ${totalSteps}.`,
     closeIconAriaLabel: () => "Zamknij",
   },
   switch: {

@@ -1,4 +1,3 @@
-export const STEP_FLOW_COMPONENT = '[data-component="step-flow"]';
 export const STEP_FLOW_PROGRESS_INDICATOR =
   '[data-element="progress-indicator"]';
 export const STEP_FLOW_CATEGORY_TEXT = '[data-element="category-text"]';

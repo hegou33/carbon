@@ -447,7 +447,6 @@ describe("Step Flow component", () => {
       const user = userEvent.setup();
       const { container } = render(<MockComponent />);
       const button = screen.getByRole("button");
-      button.focus();
 
       await user.click(button);
 
