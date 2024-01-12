@@ -7,8 +7,9 @@ import OptionRow, { OptionRowProps } from "../option-row/option-row.component";
 import highlightPartOfText from "./highlight-part-of-text";
 
 const filterOptions = (option: React.ReactElement, filterText: string) => {
-  const processedText = option.props.text?.toLowerCase();
-  const processedValue = filterText.toLowerCase();
+  // trims whitespace from the input value and text children
+  const processedText = option.props.text?.toLowerCase().trim();
+  const processedValue = filterText.toLowerCase().trim();
   if (processedText.includes(processedValue)) {
     return option;
   }
@@ -27,8 +28,9 @@ const filterOptionRows = (
       return false;
     }
     if (typeof cell.props.children === "string") {
-      const processedText = cell.props.children.toLowerCase();
-      const processedValue = filterText.toLowerCase();
+      // trims whitespace from the input value and text children
+      const processedText = cell.props.children.toLowerCase().trim();
+      const processedValue = filterText.toLowerCase().trim();
       return processedText.includes(processedValue);
     }
     // filter recursively based on children
@@ -130,7 +132,8 @@ const withFilter = <T extends WrappedComponentProps>(
           filteredElements = filterChildren(filterText)(children);
 
           if (!filteredElements) {
-            const noResultsText = l.select.noResultsForTerm(filterText);
+            // removes whitespace from no results message
+            const noResultsText = l.select.noResultsForTerm(filterText.trim());
 
             if (multiColumn) {
               const colSpan = React.isValidElement(tableHeader)
@@ -152,7 +155,7 @@ const withFilter = <T extends WrappedComponentProps>(
             );
           }
 
-          return addHighlightedContent(filteredElements, filterText);
+          return addHighlightedContent(filteredElements, filterText.trim());
         }
 
         return children;

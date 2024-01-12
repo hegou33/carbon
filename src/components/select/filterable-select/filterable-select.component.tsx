@@ -208,10 +208,13 @@ export const FilterableSelect = React.forwardRef(
       });
     }
 
+    // detects the presence of non-whitepsace text in the string
+    const detectNonWhiteSpaceCharacters =(str: string) => /\S/.test(str);
+
     const updateValues = useCallback(
       (newFilterText: string, isDeleteEvent: boolean) => {
         setSelectedValue((previousValue) => {
-          const match = findElementWithMatchingText(newFilterText, children);
+          const match = findElementWithMatchingText(newFilterText.trim(), children);
           const isFilterCleared = isDeleteEvent && newFilterText === "";
 
           if (!match || isFilterCleared) {
@@ -229,10 +232,11 @@ export const FilterableSelect = React.forwardRef(
 
           triggerChange(match.props.value, false);
 
-          if (
+          // only begins match if there is non-whitespace characters in the newFilterText
+          if (detectNonWhiteSpaceCharacters(newFilterText) &&
             match.props.text
               ?.toLowerCase()
-              .startsWith(newFilterText.toLowerCase())
+              .startsWith(newFilterText.trim().toLowerCase())
           ) {
             setTextValue(match.props.text);
           } else {
