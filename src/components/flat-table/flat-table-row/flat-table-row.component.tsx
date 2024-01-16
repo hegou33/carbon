@@ -105,7 +105,13 @@ export const FlatTableRow = React.forwardRef<
     const [firstCellId, setFirstCellId] = useState<string | null>(null);
     const [cellsArray, setCellsArray] = useState<Element[]>([]);
     const [tabIndex, setTabIndex] = useState(-1);
+    const [rowHeight, setRowHeight] = useState(0);
     let interactiveRowProps = {};
+
+    useLayoutEffect(() => {
+      // istanbul ignore else
+      if (rowRef.current !== null) setRowHeight(rowRef?.current?.offsetHeight);
+    }, []);
 
     useLayoutEffect(() => {
       const checkForPositionUpdates = (
@@ -293,6 +299,7 @@ export const FlatTableRow = React.forwardRef<
         id={internalId.current}
         data-selected={selected && expandableArea === "wholeRow"}
         data-highlighted={highlighted && expandableArea === "wholeRow"}
+        rowHeight={rowHeight}
         {...interactiveRowProps}
         {...rest}
       >
