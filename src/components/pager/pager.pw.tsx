@@ -67,6 +67,7 @@ test.describe("Styling tests", () => {
 
     await page.keyboard.press("Tab");
     const inputParent = currentPageInput(page).locator("..");
+
     await expect(inputParent).toHaveCSS(
       "box-shadow",
       "rgb(255, 188, 25) 0px 0px 0px 3px, rgba(0, 0, 0, 0.9) 0px 0px 0px 6px"
@@ -87,6 +88,7 @@ test.describe("Styling tests", () => {
 
     await page.keyboard.press("Tab");
     const inputParent = currentPageInput(page).locator("..");
+
     await expect(inputParent).toHaveCSS(
       "outline",
       "rgb(255, 188, 25) solid 3px"
@@ -161,6 +163,7 @@ test.describe("Prop tests", () => {
       );
 
       await inputIconToggle(page).click();
+
       await expect(
         selectListWrapper(page).locator("ul").locator("li")
       ).toHaveAttribute("data-component", "option");
@@ -682,6 +685,7 @@ test.describe("Events test", () => {
     );
 
     await lastArrow(page).click();
+
     expect(callbackCount).toEqual(1);
   });
 
@@ -703,6 +707,7 @@ test.describe("Events test", () => {
       await page.keyboard.press("Tab");
       await page.keyboard.press("Tab");
       await page.keyboard.press(key);
+
       expect(callbackCount).toEqual(1);
     });
   });
@@ -755,6 +760,7 @@ test.describe("Accessibility tests", () => {
     );
 
     await inputIconToggle(page).click();
+
     await checkAccessibility(page);
   });
 
@@ -893,6 +899,7 @@ test.describe("Accessibility tests", () => {
     await mount(<PagerComponent currentPage={3} />);
 
     await lastArrow(page).click();
+
     await checkAccessibility(page);
   });
 
@@ -903,6 +910,7 @@ test.describe("Accessibility tests", () => {
     await mount(<PagerComponent currentPage={3} />);
 
     await firstArrow(page).click();
+
     await checkAccessibility(page);
   });
 

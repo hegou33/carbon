@@ -14,6 +14,7 @@ import {
   CURRENT_PAGE_LABEL,
   SELECT_LIST_WRAPPER,
   INPUT_ICON_TOGGLE,
+  CURRENT_PAGE_INPUT,
 } from "./locators";
 import { COMMMON_DATA_ELEMENT_INPUT } from "../locators";
 import { getDataElementByValue } from "..";
@@ -32,9 +33,8 @@ export const maxPages = (page: Page) => page.locator(MAX_PAGES);
 export const currentPageWrapper = (page: Page) => page.locator(CURRENT_PAGE);
 export const currentPageLabelWrapper = (page: Page) =>
   page.locator(CURRENT_PAGE_LABEL);
-// export const currentPageInput = (page: Page) => page.locator(PAGER_SUMMARY).locator("input");
 export const currentPageInput = (page: Page) =>
-  page.locator(CURRENT_PAGE).locator("div > div > div > input");
+  page.locator(CURRENT_PAGE_INPUT);
 export const previousArrow = (page: Page) =>
   getDataElementByValue(
     page,

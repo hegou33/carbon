@@ -14,3 +14,4 @@ export const CURRENT_PAGE = '[data-element="current-page"]';
 export const CURRENT_PAGE_LABEL = '[data-element="current-page-label"]';
 export const SELECT_LIST_WRAPPER = '[data-element="select-list-wrapper"]';
 export const INPUT_ICON_TOGGLE = '[data-element="input-icon-toggle"]';
+export const CURRENT_PAGE_INPUT = '[data-element="input"]';
