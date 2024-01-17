@@ -170,14 +170,14 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((bool) => {
-    test(`should render with showPageSizeSelection prop set to ${bool}`, async ({
+  [true, false].forEach((showSelection) => {
+    test(`should render with showPageSizeSelection prop set to ${showSelection}`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPageSizeSelection={bool} />);
+      await mount(<PagerComponent showPageSizeSelection={showSelection} />);
 
-      if (bool) {
+      if (showSelection) {
         await expect(pageSelectElement(page)).toBeVisible();
       } else {
         await expect(pageSelectElement(page)).toHaveCount(0);
@@ -185,19 +185,19 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPageSizeLabelBefore prop set to ${boolVal}`, async ({
+  [true, false].forEach((showBefore) => {
+    test(`should render with showPageSizeLabelBefore prop set to ${showBefore}`, async ({
       mount,
       page,
     }) => {
       await mount(
         <PagerComponent
-          showPageSizeLabelBefore={boolVal}
+          showPageSizeLabelBefore={showBefore}
           showPageSizeSelection
         />
       );
 
-      if (boolVal) {
+      if (showBefore) {
         await expect(showLabelBefore(page)).toBeVisible();
       } else {
         await expect(showLabelBefore(page)).toHaveCount(0);
@@ -206,19 +206,19 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPageSizeLabelAfter prop set to ${boolVal}`, async ({
+  [true, false].forEach((showAfter) => {
+    test(`should render with showPageSizeLabelAfter prop set to ${showAfter}`, async ({
       mount,
       page,
     }) => {
       await mount(
         <PagerComponent
-          showPageSizeLabelAfter={boolVal}
+          showPageSizeLabelAfter={showAfter}
           showPageSizeSelection
         />
       );
 
-      if (boolVal) {
+      if (showAfter) {
         await expect(pageSizeLabelAfter(page)).toBeVisible();
       } else {
         await expect(pageSizeLabelAfter(page)).toHaveCount(0);
@@ -227,14 +227,14 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showTotalRecords prop set to ${boolVal}`, async ({
+  [true, false].forEach((showTotal) => {
+    test(`should render with showTotalRecords prop set to ${showTotal}`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showTotalRecords={boolVal} />);
+      await mount(<PagerComponent showTotalRecords={showTotal} />);
 
-      if (boolVal) {
+      if (showTotal) {
         await expect(pagerSummary(page)).toBeVisible();
       } else {
         await expect(pagerSummary(page)).not.toBeVisible();
@@ -242,14 +242,14 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showFirstAndLastButtons prop set to ${boolVal}`, async ({
+  [true, false].forEach((showButtons) => {
+    test(`should render with showFirstAndLastButtons prop set to ${showButtons}`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showFirstAndLastButtons={boolVal} />);
+      await mount(<PagerComponent showFirstAndLastButtons={showButtons} />);
 
-      if (boolVal) {
+      if (showButtons) {
         await expect(firstArrow(page)).toHaveCount(1);
         await expect(lastArrow(page)).toHaveCount(1);
       } else {
@@ -259,14 +259,14 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPreviousAndNextButtons prop set to ${boolVal}`, async ({
+  [true, false].forEach((showButtons) => {
+    test(`should render with showPreviousAndNextButtons prop set to ${showButtons}`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPreviousAndNextButtons={boolVal} />);
+      await mount(<PagerComponent showPreviousAndNextButtons={showButtons} />);
 
-      if (boolVal) {
+      if (showButtons) {
         await expect(previousArrow(page)).toHaveCount(1);
         await expect(nextArrow(page)).toHaveCount(1);
       } else {
@@ -276,14 +276,14 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPageCount prop set to ${boolVal}`, async ({
+  [true, false].forEach((showCount) => {
+    test(`should render with showPageCount prop set to ${showCount}`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPageCount={boolVal} />);
+      await mount(<PagerComponent showPageCount={showCount} />);
 
-      if (boolVal) {
+      if (showCount) {
         await expect(currentPageSection(page).first()).toBeVisible();
       } else {
         await expect(currentPageSection(page)).not.toBeVisible();
@@ -325,16 +325,16 @@ test.describe("Prop tests", () => {
     }
   );
 
-  [true, false].forEach((boolVal) => {
-    test(`should render links as intended when hideDisabledElements is set to ${boolVal} and currentPage is 1`, async ({
+  [true, false].forEach((hideElements) => {
+    test(`should render links as intended when hideDisabledElements is set to ${hideElements} and currentPage is 1`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={1} hideDisabledElements={boolVal} />
+        <PagerComponent currentPage={1} hideDisabledElements={hideElements} />
       );
 
-      if (boolVal) {
+      if (hideElements) {
         await expect(firstArrow(page)).not.toBeVisible();
         await expect(previousArrow(page)).not.toBeVisible();
       } else {
@@ -344,16 +344,16 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render links as intended when hideDisabledElements is set to ${boolVal} and currentPage is 10`, async ({
+  [true, false].forEach((hideElements) => {
+    test(`should render links as intended when hideDisabledElements is set to ${hideElements} and currentPage is 10`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={10} hideDisabledElements={boolVal} />
+        <PagerComponent currentPage={10} hideDisabledElements={hideElements} />
       );
 
-      if (boolVal) {
+      if (hideElements) {
         await expect(nextArrow(page)).not.toBeVisible();
         await expect(lastArrow(page)).not.toBeVisible();
       } else {
@@ -373,16 +373,16 @@ test.describe("Prop tests", () => {
     await expect(previousArrow(page)).toBeVisible();
   });
 
-  [false, true].forEach((boolVal) => {
-    test(`should render standard pager nav number input correctly when interactivePageNumber is ${boolVal}`, async ({
+  [false, true].forEach((pageNumber) => {
+    test(`should render standard pager nav number input correctly when interactivePageNumber is ${pageNumber}`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={1} interactivePageNumber={boolVal} />
+        <PagerComponent currentPage={1} interactivePageNumber={pageNumber} />
       );
 
-      if (boolVal) {
+      if (pageNumber) {
         await expect(currentPageWrapper(page)).toBeVisible();
       } else {
         await expect(currentPageWrapper(page)).toHaveCount(0);
@@ -390,16 +390,16 @@ test.describe("Prop tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render pager nav label is correctly when interactivePageNumber is ${boolVal}`, async ({
+  [true, false].forEach((pageNumber) => {
+    test(`should render pager nav label is correctly when interactivePageNumber is ${pageNumber}`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={1} interactivePageNumber={boolVal} />
+        <PagerComponent currentPage={1} interactivePageNumber={pageNumber} />
       );
 
-      if (boolVal) {
+      if (pageNumber) {
         await expect(currentPageLabelWrapper(page)).toHaveCount(0);
       } else {
         await expect(currentPageLabelWrapper(page)).toBeVisible();
@@ -441,6 +441,7 @@ test.describe("Functional tests", () => {
     await mount(<PagerComponent currentPage={3} />);
 
     await lastArrow(page).click();
+
     await expect(nextArrow(page)).toHaveAttribute("disabled", /.*/);
     await expect(lastArrow(page)).toHaveAttribute("disabled", /.*/);
   });
@@ -452,6 +453,7 @@ test.describe("Functional tests", () => {
     await mount(<PagerComponent currentPage={3} />);
 
     await firstArrow(page).click();
+
     await expect(firstArrow(page)).toHaveAttribute("disabled", /.*/);
     await expect(previousArrow(page)).toHaveAttribute("disabled", /.*/);
   });
@@ -463,6 +465,7 @@ test.describe("Functional tests", () => {
     await mount(<PagerComponent currentPage={2} />);
 
     await previousArrow(page).click();
+
     await expect(firstArrow(page)).toHaveAttribute("disabled", /.*/);
     await expect(previousArrow(page)).toHaveAttribute("disabled", /.*/);
   });
@@ -474,6 +477,7 @@ test.describe("Functional tests", () => {
     await mount(<PagerComponent currentPage={9} />);
 
     await nextArrow(page).click();
+
     await expect(nextArrow(page)).toHaveAttribute("disabled", /.*/);
     await expect(lastArrow(page)).toHaveAttribute("disabled", /.*/);
   });
@@ -548,6 +552,7 @@ test.describe("Events test", () => {
       .locator("li")
       .filter({ hasText: "25" });
     await listWrapper.click();
+
     expect(callbackCount).toEqual(1);
   });
 
@@ -565,6 +570,7 @@ test.describe("Events test", () => {
     );
 
     await nextArrow(page).click();
+
     expect(callbackCount).toEqual(1);
   });
 
@@ -585,6 +591,7 @@ test.describe("Events test", () => {
       await page.keyboard.press("Tab");
       await page.keyboard.press("Tab");
       await page.keyboard.press(key);
+
       // FE-6199 Enter and Space keys move 2 pages
       expect(callbackCount).toEqual(2);
     });
@@ -605,6 +612,7 @@ test.describe("Events test", () => {
     );
 
     await previousArrow(page).click();
+
     expect(callbackCount).toEqual(1);
   });
 
@@ -626,6 +634,7 @@ test.describe("Events test", () => {
       await page.keyboard.press("Tab");
       await page.keyboard.press("Tab");
       await page.keyboard.press(key);
+
       // FE-6199 Enter and Space keys move 2 pages
       expect(callbackCount).toEqual(2);
     });
@@ -646,6 +655,7 @@ test.describe("Events test", () => {
     );
 
     await firstArrow(page).click();
+
     expect(callbackCount).toEqual(1);
   });
 
@@ -666,6 +676,7 @@ test.describe("Events test", () => {
 
       await page.keyboard.press("Tab");
       await page.keyboard.press(key);
+
       expect(callbackCount).toEqual(1);
     });
   });
@@ -764,25 +775,25 @@ test.describe("Accessibility tests", () => {
     await checkAccessibility(page);
   });
 
-  [true, false].forEach((bool) => {
-    test(`should render with showPageSizeSelection prop set to ${bool} for accessibility tests`, async ({
+  [true, false].forEach((showSelection) => {
+    test(`should render with showPageSizeSelection prop set to ${showSelection} for accessibility tests`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPageSizeSelection={bool} />);
+      await mount(<PagerComponent showPageSizeSelection={showSelection} />);
 
       await checkAccessibility(page);
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPageSizeLabelAfter prop set to ${boolVal} for accessibility tests`, async ({
+  [true, false].forEach((showAfter) => {
+    test(`should render with showPageSizeLabelAfter prop set to ${showAfter} for accessibility tests`, async ({
       mount,
       page,
     }) => {
       await mount(
         <PagerComponent
-          showPageSizeLabelAfter={boolVal}
+          showPageSizeLabelAfter={showAfter}
           showPageSizeSelection
         />
       );
@@ -791,45 +802,45 @@ test.describe("Accessibility tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showTotalRecords prop set to ${boolVal} for accessibility tests`, async ({
+  [true, false].forEach((showRecords) => {
+    test(`should render with showTotalRecords prop set to ${showRecords} for accessibility tests`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showTotalRecords={boolVal} />);
+      await mount(<PagerComponent showTotalRecords={showRecords} />);
 
       await checkAccessibility(page);
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showFirstAndLastButtons prop set to ${boolVal} for accessibility tests`, async ({
+  [true, false].forEach((showButtons) => {
+    test(`should render with showFirstAndLastButtons prop set to ${showButtons} for accessibility tests`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showFirstAndLastButtons={boolVal} />);
+      await mount(<PagerComponent showFirstAndLastButtons={showButtons} />);
 
       await checkAccessibility(page);
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPreviousAndNextButtons prop set to ${boolVal} for accessibility tests`, async ({
+  [true, false].forEach((showButtons) => {
+    test(`should render with showPreviousAndNextButtons prop set to ${showButtons} for accessibility tests`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPreviousAndNextButtons={boolVal} />);
+      await mount(<PagerComponent showPreviousAndNextButtons={showButtons} />);
 
       await checkAccessibility(page);
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should render with showPageCount prop set to ${boolVal} for accessibility tests`, async ({
+  [true, false].forEach((showCount) => {
+    test(`should render with showPageCount prop set to ${showCount} for accessibility tests`, async ({
       mount,
       page,
     }) => {
-      await mount(<PagerComponent showPageCount={boolVal} />);
+      await mount(<PagerComponent showPageCount={showCount} />);
 
       await checkAccessibility(page);
     });
@@ -846,26 +857,26 @@ test.describe("Accessibility tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should pass accessibility tests when hideDisabledElements is set to ${boolVal} and currentPage is 1`, async ({
+  [true, false].forEach((showElements) => {
+    test(`should pass accessibility tests when hideDisabledElements is set to ${showElements} and currentPage is 1`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={1} hideDisabledElements={boolVal} />
+        <PagerComponent currentPage={1} hideDisabledElements={showElements} />
       );
 
       await checkAccessibility(page);
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should pass accessibility tests when hideDisabledElements is set to ${boolVal} and currentPage is 10`, async ({
+  [true, false].forEach((showElements) => {
+    test(`should pass accessibility tests when hideDisabledElements is set to ${showElements} and currentPage is 10`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={10} hideDisabledElements={boolVal} />
+        <PagerComponent currentPage={10} hideDisabledElements={showElements} />
       );
 
       await checkAccessibility(page);
@@ -926,14 +937,14 @@ test.describe("Accessibility tests", () => {
     });
   });
 
-  [true, false].forEach((boolVal) => {
-    test(`should pass accessibility tests with showPageSizeLabelBefore prop set to ${boolVal}`, async ({
+  [true, false].forEach((showBefore) => {
+    test(`should pass accessibility tests with showPageSizeLabelBefore prop set to ${showBefore}`, async ({
       mount,
       page,
     }) => {
       await mount(
         <PagerComponent
-          showPageSizeLabelBefore={boolVal}
+          showPageSizeLabelBefore={showBefore}
           showPageSizeSelection
         />
       );
@@ -942,13 +953,13 @@ test.describe("Accessibility tests", () => {
     });
   });
 
-  [false, true].forEach((boolVal) => {
-    test(`should pass accessibility tests with interactivePageNumber prop set to ${boolVal}`, async ({
+  [false, true].forEach((pageNumber) => {
+    test(`should pass accessibility tests with interactivePageNumber prop set to ${pageNumber}`, async ({
       mount,
       page,
     }) => {
       await mount(
-        <PagerComponent currentPage={1} interactivePageNumber={boolVal} />
+        <PagerComponent currentPage={1} interactivePageNumber={pageNumber} />
       );
 
       await checkAccessibility(page);
