@@ -1,5 +1,6 @@
-import React, { useContext } from "react";
-import { TagProps } from "__internal__/utils/helpers/tags";
+import React, { useContext, useRef } from "react";
+import guid from "../../../__internal__/utils/helpers/guid";
+import { TagProps } from "../../../__internal__/utils/helpers/tags";
 import StyledOption from "./option.style";
 import SelectListContext from "../__internal__/select-list-context";
 
@@ -63,6 +64,7 @@ const Option = React.forwardRef(
   ) => {
     const selectListContext = useContext(SelectListContext);
     let isSelected = selectListContext.currentOptionsListIndex === index;
+    const internalIdRef = useRef(id || guid());
 
     if (selectListContext.multiselectValues) {
       isSelected = selectListContext.multiselectValues.includes(value);
@@ -70,7 +72,7 @@ const Option = React.forwardRef(
 
     function handleClick() {
       if (!onClick) {
-        onSelect?.({ text, value, id });
+        onSelect?.({ text, value, id: internalIdRef.current });
       } else {
         onSelect?.();
         onClick(value);
@@ -79,7 +81,7 @@ const Option = React.forwardRef(
 
     return (
       <StyledOption
-        id={id}
+        id={internalIdRef.current}
         ref={ref}
         aria-selected={isSelected}
         data-component="option"
