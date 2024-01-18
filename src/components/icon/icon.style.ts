@@ -57,9 +57,24 @@ export interface StyledIconInternalProps {
   theme?: ThemeObject;
 }
 
+const sizeValues: Record<BgSize | FontSize, number> = {
+  "extra-small": 1,
+  small: 2,
+  medium: 3,
+  large: 4,
+  "extra-large": 5,
+};
+
 function adjustIconBgSize(fontSize?: FontSize, bgSize?: BgSize) {
-  if (fontSize && fontSize !== "small") {
-    return iconConfig.backgroundSize[fontSize];
+  if (fontSize && bgSize && fontSize !== "small") {
+    const fontSizeValue = sizeValues[fontSize];
+    const bgSizeValue = sizeValues[bgSize];
+
+    if (bgSizeValue < fontSizeValue) {
+      return iconConfig.backgroundSize[fontSize];
+    }
+
+    return iconConfig.backgroundSize[bgSize];
   }
 
   return bgSize ? iconConfig.backgroundSize[bgSize] : undefined;

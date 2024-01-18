@@ -360,6 +360,30 @@ describe("Icon component", () => {
         );
       });
     });
+
+    describe("with fontSize", () => {
+      it("adjusts background size to match font size when icon is larger", () => {
+        const wrapper = renderStyles({ bgSize: "small", fontSize: "large" });
+        assertStyleMatch(
+          {
+            width: iconConfig.backgroundSize.large,
+            height: iconConfig.backgroundSize.large,
+          },
+          wrapper.toJSON()
+        );
+      });
+
+      it("maintains background size value when icon is smaller", () => {
+        const wrapper = renderStyles({ bgSize: "large", fontSize: "medium" });
+        assertStyleMatch(
+          {
+            width: iconConfig.backgroundSize.large,
+            height: iconConfig.backgroundSize.large,
+          },
+          wrapper.toJSON()
+        );
+      });
+    });
   });
 
   describe.each(ICON_SHAPES)("background shape", (shape) => {

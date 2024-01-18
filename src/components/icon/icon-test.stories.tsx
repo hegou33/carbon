@@ -112,6 +112,7 @@ export const All = () => (
               fontSize={fontSize}
               bgShape={bgShape}
               bgSize={bgSize}
+              bg="#00b000"
             />
           ));
         });
