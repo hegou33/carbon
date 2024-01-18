@@ -1,8 +1,11 @@
 import React, { useState, useRef } from "react";
 import { ComponentStory } from "@storybook/react";
 import { StepFlow } from ".";
-import Box from "../box";
 import Button from "../button";
+import Form from "../form";
+import Dialog from "../dialog";
+import Typography from "../typography";
+import Textarea from "../textarea";
 import I18nProvider from "../i18n-provider/i18n-provider.component";
 import { Steps, StepFlowHandle } from "./step-flow.component";
 
@@ -66,6 +69,7 @@ export const ExampleImplementation: ComponentStory<typeof StepFlow> = () => {
   const lowestStep = 1;
   const highestStep = 3;
 
+  const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(lowestStep);
   const stepFlowHandle = useRef<StepFlowHandle>(null);
 
@@ -74,7 +78,7 @@ export const ExampleImplementation: ComponentStory<typeof StepFlow> = () => {
   function handleClick(clickType: string) {
     stepFlowHandle.current?.focus();
 
-    if (clickType === "back") {
+    if (clickType === "Back") {
       setStep(step > lowestStep ? step - 1 : step);
     } else {
       setStep(step < highestStep ? step + 1 : step);
@@ -82,28 +86,49 @@ export const ExampleImplementation: ComponentStory<typeof StepFlow> = () => {
   }
 
   return (
-    <Box>
-      <StepFlow
-        category="Add client"
-        title={stepTitles[step - 1]}
-        currentStep={step as Steps}
-        totalSteps={highestStep}
-        ref={stepFlowHandle}
-        showProgressIndicator
-      />
-      <Box display="flex" justifyContent="right" mt={2}>
-        <Button
-          buttonType="tertiary"
-          onClick={() => handleClick("back")}
-          mr={2}
+    <>
+      <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+      <Dialog
+        open={isOpen}
+        showCloseIcon={false}
+        title={
+          <StepFlow
+            category="Add client"
+            title={stepTitles[step - 1]}
+            currentStep={step as Steps}
+            totalSteps={highestStep}
+            ref={stepFlowHandle}
+            showProgressIndicator
+            showCloseIcon
+            onDismiss={() => setIsOpen(false)}
+            mb="20px"
+          />
+        }
+      >
+        <Form
+          stickyFooter
+          leftSideButtons={
+            <Button buttonType="tertiary" onClick={() => handleClick("Back")}>
+              Back
+            </Button>
+          }
+          rightSideButtons={
+            <Button
+              buttonType="primary"
+              onClick={() => handleClick("Continue")}
+            >
+              Continue
+            </Button>
+          }
         >
-          Back
-        </Button>
-        <Button buttonType="primary" onClick={() => handleClick("continue")}>
-          Continue
-        </Button>
-      </Box>
-    </Box>
+          <Typography>
+            This is an example of a Dialog with a Form as content, with a Step
+            Flow to help users complete tasks in a specific order.
+          </Typography>
+          <Textarea label="Reason For Refund" />
+        </Form>
+      </Dialog>
+    </>
   );
 };
 
@@ -113,6 +138,7 @@ export const ExampleImplementationWithTranslations: ComponentStory<
   const lowestStep = 1;
   const highestStep = 3;
 
+  const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(lowestStep);
   const stepFlowHandle = useRef<StepFlowHandle>(null);
 
@@ -125,7 +151,7 @@ export const ExampleImplementationWithTranslations: ComponentStory<
   function handleClick(clickType: string) {
     stepFlowHandle.current?.focus();
 
-    if (clickType === "back") {
+    if (clickType === "Back") {
       setStep(step > lowestStep ? step - 1 : step);
     } else {
       setStep(step < highestStep ? step + 1 : step);
@@ -145,29 +171,50 @@ export const ExampleImplementationWithTranslations: ComponentStory<
         },
       }}
     >
-      <Box>
-        <StepFlow
-          category="Ajouter un client"
-          title={stepTitles[step - 1]}
-          currentStep={step as Steps}
-          totalSteps={highestStep}
-          ref={stepFlowHandle}
-          showProgressIndicator
-          showCloseIcon
-        />
-        <Box display="flex" justifyContent="right" mt={2}>
-          <Button
-            buttonType="tertiary"
-            onClick={() => handleClick("back")}
-            mr={2}
+      <>
+        <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+        <Dialog
+          open={isOpen}
+          showCloseIcon={false}
+          title={
+            <StepFlow
+              category="Ajouter un client"
+              title={stepTitles[step - 1]}
+              currentStep={step as Steps}
+              totalSteps={highestStep}
+              ref={stepFlowHandle}
+              showProgressIndicator
+              showCloseIcon
+              onDismiss={() => setIsOpen(false)}
+              mb="20px"
+            />
+          }
+        >
+          <Form
+            stickyFooter
+            leftSideButtons={
+              <Button buttonType="tertiary" onClick={() => handleClick("Back")}>
+                Retour
+              </Button>
+            }
+            rightSideButtons={
+              <Button
+                buttonType="primary"
+                onClick={() => handleClick("Continue")}
+              >
+                Continuer
+              </Button>
+            }
           >
-            Retour
-          </Button>
-          <Button buttonType="primary" onClick={() => handleClick("continue")}>
-            Continuer
-          </Button>
-        </Box>
-      </Box>
+            <Typography>
+              Il s'agit d'un exemple de boîte de dialogue avec un formulaire
+              comme contenu, avec un flux d'étapes pour aider les utilisateurs à
+              effectuer des tâches dans un ordre spécifique.
+            </Typography>
+            <Textarea label="Motif du remboursement" />
+          </Form>
+        </Dialog>
+      </>
     </I18nProvider>
   );
 };

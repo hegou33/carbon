@@ -2,11 +2,7 @@ import React from "react";
 import { render, RenderResult, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { StepFlow } from "./index";
-import {
-  StepFlowHandle,
-  Steps,
-  StepFlowVariantTypes,
-} from "./step-flow.component";
+import { StepFlowHandle, Steps } from "./step-flow.component";
 import Button from "../button";
 
 describe("Step Flow component", () => {
@@ -77,22 +73,7 @@ describe("Step Flow component", () => {
       );
     });
 
-    it("when the 'titleVariant' prop is not passed, but the category prop is, the variant is h2 by default", () => {
-      const { container } = render(
-        <StepFlow
-          title="this title is a h2"
-          category="foo"
-          currentStep={5}
-          totalSteps={6}
-        />
-      );
-
-      expect(container.querySelector("h2")).toHaveTextContent(
-        "this title is a h2"
-      );
-    });
-
-    it.each(["h1", "h2", "h3", "h4", "p"] as StepFlowVariantTypes[])(
+    it.each(["h1", "h2"] as const)(
       "when the 'titleVariant' prop is passed as %s, the correct element renders",
       (headingLevel) => {
         const { container } = render(
@@ -102,71 +83,6 @@ describe("Step Flow component", () => {
             currentStep={5}
             totalSteps={6}
             titleVariant={headingLevel}
-          />
-        );
-
-        expect(container.querySelector(headingLevel)).toBeInTheDocument();
-      }
-    );
-
-    it("when the 'categoryVariant' prop is not passed, the variant is h1 by default", () => {
-      const { container } = render(
-        <StepFlow
-          title="foo"
-          category="this category is a h1"
-          currentStep={5}
-          totalSteps={6}
-        />
-      );
-
-      expect(container.querySelector("h1")).toHaveTextContent(
-        "this category is a h1"
-      );
-    });
-
-    it.each(["h1", "h2", "h3", "h4", "p"] as StepFlowVariantTypes[])(
-      "when the 'categoryVariant' prop is passed as %s, the correct element renders",
-      (headingLevel) => {
-        const { container } = render(
-          <StepFlow
-            title="foo"
-            category="bar"
-            currentStep={5}
-            totalSteps={6}
-            categoryVariant={headingLevel}
-          />
-        );
-
-        expect(container.querySelector(headingLevel)).toBeInTheDocument();
-      }
-    );
-
-    it("when the 'labelVariant' prop is not passed, the variant is h2 by default", () => {
-      const { container } = render(
-        <StepFlow title="foo" currentStep={5} totalSteps={6} />
-      );
-
-      expect(container.querySelector("h2")).toHaveTextContent("Step 5 of 6");
-    });
-
-    it("when the 'labelVariant' prop is not passed, but the category prop is, the variant is h3 by default", () => {
-      const { container } = render(
-        <StepFlow title="foo" category="bar" currentStep={5} totalSteps={6} />
-      );
-
-      expect(container.querySelector("h3")).toHaveTextContent("Step 5 of 6");
-    });
-
-    it.each(["h1", "h2", "h3", "h4", "p"] as StepFlowVariantTypes[])(
-      "when the 'labelVariant' prop is passed as %s, the correct element renders",
-      (headingLevel) => {
-        const { container } = render(
-          <StepFlow
-            title="foo"
-            category="bar"
-            currentStep={5}
-            totalSteps={6}
-            labelVariant={headingLevel}
           />
         );
 

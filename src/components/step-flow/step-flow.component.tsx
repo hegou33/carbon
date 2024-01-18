@@ -14,29 +14,20 @@ import {
 import tagComponent, {
   TagProps,
 } from "../../__internal__/utils/helpers/tags/tags";
-import Typography, { VariantTypes } from "../typography";
+import Typography from "../typography";
 import useLocale from "../../hooks/__internal__/useLocale";
 
 export type Steps = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8;
 
-export type StepFlowVariantTypes = Extract<
-  VariantTypes,
-  "h1" | "h2" | "h3" | "h4" | "h5" | "p"
->;
-
 export interface StepFlowProps extends MarginProps, TagProps {
   /** A category for the user journey.  */
   category?: string;
-  /** Set the variant of the internal 'Typography' component which contains the category.
-   * However, despite the chosen variant the styling will always be overridden.
-   */
-  categoryVariant?: StepFlowVariantTypes;
   /** The title of the current step.  */
   title: string;
   /** Set the variant of the internal 'Typography' component which contains the title.
    * However, despite the chosen variant the styling will always be overridden.
    */
-  titleVariant?: StepFlowVariantTypes;
+  titleVariant?: "h1" | "h2";
   /** The total steps in the user journey.  */
   totalSteps: Steps;
   /**
@@ -44,10 +35,6 @@ export interface StepFlowProps extends MarginProps, TagProps {
    * `totalSteps`the value of `currentStep` will be that of `totalSteps` instead.
    */
   currentStep: Steps;
-  /** Set the variant of the internal 'Typography' component which contains the label.
-   * However, despite the chosen variant the styling will always be overridden.
-   */
-  labelVariant?: StepFlowVariantTypes;
   /** Determines if the progress indicator is shown. */
   showProgressIndicator?: boolean;
   /** Determines if the close icon button is shown */
@@ -69,12 +56,10 @@ export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
   (
     {
       category,
-      categoryVariant,
       title,
       titleVariant,
       totalSteps,
       currentStep,
-      labelVariant,
       showProgressIndicator = false,
       showCloseIcon = false,
       onDismiss,
@@ -124,6 +109,7 @@ export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
       return (
         <StyledProgressIndicator
           key={step}
+          aria-hidden="true"
           data-element="progress-indicator"
           isCompleted={step < validatedCurrentStep}
           isInProgress={step === validatedCurrentStep}
@@ -161,13 +147,10 @@ export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
     const stepFlowTitle = (
       <StyledTitleFocusWrapper
         data-element="title-text-wrapper"
-        tabIndex={0}
+        tabIndex={-1}
         ref={titleRef}
       >
-        <Typography
-          variant={titleVariant || (category ? "h2" : "h1")}
-          data-element="title-text"
-        >
+        <Typography variant={titleVariant || "h1"} data-element="title-text">
           <Typography
             fontWeight="900"
             fontSize="var(--fontSizes600)"
@@ -196,7 +179,7 @@ export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
 
     const stepFlowLabel = (
       <Typography
-        variant={labelVariant || (category ? "h3" : "h2")}
+        variant="span"
         fontWeight="400"
         fontSize="var(--fontSizes200)"
         lineHeight="var(--sizing300)"
@@ -216,7 +199,7 @@ export const StepFlow = forwardRef<StepFlowHandle, StepFlowProps>(
                 fontWeight="500"
                 fontSize="var(--fontSizes100)"
                 lineHeight="var(--sizing250)"
-                variant={categoryVariant || "h1"}
+                variant="span"
                 data-element="category-text"
                 aria-hidden="true"
               >

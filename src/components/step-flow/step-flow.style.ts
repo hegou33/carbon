@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { margin } from "styled-system";
 
-const StyledStepFlow = styled.div``;
+const StyledStepFlow = styled.div`
+  ${margin}
+`;
 
 const StyledStepContent = styled.div`
   display: flex;

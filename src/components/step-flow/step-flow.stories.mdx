@@ -24,7 +24,7 @@ Provide a way to represent an end-to-end journey that a user can complete in one
 
 This component has a specific start and end point, as well as showing the current step in the journey.
 
-Use a step flow to help a user complete tasks in a specifc order, based on their needs.
+Use a step flow to help a user complete tasks in a specific order, based on their needs.
 
 ## Contents
 
@@ -92,11 +92,14 @@ which is called when a user clicks on the close icon.
   <Story name="showCloseIcon" story={stories.ShowCloseIconStory}/>
 </Canvas>
 
-### Example implemetation
+### Example implementation
 
-Please see below an example implemetation of how the component can be used with `Button`'s to advance through the user journey. This also fully details the use of a ref
-to programmatically move focus to a title div which contains all of the necessary information for screen reader users (`title`, `currentStep`, `totalSteps` and `category` if added),
-in the form of a properly formatted, visually hidden string.
+Please see below an example implementation of how the component can be used within the `Dialog` component, with the use of `Button`'s to advance through the user
+journey. Within the `Dialog` component, the `title` prop accepts a node, so the component can be passed, acting as the `Dialog`'s title. Also `showCloseIcon` can
+also be passed to render the close icon, and its `onDismiss` function can be used to close the modal instead of passing `onCancel` to `Dialog`.
+
+Also, the example below fully details the use of a ref to programmatically move focus to a title div which contains all of the necessary information for screen reader users
+(`title`, `currentStep`, `totalSteps` and `category` if added), in the form of a properly formatted, visually hidden string.
 
 Please see below an example of what this look like in the DOM.
 
@@ -125,11 +128,11 @@ stepFlowHandle.current?.focus();
 
 This will ensure that screen reader users are not only made aware of any changes to information, but can then also navigate down the page from the `StepFlow` component as they see fit.
 
-### Example implemetation with translations
+### Example implementation with translations
 
 Various translations can be applied to both the step label, screen reader only title and close icon aria-label.
 
-When providing the screen reader only title the `title`, `category`, `currentStep` and `totalSteps`, have all been passed to ensure screen reader users have all of the same information
+When providing the screen reader only title the `title`, `category` (if provided), `currentStep` and `totalSteps`, have all been passed to ensure screen reader users have all of the same information
 as users who can see the component. Please see below how this has been achieved with a French translation.
 
 <Canvas>

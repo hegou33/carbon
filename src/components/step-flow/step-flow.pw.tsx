@@ -51,6 +51,19 @@ test.describe("Prop checks for StepFlow component", () => {
     });
   });
 
+  (["h1", "h2"] as const).forEach((titleVariants) => {
+    test(`should render with the titleVariant prop, when the prop's value is ${titleVariants}`, async ({
+      mount,
+      page,
+    }) => {
+      await mount(
+        <StepFlowComponent title="foo" titleVariant={titleVariants} />
+      );
+
+      await expect(page.locator(titleVariants)).toContainText("foo");
+    });
+  });
+
   test("should render the correct element when 'showProgressIndicator' is true", async ({
     mount,
     page,
