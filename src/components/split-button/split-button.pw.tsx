@@ -237,9 +237,8 @@ test.describe("Prop tests", () => {
     await mount(<SplitButtonList disabled />);
 
     await mainButton(page).hover();
-    await expect(
-      splitMainButton(page).locator("button").first()
-    ).toBeDisabled();
+    await expect(splitMainButton(page).locator("button").nth(0)).toBeDisabled();
+    await expect(splitMainButton(page).locator("button").nth(1)).toBeDisabled();
   });
 
   ([
@@ -299,7 +298,7 @@ test.describe("Functional tests", () => {
     );
   });
 
-  test(`should render component in a hidden container and expand by hovering`, async ({
+  test(`should render component in a hidden container and expand by clicking and hovering`, async ({
     mount,
     page,
   }) => {
@@ -310,6 +309,27 @@ test.describe("Functional tests", () => {
     );
 
     await accordionDefaultTitle(page).click();
+    await getDataElementByValue(page, "dropdown").hover();
+    await expect(additionalButton(page, 0)).toBeVisible();
+    await expect(additionalButton(page, 1)).toBeVisible();
+    await expect(additionalButton(page, 2)).toBeVisible();
+    await expect(splitToggleButton(page)).toHaveAttribute(
+      "aria-expanded",
+      "true"
+    );
+  });
+
+  test(`should render component in a hidden container and expand by pressing Enter key and hovering`, async ({
+    mount,
+    page,
+  }) => {
+    await mount(
+      <Accordion title="Heading">
+        <SplitButtonList />
+      </Accordion>
+    );
+
+    await accordionDefaultTitle(page).press("Enter");
     await getDataElementByValue(page, "dropdown").hover();
     await expect(additionalButton(page, 0)).toBeVisible();
     await expect(additionalButton(page, 1)).toBeVisible();

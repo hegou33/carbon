@@ -41,7 +41,7 @@ export const WithWrapper = (props: Partial<SplitButtonProps>) => (
 
 export const TwoSplitButtons = () => {
   return (
-    <Box>
+    <div>
       <SplitButton text="Split Button 1">
         <Button>Button 1</Button>
         <Button>Button 2</Button>
@@ -52,7 +52,7 @@ export const TwoSplitButtons = () => {
         <Button>Button 5</Button>
         <Button>Button 6</Button>
       </SplitButton>
-    </Box>
+    </div>
   );
 };
 
