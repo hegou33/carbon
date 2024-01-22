@@ -8,6 +8,10 @@ export const Image = ({
   src,
   children,
   position,
+  top,
+  right,
+  bottom,
+  left,
   ...rest
 }: StyledImageProps) => {
   invariant(
@@ -26,6 +30,10 @@ export const Image = ({
       decorative={decorative}
       src={src}
       position={position}
+      top={top}
+      right={right}
+      bottom={bottom}
+      left={left}
       {...rest}
     >
       {children}

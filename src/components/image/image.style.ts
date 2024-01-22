@@ -31,22 +31,47 @@ export interface StyledImageProps
   children?: React.ReactNode;
   /** Any valid CSS string for position */
   position?: PositionProps;
+  /** Any valid CSS string for top */
+  top?: string;
+  /** Any valid CSS string for right */
+  right?: string;
+  /** Any valid CSS string for bottom */
+  bottom?: string;
+  /** Any valid CSS string for left */
+  left?: string;
 }
 
 const StyledImage = styled.div.attrs(
-  ({ src, children, hidden = false, position }: StyledImageProps) => ({
+  ({
+    src,
+    children,
+    hidden = false,
+    position,
+    top,
+    right,
+    bottom,
+    left,
+  }: StyledImageProps) => ({
     ...(src && { as: "img" }),
     children: src ? undefined : children,
     src,
     hidden,
     position,
+    top,
+    right,
+    bottom,
+    left,
   })
 )<StyledImageProps>`
   ${margin}
   ${layout}
 
-  ${({ position }) => css`
+  ${({ position, top, right, bottom, left }) => css`
     position: ${position};
+    top: ${top};
+    right: ${right};
+    bottom: ${bottom};
+    left: ${left};
   `}
 
   ${({ as }) =>
